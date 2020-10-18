@@ -3,19 +3,24 @@
   "version": "1.0.0",
   "description": "DEFCON Bug Tracker is a web application that allows users to keep track of bugs on projects with a gamified twist for added enjoyment.",
   "main": "index.js",
+  "scripts": {
+    "client:dev": "react-scripts start",
+    "client:build": "react-scripts build",
+    "server:dev": "nodemon index.js",
+    "db:build": "node ./db/init_db",
+    "start": "node index.js"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "mongodb": "^3.6.2",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.5",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brody327/defcon-bug-tracker.git"
@@ -26,5 +31,16 @@
   "bugs": {
     "url": "https://github.com/brody327/defcon-bug-tracker/issues"
   },
-  "homepage": "https://github.com/brody327/defcon-bug-tracker#readme"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
