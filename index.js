@@ -8,7 +8,7 @@ const server = express();
 
 //--- Database Imports & Variables ---
 //Creates the database connection.
-const { client } = require('./db')
+// const { client } = require('./db')
 
 //Uses env port or 5000 if it does not exist.
 const PORT = process.env.PORT || 5000;
@@ -36,7 +36,7 @@ server.use(bodyParser.json());
 server.use(express.static(path.join(__dirname, 'build')));
 
 //Used for connection between api path and the routes.
-server.use('/api', require('./routes'));
+// server.use('/api', require('./routes'));
 
 //Used in case route is not recognized. Sends react app instead.
 server.use((req, res, next) => {
