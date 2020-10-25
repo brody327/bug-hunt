@@ -12,6 +12,8 @@
         Users can login/register using their email.
 
         Projects:
+        Users can join a project.
+        Users can leave a project.
         Users can start projects.
         Users can complete projects.
 

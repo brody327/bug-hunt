@@ -3,19 +3,16 @@
 //~~~~~~~~~~~~~~~
 import React from 'react';
 
-//--- Components ---
-import { Header, Content, Footer } from './index'
-
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-const App = () => {
+const Footer = () => {
     //--- JSX ---
     return (
-        <div id='app'>
-            <Header />
-            <Content />
-            <Footer />
+        <div id='footer'>
+            <h4>FOOTER</h4>
+            <p>Here are links to github, my social, and a contact support page.</p>
+            <p>Also, copyright licenses.</p>
         </div>
     );
 }
@@ -23,4 +20,4 @@ const App = () => {
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-export default App;
+export default Footer;

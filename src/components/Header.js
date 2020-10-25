@@ -3,19 +3,16 @@
 //~~~~~~~~~~~~~~~
 import React from 'react';
 
-//--- Components ---
-import { Header, Content, Footer } from './index'
-
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-const App = () => {
+const Header = () => {
     //--- JSX ---
     return (
-        <div id='app'>
-            <Header />
-            <Content />
-            <Footer />
+        <div id='header'>
+            <h1>DEFCON BUG TRACKER</h1>
+            <h3>Insert NAV BAR</h3>
+            <h3>LOGIN/LOGOUT/REGISTER</h3>
         </div>
     );
 }
@@ -23,4 +20,4 @@ const App = () => {
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-export default App;
+export default Header;
