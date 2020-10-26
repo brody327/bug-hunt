@@ -9,21 +9,23 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 //--- Components ---
-import { HeaderNav } from './index';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-const Header = () => {
+const SocialLinks = () => {
     //--- JSX ---
     return (
-        <Container id='header' fluid>
-            <HeaderNav />
-        </Container>
+        <Col id='social-links'>
+            <h3>Subscribe to Newsletter</h3>
+            <p>newslettter description</p>
+            <p>email address field to submit</p>
+            <h4>Social Links</h4>
+        </Col>
     );
 }
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-export default Header;
+export default SocialLinks;

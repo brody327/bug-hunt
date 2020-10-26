@@ -5,25 +5,28 @@ import React from 'react';
 
 //--- Bootstrap ---
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 //--- Components ---
-import { Home } from '../Home/index'
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-const Content = () => {
+const LegalDocs = () => {
     //--- JSX ---
     return (
-        <Container id='content' fluid>
-            <h2>CONTENT</h2>
-            <p>Here is where content will display and switch out based on users' actions.</p>
-            <Home />
-        </Container>
+        <Col id='legal-docs'>
+            <h3>Legal Docs</h3>
+            <Row>
+                <p>link to privacy policy</p>
+                <p>copyright [year]</p>
+            </Row>
+        </Col>
     );
 }
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-export default Content;
+export default LegalDocs;

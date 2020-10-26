@@ -5,8 +5,14 @@ import React from 'react';
 
 //--- Bootstrap ---
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 //--- Components ---
+import { SocialLinks, TermsOfUse, SiteMap, Contact, LegalDocs } from './index';
+
+//--- CSS ---
+import './Footer.css';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -14,11 +20,19 @@ import Container from 'react-bootstrap/Container';
 const Footer = () => {
     //--- JSX ---
     return (
-        <div id='footer'>
-            <h4>FOOTER</h4>
-            <p>Here are links to github, my social, and a contact support page.</p>
-            <p>Also, copyright licenses.</p>
-        </div>
+        <Container id='footer' fluid>
+            <Row>
+                <SocialLinks />
+                <TermsOfUse />
+                <SiteMap />
+            </Row>
+            <Row>
+                <Contact />
+            </Row>
+            <Row>
+                <LegalDocs />
+            </Row>
+        </Container>
     );
 }
 
