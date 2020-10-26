@@ -1,0 +1,12 @@
+#header{
+    background-color: #F27127;
+}
+
+.logo{
+    height: 75px;
+    width: 75px;
+}
+
+.navbar-nav{
+    align-items: flex-end;
+}

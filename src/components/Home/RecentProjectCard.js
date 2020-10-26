@@ -7,23 +7,23 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 
 //--- Components ---
-import { Home } from '../Home/index'
+
+//--- CSS ---
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-const Content = () => {
+function RecentProjectCard() {
     //--- JSX ---
     return (
-        <Container id='content' fluid>
-            <h2>CONTENT</h2>
-            <p>Here is where content will display and switch out based on users' actions.</p>
-            <Home />
+        <Container className='project-card'>
+            <h2>Recent Project</h2>
         </Container>
-    );
+    )
 }
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-export default Content;
+export default RecentProjectCard
+

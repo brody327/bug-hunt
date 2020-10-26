@@ -5,25 +5,25 @@ import React from 'react';
 
 //--- Bootstrap ---
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 //--- Components ---
-import { Home } from '../Home/index'
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-const Content = () => {
+const TermsOfUse = () => {
     //--- JSX ---
     return (
-        <Container id='content' fluid>
-            <h2>CONTENT</h2>
-            <p>Here is where content will display and switch out based on users' actions.</p>
-            <Home />
-        </Container>
+        <Col id='terms'>
+            <h3>Terms of Use</h3>
+            <p>The small terms of use document</p>
+        </Col>
     );
 }
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-export default Content;
+export default TermsOfUse;
