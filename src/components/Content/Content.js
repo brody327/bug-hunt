@@ -7,26 +7,21 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 
 //--- Components ---
-import { Header } from './Header/index'
-import { Content } from './Content/index'
-import { Footer } from './Footer/index'
-
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-const App = () => {
+const Content = () => {
     //--- JSX ---
     return (
-        <Container fluid id='app'>
-            <Header />
-            <Content />
-            <Footer />
-        </Container>
+        <div id='content'>
+            <h2>CONTENT</h2>
+            <p>Here is where content will display and switch out based on users' actions.</p>
+        </div>
     );
 }
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-export default App;
+export default Content;

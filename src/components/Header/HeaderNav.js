@@ -3,20 +3,22 @@
 //~~~~~~~~~~~~~~~
 import React from 'react';
 
+//--- Bootstrap ---
+import Navbar from 'react-bootstrap/Navbar';
+
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-const Content = () => {
+const HeaderNav = () => {
     //--- JSX ---
     return (
-        <div id='content'>
-            <h2>CONTENT</h2>
-            <p>Here is where content will display and switch out based on users' actions.</p>
-        </div>
+        <Navbar>
+            <Navbar.Brand>Bug Hunter</Navbar.Brand>
+        </Navbar>
     );
 }
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-export default Content;
+export default HeaderNav;
