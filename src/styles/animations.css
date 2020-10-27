@@ -1,0 +1,102 @@
+/*~~~~~~~~~~~~~~~~
+//~~~ ON-HOVER ~~~
+//~~~~~~~~~~~~~~~~*/
+/* --- Spin --- */
+.spin:hover {
+    animation: spin ease 1.5s;
+    -webkit-animation: spin ease 1.5s;
+    -moz-animation: spin ease 1.5s;
+    -o-animation: spin ease 1.5s;
+    -ms-animation: spin ease 1.5s;
+    }
+
+    @keyframes spin {
+        0% {transform: rotate(0deg);}
+        100% {transform: rotate(360deg);}
+        }
+        
+    @-moz-keyframes spin {
+        0% {transform: rotate(0deg);}
+        100% {transform: rotate(360deg);}
+    }
+    
+    @-webkit-keyframes spin {
+        0% {transform: rotate(0deg);}
+        100% {transform: rotate(360deg);}
+    }
+    
+    @-o-keyframes spin {
+        0% {transform: rotate(0deg);}
+        100% {transform: rotate(360deg);}
+    }
+    
+    @-ms-keyframes spin {
+        0% {transform: rotate(0deg);}
+        100% {transform: rotate(360deg);}
+    }
+
+/* --- Pulse In --- */
+/* .pulse-in:hover {
+    animation: pulseIn ease 1s;
+    -webkit-animation: pulseIn ease 1s;
+    -moz-animation: pulseIn ease 1s;
+    -o-animation: pulseIn ease 1s;
+    -ms-animation: pulseIn ease 1s;
+    }
+    @keyframes pulseIn {
+        0% {transform: scale(0.5, 0.5);}
+        100% {transform: scale(1, 1);}
+        }
+        
+    @-moz-keyframes pulseIn {
+        0% {transform: scale(0.5, 0.5);}
+        100% {transform: scale(1, 1);}
+    }
+    
+    @-webkit-keyframes pulseIn {
+        0% {transform: scale(0.5, 0.5);}
+        100% {transform: scale(1, 1);}
+    }
+    
+    @-o-keyframes pulseIn {
+        0% {transform: scale(0.5, 0.5);}
+        100% {transform: scale(1, 1);}
+    }
+    
+    @-ms-keyframes pulseIn {
+        0% {transform: scale(0.5, 0.5);}
+        100% {transform: scale(1, 1);}
+    } */
+
+/* --- Fade-In Full --- */
+.fade-in:hover {
+    animation: fadeIn ease 1.5s;
+    -webkit-animation: fadeIn ease 1.5s;
+    -moz-animation: fadeInFull ease 1.5s;
+    -o-animation: fadeInFull ease 1.5s;
+    -ms-animation: fadeInFull ease 1.5s;
+    }
+    @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }

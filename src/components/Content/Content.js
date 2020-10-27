@@ -16,8 +16,6 @@ const Content = () => {
     //--- JSX ---
     return (
         <Container id='content' fluid>
-            <h2>CONTENT</h2>
-            <p>Here is where content will display and switch out based on users' actions.</p>
             <Home />
         </Container>
     );

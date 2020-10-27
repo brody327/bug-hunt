@@ -1,0 +1,47 @@
+/*~~~~~~~~~~~~~~~~~~~~ 
+//~~~ COLOR SCHEME ~~~
+//~~~~~~~~~~~~~~~~~~~~*/
+.color-primary{
+    color: #F27127;
+}
+
+.color-secondary{
+    color: #3F84E5;
+}
+
+.color-neutral{
+    color: #C0C0C0;
+}
+
+.color-white{
+    color: #F2F2F2;
+}
+
+.color-black{
+    color: #0D0D0D;
+}
+
+
+
+/*~~~~~~~~~~~~~~~~~~ 
+//~~~ BACKGROUND ~~~
+//~~~~~~~~~~~~~~~~~~*/
+.background-primary{
+    background-color: #F27127;
+}
+
+.background-secondary{
+    background-color: #3F84E5;
+}
+
+.background-neutral{
+    background-color: #C0C0C0;
+}
+
+.background-white{
+    background-color: #F2F2F2;
+}
+
+.background-black{
+    background-color: #0D0D0D;
+}

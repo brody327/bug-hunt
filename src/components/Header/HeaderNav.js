@@ -17,7 +17,7 @@ import Image from 'react-bootstrap/Image';
 import logo from '../../images/logo4.png'
 
 //--- CSS ---
-import './Header.css'
+import '../../styles/typography.css'
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -26,12 +26,12 @@ const HeaderNav = () => {
     //--- JSX ---
     return (
         <Navbar collapseOnSelect expand='md'>
-            <Navbar.Brand href='#home'>
-                <Image className='logo' src={logo} fluid />
+            <Navbar.Brand className='font-head font-brand' href='#home'>
+                <Image className='logo pulse-in' src={logo} fluid />
                 Bug Hunter
             </Navbar.Brand>
             <NavbarToggle aria-controls='responsive-navbar' />
-            <NavbarCollapse id='responsive-navbar'>
+            <NavbarCollapse className='font-sub-head font-nav' id='responsive-navbar'>
                 <Nav className='mr-auto'>
                     <NavLink href='#home'>Home</NavLink>
                     <NavLink>My Projects</NavLink>

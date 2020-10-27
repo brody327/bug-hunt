@@ -12,7 +12,11 @@ import { Content } from './Content/index'
 import { Footer } from './Footer/index'
 
 //--- CSS ---
-import './App.css'
+import '../styles/body.css'
+import '../styles/colors.css'
+import '../styles/images.css'
+import '../styles/typography.css';
+import '../styles/animations.css';
 
 
 //~~~~~~~~~~~~~~~~~
