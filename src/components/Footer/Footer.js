@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 import { SocialLinks, TermsOfUse, SiteMap, Contact, LegalDocs } from './index';
 
 //--- CSS ---
-import './Footer.css';
+import '../../styles/components/Footer.css';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -20,7 +20,7 @@ import './Footer.css';
 const Footer = () => {
     //--- JSX ---
     return (
-        <Container id='footer' fluid>
+        <Container id='footer' className='background-neutral' fluid>
             <Row>
                 <SocialLinks />
                 <TermsOfUse />

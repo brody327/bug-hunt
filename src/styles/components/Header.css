@@ -1,0 +1,46 @@
+
+.logo{
+    height: 75px;
+    width: 75px;
+}
+
+.navbar-brand:hover .pulse-in {
+    animation: pulseIn ease 1s;
+    -webkit-animation: pulseIn ease 1s;
+    -moz-animation: pulseIn ease 1s;
+    -o-animation: pulseIn ease 1s;
+    -ms-animation: pulseIn ease 1s;
+    }
+    @keyframes pulseIn {
+        0% {transform: scale(1, 1);}
+        20% {transform: scale(0.5, 0.5);}
+        100% {transform: scale(1, 1);}
+        }
+        
+    @-moz-keyframes pulseIn {
+        0% {transform: scale(1, 1);}
+        20% {transform: scale(0.5, 0.5);}
+        100% {transform: scale(1, 1);}
+    }
+    
+    @-webkit-keyframes pulseIn {
+        0% {transform: scale(1, 1);}
+        20% {transform: scale(0.5, 0.5);}
+        100% {transform: scale(1, 1);}
+    }
+    
+    @-o-keyframes pulseIn {
+        0% {transform: scale(1, 1);}
+        20% {transform: scale(0.5, 0.5);}
+        100% {transform: scale(1, 1);}
+    }
+    
+    @-ms-keyframes pulseIn {
+        0% {transform: scale(1, 1);}
+        20% {transform: scale(0.5, 0.5);}
+        100% {transform: scale(1, 1);}
+    }
+
+.navbar-nav{
+    align-items: flex-end;
+}

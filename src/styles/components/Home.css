@@ -1,0 +1,23 @@
+#home{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.project-card{
+    /* background-color: #3F84E5; */
+    height: 200px;
+}
+
+.bugs-card{
+    /* background-color: #F27127; */
+    height: 200px;
+}
+
+.account-card{
+    /* background-color: #D92B04; */
+    height: 200px;
+}
+
+.row{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

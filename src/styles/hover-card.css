@@ -1,0 +1,82 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+//~~~ ON-HOVER FUNCTIONALITY ~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.hover-parent {
+}
+  
+.hover-parent .hover-child{
+    visibility: hidden;
+}
+
+.hover-parent:hover .hover-child {
+    visibility: visible;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~ ON-HOVER ANIMATIONS~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* --- Fade-In Full --- */
+.hover-parent:hover .fade-in-full {
+    animation: fadeInFull ease 1.5s;
+    -webkit-animation: fadeInFull ease 1.5s;
+    -moz-animation: fadeInFull ease 1.5s;
+    -o-animation: fadeInFull ease 1.5s;
+    -ms-animation: fadeInFull ease 1.5s;
+    }
+    @keyframes fadeInFull {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-moz-keyframes fadeInFull {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-webkit-keyframes fadeInFull {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-o-keyframes fadeInFull {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+    
+    @-ms-keyframes fadeInFull {
+    0% {opacity:0;}
+    100% {opacity:1;}
+    }
+
+/* --- Fade-In Half --- */
+.hover-parent:hover .fade-in-half {
+    animation: fadeInHalf ease 1.5s;
+    -webkit-animation: fadeInHalf ease 1.5s;
+    -moz-animation: fadeInHalf ease 1.5s;
+    -o-animation: fadeInHalf ease 1.5s;
+    -ms-animation: fadeInHalf ease 1.5s;
+    }
+    @keyframes fadeInHalf {
+    0% {opacity:0;}
+    100% {opacity:0.5;}
+    }
+    
+    @-moz-keyframes fadeInHalf {
+    0% {opacity:0;}
+    100% {opacity:0.5;}
+    }
+    
+    @-webkit-keyframes fadeInHalf {
+    0% {opacity:0;}
+    100% {opacity:0.5;}
+    }
+    
+    @-o-keyframes fadeInHalf {
+    0% {opacity:0;}
+    100% {opacity:0.5;}
+    }
+    
+    @-ms-keyframes fadeInHalf {
+    0% {opacity:0;}
+    100% {opacity:0.5;}
+    }

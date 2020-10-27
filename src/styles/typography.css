@@ -1,0 +1,60 @@
+/*~~~~~~~~~~~~~~~
+//~~~ IMPORTS ~~~
+//~~~~~~~~~~~~~~~*/
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap');
+
+/*~~~~~~~~~~~~~
+//~~~ FONTS ~~~
+//~~~~~~~~~~~~~*/
+h1, h2, h3, .font-head{
+    font-family: 'Khand', sans-serif;
+}
+
+h4, h5, h6, .font-sub-head{
+    font-family: 'Catamaran', sans-serif;
+}
+
+p, .font-text{
+    font-family: 'Hind', sans-serif;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~
+//~~~ FONT VARIATIONS ~~~
+//~~~~~~~~~~~~~~~~~~~~~~~*/
+.font-brand{
+    font-size: 3.25em;
+}
+@media (max-width: 420px){
+    .font-brand{
+        font-size: 2.25em;
+    }
+}
+
+.font-nav{
+    font-size: 1.5em;
+}
+@media (max-width: 420px){
+    .font-nav{
+        font-size: 1em;
+    }
+}
+
+.font-over-text{
+    color: white;
+
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~ ANCHOR VARIATIONS ~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.a-none {
+    color: black;
+    text-decoration: none;
+}
+.a-none:hover, 
+.a-none:focus {
+    color: black;
+    text-decoration: none;
+}

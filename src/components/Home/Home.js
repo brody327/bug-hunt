@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col'
 import { RecentProjectCard, RecentBugsCard, AllProjectsCard, AllBugsCard, ViewAccountCard } from './index';
 
 //--- CSS ---
-import './Home.css'
+import '../../styles/components/Home.css'
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -22,22 +22,36 @@ function Home() {
     return (
         <Container id='home' fluid>
             <Row>
-                <Col>
-                    <RecentProjectCard />
+                <Col md={8} xs={12}>
+                    <a className='a-none' href='http://google.com' target='_blank'>
+                        <RecentProjectCard />
+                    </a>
                 </Col>
-                <Col>
-                    <RecentBugsCard />
+                <Col md={4} xs={12}>
+                    <a className='a-none' href='http://google.com' target='_blank'>
+                        <RecentBugsCard />
+                    </a>
+
                 </Col>
             </Row>
             <Row>
-                <Col>
-                    <AllProjectsCard />
+                <Col md={4} xs={6}>
+                    <a className='a-none' href='http://google.com' target='_blank'>
+                        <AllProjectsCard />
+                    </a>
+
                 </Col>
-                <Col>
-                    <AllBugsCard />
+                <Col md={4} xs={6}>
+                    <a className='a-none' href='http://google.com' target='_blank'>
+                        <AllBugsCard />
+                    </a>
+
                 </Col>
-                <Col>
-                    <ViewAccountCard />
+                <Col md={4} xs={12}>
+                    <a className='a-none' href='http://google.com' target='_blank'>
+                        <ViewAccountCard />
+                    </a>
+
                 </Col>
             </Row>
 
