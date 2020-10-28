@@ -16,6 +16,7 @@ import '../styles/body.css'
 import '../styles/colors.css'
 import '../styles/images.css'
 import '../styles/typography.css';
+import '../styles/cards.css';
 import '../styles/animations.css';
 
 

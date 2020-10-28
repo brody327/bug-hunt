@@ -25,7 +25,7 @@ import '../../styles/typography.css'
 const HeaderNav = () => {
     //--- JSX ---
     return (
-        <Navbar collapseOnSelect expand='md'>
+        <Navbar collapseOnSelect expand='lg'>
             <Navbar.Brand className='font-head font-brand' href='#home'>
                 <Image className='logo pulse-in' src={logo} fluid />
                 Bug Hunter

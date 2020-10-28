@@ -22,19 +22,42 @@ function Home() {
     return (
         <Container id='home' fluid>
             <Row>
-                <Col md={8} xs={12}>
-                    <a className='a-none' href='http://google.com' target='_blank'>
-                        <RecentProjectCard />
-                    </a>
-                </Col>
-                <Col md={4} xs={12}>
+                <Col className='col-padding one-element-col' lg={4} md={12}>
                     <a className='a-none' href='http://google.com' target='_blank'>
                         <RecentBugsCard />
                     </a>
+                </Col>
+                <Col lg={8} md={12}>
+                    <Row className='first-row'>
+                        <Col>
+                            <a className='a-none' href='http://google.com' target='_blank'>
+                                <RecentProjectCard />
+                            </a>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className='one-element-col' lg={6} md={6}>
+                            <a className='a-none' href='http://google.com' target='_blank'>
+                                <AllProjectsCard />
+                            </a>
+                        </Col>
+                        <Col lg={6} md={6}>
+                            <a className='a-none' href='http://google.com' target='_blank'>
+                                <AllBugsCard />
+                            </a>
+                        </Col>
+                    </Row>
+                    <Row className='last-row'>
+                        <Col lg={12} md={12}>
+                            <a className='a-none' href='http://google.com' target='_blank'>
+                                <ViewAccountCard />
+                            </a>
 
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
-            <Row>
+            {/* <Row>
                 <Col md={4} xs={6}>
                     <a className='a-none' href='http://google.com' target='_blank'>
                         <AllProjectsCard />
@@ -53,9 +76,9 @@ function Home() {
                     </a>
 
                 </Col>
-            </Row>
+            </Row> */}
 
-        </Container>
+        </Container >
     )
 }
 

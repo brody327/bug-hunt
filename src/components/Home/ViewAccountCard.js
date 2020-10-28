@@ -26,7 +26,7 @@ function ViewAccountCard() {
             <Card.Body>
                 <Card.ImgOverlay>
                     <Card.Title as='h2'>View Account</Card.Title>
-                    <Card.Text className='hover-child fade-in-full'>View your account.</Card.Text>
+                    <Card.Text className='hover-child fade-in-full' as='h4'>View your account.</Card.Text>
                 </Card.ImgOverlay>
             </Card.Body>
         </Card>

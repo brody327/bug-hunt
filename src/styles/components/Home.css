@@ -3,21 +3,48 @@
     padding-bottom: 15px;
 }
 .project-card{
-    /* background-color: #3F84E5; */
     height: 200px;
 }
 
 .bugs-card{
-    /* background-color: #F27127; */
     height: 200px;
 }
 
+.recent-bugs-card{
+    height: 100%;
+}
+
 .account-card{
-    /* background-color: #D92B04; */
     height: 200px;
 }
 
 .row{
     padding-top: 15px;
     padding-bottom: 15px;
+}
+
+.first-row{
+    padding-top: 0px;
+}
+
+.last-row{
+    padding-bottom: 0px;
+}
+
+.one-element-col{
+    padding-bottom: 0px;
+}
+@media (max-width: 990px){
+    .one-element-col{
+        padding-bottom: 30px;
+    }
+}
+
+.one-element-row{
+    padding-bottom: 0px;
+}
+@media (max-width: 767px){
+    .one-element-row{
+        padding-bottom: 30px;
+    }
 }
