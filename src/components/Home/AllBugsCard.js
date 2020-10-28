@@ -28,7 +28,7 @@ function AllBugsCard() {
             <Card.Body>
                 <Card.ImgOverlay>
                     <Card.Title as='h2'>All Bugs</Card.Title>
-                    <Card.Text className='hover-child fade-in-full'>View all your submitted bugs.</Card.Text>
+                    <Card.Text className='hover-child fade-in-full' as='h4'>View all your submitted bugs.</Card.Text>
                 </Card.ImgOverlay>
             </Card.Body>
         </Card>
