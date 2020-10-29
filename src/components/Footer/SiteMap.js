@@ -14,30 +14,27 @@ import Col from 'react-bootstrap/Col';
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
 const SiteMap = () => {
-    //--- JSX ---
-    return (
-        <Col id='site-map'>
-            <h3>Site Map</h3>
-            <Container>
-                <Row>
-                    <Col>
-                        <p>Nav</p>
-                        <p>bar/links</p>
-                        <p>going</p>
-                        <p>down</p>
-                    </Col>
-                    <Col>
-                        <p>more</p>
-                        <p>Nav</p>
-                        <p>bar/links</p>
-                        <p>going</p>
-                        <p>down</p>
-                    </Col>
-                </Row>
-            </Container>
-        </Col>
-    );
-}
+	//--- JSX ---
+	return (
+		<Col id='site-map'>
+			<h3>Site Map</h3>
+			<Container>
+				<Row>
+					<Col>
+						<p>Home</p>
+						<p>Login</p>
+						<p>Register</p>
+						<p>Account</p>
+					</Col>
+					<Col>
+						<p>My Projects</p>
+						<p>My Bugs</p>
+					</Col>
+				</Row>
+			</Container>
+		</Col>
+	);
+};
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
