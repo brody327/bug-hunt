@@ -14,17 +14,18 @@ import Col from 'react-bootstrap/Col';
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
 const LegalDocs = () => {
-    //--- JSX ---
-    return (
-        <Col id='legal-docs'>
-            <h3>Legal Docs</h3>
-            <Row>
-                <p>link to privacy policy</p>
-                <p>copyright [year]</p>
-            </Row>
-        </Col>
-    );
-}
+	//--- JSX ---
+	return (
+		<Container id='legal-docs'>
+			<Row className='justify-content-md-center'>
+				<h1> &#169;2020</h1>
+				<h1>
+					<strong>BUG HUNTER</strong>
+				</h1>
+			</Row>
+		</Container>
+	);
+};
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
