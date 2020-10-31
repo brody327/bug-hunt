@@ -12,19 +12,19 @@ import Col from 'react-bootstrap/Col';
 import { HeaderNav } from './index';
 
 //--- CSS ---
-import '../../styles/components/Header.css'
+import '../../styles/components/Header.css';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
 const Header = () => {
-    //--- JSX ---
-    return (
-        <Container id='header' className='background-primary' fluid>
-            <HeaderNav />
-        </Container>
-    );
-}
+	//--- JSX ---
+	return (
+		<Container id='header' className='background-primary' fluid>
+			<HeaderNav />
+		</Container>
+	);
+};
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~

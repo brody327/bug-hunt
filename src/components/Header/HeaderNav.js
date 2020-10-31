@@ -2,6 +2,7 @@
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
 import React from 'react';
+import { useHistory, Link } from 'react-router-dom';
 
 //--- Bootstrap ---
 import Navbar from 'react-bootstrap/Navbar';
@@ -9,8 +10,6 @@ import NavbarToggle from 'react-bootstrap/NavbarToggle';
 import NavbarCollapse from 'react-bootstrap/NavbarCollapse';
 import Nav from 'react-bootstrap/Nav';
 import NavLink from 'react-bootstrap/NavLink';
-import NavItem from 'react-bootstrap/NavItem';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Image from 'react-bootstrap/Image';
 
 //--- Media ---
@@ -23,27 +22,46 @@ import '../../styles/typography.css';
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
 const HeaderNav = () => {
+	let history = useHistory();
+	console.log(history);
 	//--- JSX ---
 	return (
 		<Navbar collapseOnSelect expand='lg'>
-			<Navbar.Brand className='font-head font-brand' href='#home'>
-				<Image className='logo pulse-in' src={logo} fluid />
-				BUG HUNTER
-			</Navbar.Brand>
+			<Link to='home'>
+				<Navbar.Brand className='font-head font-brand'>
+					<Image className='logo pulse-in' src={logo} fluid />
+					BUG HUNTER
+				</Navbar.Brand>
+			</Link>
 			<NavbarToggle aria-controls='responsive-navbar' />
 			<NavbarCollapse
 				className='font-sub-head font-nav'
 				id='responsive-navbar'
 			>
 				<Nav className='mr-auto'>
-					<NavLink href='#home'>Home</NavLink>
-					<NavLink>My Projects</NavLink>
-					<NavLink>My Bugs</NavLink>
-					<NavLink>My Account</NavLink>
+					<NavLink onClick={() => history.push('/home')}>
+						Home
+					</NavLink>
+					<NavLink onClick={() => history.push('/all-projects')}>
+						My Projects
+					</NavLink>
+					<NavLink onClick={() => history.push('/all-bugs')}>
+						My Bugs
+					</NavLink>
+					<NavLink onClick={() => history.push('/account')}>
+						My Account
+					</NavLink>
 				</Nav>
 				<Nav>
-					<NavLink>Login</NavLink>
-					<NavLink>Register</NavLink>
+					<NavLink onClick={() => history.push('/login')}>
+						Login
+					</NavLink>
+					<NavLink onClick={() => history.push('/register')}>
+						Register
+					</NavLink>
+					<NavLink onClick={() => history.push('/register/error')}>
+						404
+					</NavLink>
 				</Nav>
 			</NavbarCollapse>
 		</Navbar>
