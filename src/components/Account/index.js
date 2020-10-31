@@ -1,4 +1,4 @@
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-export { default as App } from './App';
+export { default as Account } from './Account';
