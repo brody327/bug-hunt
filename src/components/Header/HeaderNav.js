@@ -23,11 +23,10 @@ import '../../styles/typography.css';
 //~~~~~~~~~~~~~~~~~
 const HeaderNav = () => {
 	let history = useHistory();
-	console.log(history);
 	//--- JSX ---
 	return (
 		<Navbar collapseOnSelect expand='lg'>
-			<Link to='home'>
+			<Link to='/'>
 				<Navbar.Brand className='font-head font-brand'>
 					<Image className='logo pulse-in' src={logo} fluid />
 					BUG HUNTER
@@ -39,9 +38,7 @@ const HeaderNav = () => {
 				id='responsive-navbar'
 			>
 				<Nav className='mr-auto'>
-					<NavLink onClick={() => history.push('/home')}>
-						Home
-					</NavLink>
+					<NavLink onClick={() => history.push('/')}>Home</NavLink>
 					<NavLink onClick={() => history.push('/all-projects')}>
 						My Projects
 					</NavLink>

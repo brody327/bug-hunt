@@ -1,5 +1,6 @@
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-export { default as AllProjects } from './AllProjects';
-export { default as RecentProject } from './RecentProject';
+export { default as AllProjectsPage } from './AllProjectsPage';
+export { default as ProjectCard } from './ProjectCard';
+export { default as ProjectPage } from './ProjectPage';
