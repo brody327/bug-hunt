@@ -12,13 +12,14 @@ import React from 'react';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function RecentProject() {
+function ProjectPage({ match, location }) {
 	//--- JSX ---
 	return (
 		<div>
-			<h1>Recent Project</h1>
+			<h1>A Project</h1>
+			<p>ID: {match.params.project}</p>
 		</div>
 	);
 }
 
-export default RecentProject;
+export default ProjectPage;

@@ -12,13 +12,16 @@ import React from 'react';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function AllProjects() {
+function Bug({ match, location }) {
 	//--- JSX ---
+	const bug = location.state.bug;
 	return (
 		<div>
-			<h1>My Projects</h1>
+			<h1>A Bug</h1>
+			<p>ID: {match.params.bug}</p>
+			<p>Name: {bug.title}</p>
 		</div>
 	);
 }
 
-export default AllProjects;
+export default Bug;

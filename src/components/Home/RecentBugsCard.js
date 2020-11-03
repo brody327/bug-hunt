@@ -1,7 +1,8 @@
 //~~~~~~~~~~~~~~~
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 //--- Bootstrap ---
 import Container from 'react-bootstrap/Container';
@@ -19,7 +20,13 @@ import placeholder from '../../images/placeholder-card-img.jpg';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function RecentBugsCard() {
+function RecentBugsCard({ userBugs }) {
+	useEffect(() => {
+		if (userBugs === undefined) {
+			return;
+		}
+		console.log(userBugs);
+	}, [userBugs]);
 	//--- JSX ---
 	return (
 		<Card className='recent-bugs-card rounded hover-parent background-primary '>
@@ -36,24 +43,44 @@ function RecentBugsCard() {
 					</Card.Text>
 					<Table>
 						<thead>
-							<th>#</th>
-							<th>Date</th>
-							<th>Time</th>
-							<th>Bug Name</th>
-							<th>Severity</th>
-							<th>Project</th>
-							<th>Bug Link</th>
+							<tr>
+								<th>Date</th>
+								<th>Project</th>
+								<th>Bug</th>
+								<th>Severity</th>
+							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>10/20/20</td>
-								<td>23:24</td>
-								<td>First Bug</td>
-								<td>Level 5</td>
-								<td>My Project</td>
-								<td>Link</td>
-							</tr>
+							{userBugs.map((bug) => (
+								<tr key={bug._id}>
+									<td>{bug.lastUpdated}</td>
+									<td>
+										<Link
+											to={{
+												pathname: `/projects/${bug.project_id}`,
+												state: {
+													projectId: bug.project_id,
+												},
+											}}
+										>
+											{bug.project_id}
+										</Link>
+									</td>
+									<td>
+										<Link
+											to={{
+												pathname: `/bugs/${bug.title}`,
+												state: {
+													bug: bug,
+												},
+											}}
+										>
+											{bug.title}
+										</Link>
+									</td>
+									<td>{bug.priority}</td>
+								</tr>
+							))}
 						</tbody>
 					</Table>
 				</Card.ImgOverlay>

@@ -1,7 +1,7 @@
 //~~~~~~~~~~~~~~~
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 //--- Bootstrap ---
@@ -13,8 +13,8 @@ import { Footer } from './Footer/index';
 import { Home } from './Home/index';
 import { Login, Register } from './Authentication/index';
 import { ErrorPage } from './ErrorPage/index';
-import { AllProjects, RecentProject } from './Projects/index';
-import { AllBugs } from './Bugs/index';
+import { AllProjectsPage, ProjectPage } from './Projects/index';
+import { AllBugs, Bug } from './Bugs/index';
 import { Account } from './Account/index';
 
 //--- CSS ---
@@ -29,6 +29,9 @@ import '../styles/animations.css';
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
 const App = () => {
+	//--- State ---
+	//--- Effects ---
+	//--- Functions ---
 	//--- JSX ---
 	return (
 		<Router>
@@ -36,7 +39,7 @@ const App = () => {
 				<Header />
 				<Container id='content' fluid>
 					<Switch>
-						<Route exact path='/home'>
+						<Route exact path='/'>
 							<Home />
 						</Route>
 						<Route exact path='/login'>
@@ -45,17 +48,24 @@ const App = () => {
 						<Route exact path='/register'>
 							<Register />
 						</Route>
-						<Route exact path='/recent-project'>
-							<RecentProject />
-						</Route>
 						<Route exact path='/all-projects'>
-							<AllProjects />
+							<AllProjectsPage />
 						</Route>
 						<Route exact path='/all-bugs'>
 							<AllBugs />
 						</Route>
 						<Route exact path='/account'>
 							<Account />
+						</Route>
+						<Route exact path='/bugs/:bug' component={Bug}>
+							{/* <Bug /> */}
+						</Route>
+						<Route
+							exact
+							path='/projects/:project'
+							component={ProjectPage}
+						>
+							{/* <ProjectPage /> */}
 						</Route>
 						<Route path='*'>
 							<ErrorPage />
