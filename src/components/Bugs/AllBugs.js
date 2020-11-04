@@ -4,20 +4,27 @@
 import React from 'react';
 
 //--- Bootstrap ---
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 //--- Components ---
-
+import { BugCard } from './index';
 //--- CSS ---
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function AllBugs() {
+function AllBugs({ userBugs }) {
 	//--- JSX ---
 	return (
-		<div>
-			<h1>My Bugs</h1>
-		</div>
+		<Container fluid>
+			<Row>
+				{userBugs !== undefined
+					? userBugs.map((bug) => <BugCard bug={bug} />)
+					: ''}
+			</Row>
+		</Container>
 	);
 }
 

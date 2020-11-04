@@ -39,10 +39,10 @@ const HeaderNav = () => {
 			>
 				<Nav className='mr-auto'>
 					<NavLink onClick={() => history.push('/')}>Home</NavLink>
-					<NavLink onClick={() => history.push('/all-projects')}>
+					<NavLink onClick={() => history.push('/projects')}>
 						My Projects
 					</NavLink>
-					<NavLink onClick={() => history.push('/all-bugs')}>
+					<NavLink onClick={() => history.push('/bugs')}>
 						My Bugs
 					</NavLink>
 					<NavLink onClick={() => history.push('/account')}>

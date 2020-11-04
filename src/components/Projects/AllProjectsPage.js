@@ -3,34 +3,29 @@
 //~~~~~~~~~~~~~~~
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 //--- Bootstrap ---
-
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 //--- Components ---
 import { RecentProjectCard } from '../Home/index';
 import { ProjectCard } from './index';
 
 //--- CSS ---
-
+import '../../styles/components/AllProjectsPage.css';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function AllProjectsPage() {
+function AllProjectsPage({ userProjects }) {
 	//--- JSX ---
 	return (
-		<Container>
-			<Row>
-				<Col>
-					<ProjectCard />
-				</Col>
-				<Col>
-					<Row>
-						<RecentProjectCard />
-					</Row>
-					<Row></Row>
-				</Col>
+		<Container fluid>
+			<Row id='project-cards-container'>
+				{userProjects !== undefined
+					? userProjects.map((project) => (
+							<ProjectCard project={project} />
+					  ))
+					: ''}
 			</Row>
 		</Container>
 	);
