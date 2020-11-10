@@ -1,0 +1,31 @@
+.card {
+	z-index: 0;
+	overflow: hidden;
+}
+.card:before {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	bottom: -90px;
+	right: -90px;
+	height: 128px;
+	width: 128px;
+	border-radius: 5px;
+	transform: scale(1);
+	transform: rotate(90deg);
+	transform-origin: 50% 50%;
+	transition: transform 0.75s ease-out;
+	transition: transform 1s ease-out;
+}
+
+.card:hover:before {
+	transform: scale(21);
+}
+
+.card-corner-color-primary:before {
+	background: #f27127;
+}
+
+.card-corner-color-secondary:before {
+	background: #3f84e5;
+}

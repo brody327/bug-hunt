@@ -129,6 +129,8 @@ const App = () => {
 				//These will be references to bugs below.
 				bugs: [1, 2],
 			},
+
+			//TODO: Add projects where user is contributor AND creator to userProjects
 		]);
 		setUserBugs([
 			{
@@ -136,7 +138,7 @@ const App = () => {
 				project_id: 1,
 				title: 'Bug 001',
 				creator: 'Brody555',
-				asignee: 'Brody555',
+				assignee: 'Brody555',
 				createdAt: '10/30/2020',
 				lastUpdated: '10/30/2020',
 				description: 'This is a severe bug!',
@@ -163,7 +165,7 @@ const App = () => {
 				project_id: 2,
 				title: 'Bug 002',
 				creator: 'Brody555',
-				asignee: 'Brody555',
+				assignee: 'Brody555',
 				createdAt: '10/29/2020',
 				lastUpdated: '10/29/2020',
 				description: 'This is a severe bug!',
@@ -185,6 +187,8 @@ const App = () => {
 					},
 				],
 			},
+
+			//TODO: Add bugs where user is creator AND assignee to userBugs
 		]);
 	}, [appStatus]);
 	//--- Functions ---

@@ -20,6 +20,8 @@ import {
 
 //--- CSS ---
 import '../../styles/components/Home.css';
+import '../../styles/card-hover-effects.css';
+import '../../styles/hover-card.css';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~

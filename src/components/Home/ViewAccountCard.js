@@ -10,10 +10,8 @@ import Card from 'react-bootstrap/Card';
 //--- Components ---
 
 //--- CSS ---
-import '../../styles/hover-card.css';
 
-//--- Media ---
-import placeholder from '../../images/placeholder-card-img.jpg';
+//--- Media ---';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -21,19 +19,12 @@ import placeholder from '../../images/placeholder-card-img.jpg';
 function ViewAccountCard() {
 	//--- JSX ---
 	return (
-		<Card className='account-card rounded hover-parent background-secondary '>
-			<Card.Img
-				className='hover-child fade-in-half img-fade-half'
-				src={placeholder}
-				alt='Card image'
-			/>
+		<Card className='account-card card-corner-color-primary rounded hover-parent background-secondary '>
 			<Card.Body>
-				<Card.ImgOverlay>
-					<Card.Title as='h2'>View Account</Card.Title>
-					<Card.Text className='hover-child fade-in-full' as='h4'>
-						View your account.
-					</Card.Text>
-				</Card.ImgOverlay>
+				<Card.Title as='h2'>View Account</Card.Title>
+				<Card.Text className='hover-child fade-in-full' as='h4'>
+					View your account.
+				</Card.Text>
 			</Card.Body>
 		</Card>
 	);

@@ -18,7 +18,7 @@ function Bug({ match, location }) {
 	return (
 		<div>
 			<h1>A Bug</h1>
-			<p>ID: {match.params.bug}</p>
+			<p>ID: {bug._id}</p>
 			<p>Name: {bug.title}</p>
 		</div>
 	);

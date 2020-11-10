@@ -19,8 +19,19 @@ function ProjectCard({ project }) {
 	return (
 		<Col className='col' xl={4}>
 			<Link to={`/projects/${project.title}`}>
-				<Card className='project-card rounded hover-parent background-secondary'>
-					<h1>{project.title}</h1>
+				<Card className='card project-card rounded hover-parent background-secondary card-corner-color-primary'>
+					<Card.Body>
+						<Card.Title as='h1'>{project.title}</Card.Title>
+						<Card.Subtitle as='h4'>
+							Last Updated: {project.lastUpdated}
+						</Card.Subtitle>
+						<Card.Text className='hover-child fade-in-full'>
+							Created By: {project.creator}
+						</Card.Text>
+						<Card.Text className='hover-child fade-in-full'>
+							Contributors: {project.contributors.join(', ')}
+						</Card.Text>
+					</Card.Body>
 				</Card>
 			</Link>
 		</Col>
