@@ -13,7 +13,6 @@ import Card from 'react-bootstrap/Card';
 import '../../styles/hover-card.css';
 
 //--- Media ---
-import placeholder from '../../images/placeholder-card-img.jpg';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -21,19 +20,12 @@ import placeholder from '../../images/placeholder-card-img.jpg';
 function AllProjectsCard() {
 	//--- JSX ---
 	return (
-		<Card className='project-card rounded hover-parent background-primary '>
-			<Card.Img
-				className='hover-child fade-in-half img-fade-half'
-				src={placeholder}
-				alt='Card image'
-			/>
+		<Card className='project-card card-corner-color-primary rounded hover-parent background-secondary '>
 			<Card.Body>
-				<Card.ImgOverlay>
-					<Card.Title as='h2'>All Projects</Card.Title>
-					<Card.Text className='hover-child fade-in-full' as='h4'>
-						View all your projects.
-					</Card.Text>
-				</Card.ImgOverlay>
+				<Card.Title as='h2'>All Projects</Card.Title>
+				<Card.Text className='hover-child fade-in-full' as='h4'>
+					View all your projects.
+				</Card.Text>
 			</Card.Body>
 		</Card>
 	);
