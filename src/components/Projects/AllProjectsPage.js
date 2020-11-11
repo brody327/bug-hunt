@@ -8,10 +8,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 
 //--- Components ---
-import { RecentProjectCard } from '../Home/index';
 import { ProjectCard } from './index';
 
 //--- CSS ---
@@ -27,7 +25,7 @@ function AllProjectsPage({ userProjects }) {
 	return (
 		<Container fluid>
 			<Row id='project-cards-container'>
-				<Col className='col'>
+				<Col className='col' lg={4} md={6} sm={12} xs={12}>
 					<Card className='card new-project-card project-card rounded hover-parent background-primary card-corner-color-secondary'>
 						<Card.Body className='text-center'>
 							<Card.Title as='h1'>Create New Project</Card.Title>

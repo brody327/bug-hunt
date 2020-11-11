@@ -1,8 +1,8 @@
 //~~~~~~~~~~~~~~~
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
-import React, { useState, useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 //--- Bootstrap ---
 import Container from 'react-bootstrap/Container';
@@ -34,10 +34,16 @@ function Home({ userProjects, userBugs, currentUser, appStatus }) {
 	return (
 		<Container id='home' fluid>
 			<Row>
-				<Col className='col-padding one-element-col' lg={4} md={12}>
+				<Col
+					id='recent-bugs-card-container'
+					className='col-padding one-element-col responsive-padding-correction'
+					xl={4}
+					lg={6}
+					md={12}
+				>
 					<RecentBugsCard userBugs={userBugs} />
 				</Col>
-				<Col lg={8} md={12}>
+				<Col xl={8} lg={6} md={12}>
 					<Row className='first-row'>
 						<Col>
 							<Link
@@ -54,7 +60,11 @@ function Home({ userProjects, userBugs, currentUser, appStatus }) {
 						</Col>
 					</Row>
 					<Row>
-						<Col className='one-element-col' lg={6} md={6}>
+						<Col
+							lg={6}
+							md={6}
+							className='responsive-padding-correction'
+						>
 							<Link to='projects'>
 								<AllProjectsCard />
 							</Link>
@@ -74,26 +84,6 @@ function Home({ userProjects, userBugs, currentUser, appStatus }) {
 					</Row>
 				</Col>
 			</Row>
-			{/* <Row>
-                <Col md={4} xs={6}>
-                    <a className='a-none' href='http://google.com' target='_blank'>
-                        <AllProjectsCard />
-                    </a>
-
-                </Col>
-                <Col md={4} xs={6}>
-                    <a className='a-none' href='http://google.com' target='_blank'>
-                        <AllBugsCard />
-                    </a>
-
-                </Col>
-                <Col md={4} xs={12}>
-                    <a className='a-none' href='http://google.com' target='_blank'>
-                        <ViewAccountCard />
-                    </a>
-
-                </Col>
-            </Row> */}
 		</Container>
 	);
 }

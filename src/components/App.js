@@ -41,9 +41,14 @@ const App = () => {
 		setCurrentUser({
 			_id: 1,
 			username: 'Brody555',
-			age: '25',
 			email: 'brody@email.com',
+			company: 'TekCompany',
 			game: { score: 5000, rank: 'Associate' },
+			stats: {
+				projectCount: 3,
+				bugsFixedCount: 10,
+				completedProjectCount: 2,
+			},
 		});
 		setUserProjects([
 			{
@@ -187,6 +192,195 @@ const App = () => {
 					},
 				],
 			},
+			{
+				_id: 3,
+				project_id: 2,
+				title: 'Bug 003',
+				creator: 'Brody555',
+				assignee: 'Brody555',
+				createdAt: '10/29/2020',
+				lastUpdated: '10/29/2020',
+				description: 'This is a severe bug!',
+				priority: 'Severe',
+				comments: [
+					{
+						_id: 1,
+						content: 'I think this may help...',
+						creator: 'AndyCandy',
+						createdAt: '10/31/2020',
+						lastUpdated: null,
+					},
+					{
+						_id: 2,
+						content: "You're right! I'll fix it today!",
+						creator: 'Brody555',
+						createdAt: '11/1/2020',
+						lastUpdated: '11/1/2020',
+					},
+				],
+			},
+			{
+				_id: 3,
+				project_id: 2,
+				title: 'Bug 003',
+				creator: 'Brody555',
+				assignee: 'Brody555',
+				createdAt: '10/29/2020',
+				lastUpdated: '10/29/2020',
+				description: 'This is a severe bug!',
+				priority: 'Severe',
+				comments: [
+					{
+						_id: 1,
+						content: 'I think this may help...',
+						creator: 'AndyCandy',
+						createdAt: '10/31/2020',
+						lastUpdated: null,
+					},
+					{
+						_id: 2,
+						content: "You're right! I'll fix it today!",
+						creator: 'Brody555',
+						createdAt: '11/1/2020',
+						lastUpdated: '11/1/2020',
+					},
+				],
+			},
+			{
+				_id: 3,
+				project_id: 2,
+				title: 'Bug 003',
+				creator: 'Brody555',
+				assignee: 'Brody555',
+				createdAt: '10/29/2020',
+				lastUpdated: '10/29/2020',
+				description: 'This is a severe bug!',
+				priority: 'Severe',
+				comments: [
+					{
+						_id: 1,
+						content: 'I think this may help...',
+						creator: 'AndyCandy',
+						createdAt: '10/31/2020',
+						lastUpdated: null,
+					},
+					{
+						_id: 2,
+						content: "You're right! I'll fix it today!",
+						creator: 'Brody555',
+						createdAt: '11/1/2020',
+						lastUpdated: '11/1/2020',
+					},
+				],
+			},
+			{
+				_id: 3,
+				project_id: 2,
+				title: 'Bug 003',
+				creator: 'Brody555',
+				assignee: 'Brody555',
+				createdAt: '10/29/2020',
+				lastUpdated: '10/29/2020',
+				description: 'This is a severe bug!',
+				priority: 'Severe',
+				comments: [
+					{
+						_id: 1,
+						content: 'I think this may help...',
+						creator: 'AndyCandy',
+						createdAt: '10/31/2020',
+						lastUpdated: null,
+					},
+					{
+						_id: 2,
+						content: "You're right! I'll fix it today!",
+						creator: 'Brody555',
+						createdAt: '11/1/2020',
+						lastUpdated: '11/1/2020',
+					},
+				],
+			},
+			{
+				_id: 3,
+				project_id: 2,
+				title: 'Bug 003',
+				creator: 'Brody555',
+				assignee: 'Brody555',
+				createdAt: '10/29/2020',
+				lastUpdated: '10/29/2020',
+				description: 'This is a severe bug!',
+				priority: 'Severe',
+				comments: [
+					{
+						_id: 1,
+						content: 'I think this may help...',
+						creator: 'AndyCandy',
+						createdAt: '10/31/2020',
+						lastUpdated: null,
+					},
+					{
+						_id: 2,
+						content: "You're right! I'll fix it today!",
+						creator: 'Brody555',
+						createdAt: '11/1/2020',
+						lastUpdated: '11/1/2020',
+					},
+				],
+			},
+			{
+				_id: 3,
+				project_id: 2,
+				title: 'Bug 003',
+				creator: 'Brody555',
+				assignee: 'Brody555',
+				createdAt: '10/29/2020',
+				lastUpdated: '10/29/2020',
+				description: 'This is a severe bug!',
+				priority: 'Severe',
+				comments: [
+					{
+						_id: 1,
+						content: 'I think this may help...',
+						creator: 'AndyCandy',
+						createdAt: '10/31/2020',
+						lastUpdated: null,
+					},
+					{
+						_id: 2,
+						content: "You're right! I'll fix it today!",
+						creator: 'Brody555',
+						createdAt: '11/1/2020',
+						lastUpdated: '11/1/2020',
+					},
+				],
+			},
+			{
+				_id: 3,
+				project_id: 2,
+				title: 'Bug 003',
+				creator: 'Brody555',
+				assignee: 'Brody555',
+				createdAt: '10/29/2020',
+				lastUpdated: '10/29/2020',
+				description: 'This is a severe bug!',
+				priority: 'Severe',
+				comments: [
+					{
+						_id: 1,
+						content: 'I think this may help...',
+						creator: 'AndyCandy',
+						createdAt: '10/31/2020',
+						lastUpdated: null,
+					},
+					{
+						_id: 2,
+						content: "You're right! I'll fix it today!",
+						creator: 'Brody555',
+						createdAt: '11/1/2020',
+						lastUpdated: '11/1/2020',
+					},
+				],
+			},
 
 			//TODO: Add bugs where user is creator AND assignee to userBugs
 		]);
@@ -231,7 +425,7 @@ const App = () => {
 							<AllBugs userBugs={userBugs} />
 						</Route>
 						<Route exact path='/account'>
-							<Account />
+							<Account currentUser={currentUser} />
 						</Route>
 						<Route exact path='/bugs/:bug' component={Bug}>
 							{/* <Bug /> */}

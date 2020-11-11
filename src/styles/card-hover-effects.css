@@ -6,8 +6,8 @@
 	content: '';
 	position: absolute;
 	z-index: -1;
-	bottom: -90px;
-	right: -90px;
+	bottom: -128px;
+	right: -128px;
 	height: 128px;
 	width: 128px;
 	border-radius: 5px;

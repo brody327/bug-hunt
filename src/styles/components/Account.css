@@ -1,0 +1,19 @@
+#account-info-container {
+	height: 80%;
+}
+
+#account-info-card {
+	height: 100%;
+}
+
+#edit-account-contianer {
+	height: 20%;
+}
+
+#edit-account-card {
+	height: 100%;
+}
+
+.full-width {
+	width: 100%;
+}

@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 //--- Components ---
 
 //--- CSS ---
+import '../../styles/components/Authentication.css';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -17,9 +18,9 @@ import Button from 'react-bootstrap/Button';
 function Login() {
 	//--- JSX ---
 	return (
-		<Container id='register-container'>
+		<Container id='login-container' className='authentication-container'>
 			<Form>
-				<Form.Label>Login</Form.Label>
+				<h2 className='text-center'>Login</h2>
 				<Form.Group controlId='formBasicEmail'>
 					<Form.Label htmlFor='loginEmail'>Email address</Form.Label>
 					<Form.Control

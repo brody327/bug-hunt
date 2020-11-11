@@ -1,11 +1,10 @@
 //~~~~~~~~~~~~~~~
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 //--- Bootstrap ---
-import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 
@@ -21,7 +20,10 @@ import Table from 'react-bootstrap/Table';
 function RecentBugsCard({ userBugs }) {
 	//--- JSX ---
 	return (
-		<Card className='card card-corner-color-primary recent-bugs-card  hover-parent rounded background-secondary'>
+		<Card
+			id='recent-bugs-card'
+			className='card card-corner-color-primary hover-parent rounded background-secondary'
+		>
 			<Card.Body>
 				<Card.Title as='h2'>Recent Bugs</Card.Title>
 				<Card.Text as='h4'>

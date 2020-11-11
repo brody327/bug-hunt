@@ -4,9 +4,7 @@
 import React from 'react';
 
 //--- Bootstrap ---
-import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 
 //--- Components ---
 
