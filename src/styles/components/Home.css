@@ -1,50 +1,63 @@
-#home{
-    padding-top: 15px;
-    padding-bottom: 15px;
+#home {
+	padding-bottom: 15px;
 }
-.project-card{
-    height: 200px;
-}
-
-.bugs-card{
-    height: 200px;
+.project-card {
+	height: 200px;
 }
 
-.recent-bugs-card{
-    height: 100%;
+.bugs-card {
+	height: 200px;
 }
 
-.account-card{
-    height: 200px;
+#recent-bugs-card-container {
+	padding-bottom: 0px;
 }
 
-.row{
-    padding-top: 15px;
-    padding-bottom: 15px;
+#recent-bugs-card {
+	height: 100%;
 }
 
-.first-row{
-    padding-top: 0px;
+.account-card {
+	height: 200px;
 }
 
-.last-row{
-    padding-bottom: 0px;
+.row {
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
-.one-element-col{
-    padding-bottom: 0px;
-}
-@media (max-width: 990px){
-    .one-element-col{
-        padding-bottom: 30px;
-    }
+.first-row {
+	padding-top: 0px;
+	margin-bottom: -15px;
 }
 
-.one-element-row{
-    padding-bottom: 0px;
+.last-row {
+	padding-bottom: 0px;
 }
-@media (max-width: 767px){
-    .one-element-row{
-        padding-bottom: 30px;
-    }
+
+.one-element-col {
+	padding-top: 15px;
+	padding-bottom: 0px;
+}
+
+@media (max-width: 990px) {
+	.one-element-col {
+		padding-bottom: 30px;
+	}
+}
+
+.one-element-row {
+	padding-bottom: 0px;
+}
+
+@media (max-width: 767px) {
+	.one-element-row {
+		padding-bottom: 30px;
+	}
+}
+
+@media (max-width: 767px) {
+	.responsive-padding-correction {
+		padding-bottom: 30px;
+	}
 }

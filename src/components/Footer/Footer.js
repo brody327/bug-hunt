@@ -7,20 +7,11 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
 
 //--- Components ---
-import {
-	SocialLinks,
-	TermsOfUse,
-	SiteMap,
-	Contact,
-	LegalDocs,
-	LogoFooter,
-} from './index';
+import { SocialLinks, LegalDocs, LogoFooter } from './index';
 
 //--- Media ---
-import logo from '../../images/logo4.png';
 
 //--- CSS ---
 import '../../styles/components/Footer.css';
@@ -32,7 +23,6 @@ const Footer = () => {
 	//--- JSX ---
 	return (
 		<Container id='footer' className='background-neutral' fluid>
-			{/* Minimal Design */}
 			<Row className='text-center'>
 				<Col md={4} className='my-auto'>
 					<LegalDocs />
@@ -44,29 +34,6 @@ const Footer = () => {
 					<SocialLinks />
 				</Col>
 			</Row>
-
-			{/* InfoDump Design */}
-			{/* <Row>
-				<Col>
-					<SocialLinks />
-				</Col>
-				<Col>
-					<TermsOfUse />
-				</Col>
-				<Col>
-					<SiteMap />
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<Contact />
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<LegalDocs />
-				</Col>
-			</Row> */}
 		</Container>
 	);
 };

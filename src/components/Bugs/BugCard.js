@@ -5,7 +5,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 //--- Bootstrap ---
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 //--- Components ---
@@ -18,7 +17,7 @@ import Card from 'react-bootstrap/Card';
 function BugCard({ bug }) {
 	//--- JSX ---
 	return (
-		<Col className='col' xl={4}>
+		<Col className='col' lg={4} md={6} sm={12} xs={12}>
 			<Link
 				to={{
 					pathname: `/bugs/${bug.title}`,

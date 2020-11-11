@@ -7,7 +7,6 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 
 //--- Components ---
@@ -24,19 +23,6 @@ const SocialLinks = () => {
 	//--- JSX ---
 	return (
 		<Container id='social-links'>
-			{/* <h3>Subscribe to Our Newsletter</h3>
-			<p>
-				Sign up to our newsletter to get news about the ongoing war
-				against bugs!
-			</p>
-			<Form>
-				<Form.Group controlId='formNewsletterEmail'></Form.Group>
-				<Form.Label>Email Address</Form.Label>
-				<Form.Control
-					type='email'
-					placeholder='youremail@example.com'
-				/>
-			</Form> */}
 			<Container>
 				<Row>
 					<Col>
@@ -44,7 +30,7 @@ const SocialLinks = () => {
 							className='a-none'
 							href='http://google.com'
 							target='_blank'
-							rel='noreferrer'
+							rel='noopener noreferrer'
 						>
 							<Image className='social-icon' src={facebook} />
 						</a>
@@ -54,7 +40,7 @@ const SocialLinks = () => {
 							className='a-none'
 							href='http://google.com'
 							target='_blank'
-							rel='noreferrer'
+							rel='noopener noreferrer'
 						>
 							<Image className='social-icon' src={twitter} />
 						</a>
@@ -64,7 +50,7 @@ const SocialLinks = () => {
 							className='a-none'
 							href='https://www.linkedin.com/in/brody-faust-678372135/'
 							target='_blank'
-							rel='noreferrer'
+							rel='noopener noreferrer'
 						>
 							<Image className='social-icon' src={linkedin} />
 						</a>
@@ -74,7 +60,7 @@ const SocialLinks = () => {
 							className='a-none'
 							href='https://github.com/brody327/defcon-bug-tracker'
 							target='_blank'
-							rel='noreferrer'
+							rel='noopener noreferrer'
 						>
 							<Image className='social-icon' src={github} />
 						</a>

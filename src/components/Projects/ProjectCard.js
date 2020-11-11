@@ -2,11 +2,12 @@
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 //--- Bootstrap ---
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+
 //--- Components ---
 
 //--- CSS ---
@@ -17,7 +18,7 @@ import '../../styles/components/ProjectCard.css';
 function ProjectCard({ project }) {
 	//--- Functions ---
 	return (
-		<Col className='col' xl={4}>
+		<Col className='col' lg={4} md={6} sm={12} xs={12}>
 			<Link to={`/projects/${project.title}`}>
 				<Card className='card project-card rounded hover-parent background-secondary card-corner-color-primary'>
 					<Card.Body>
