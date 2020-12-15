@@ -40,3 +40,8 @@ const BugSchema = mongoose.Schema({
 		},
 	],
 });
+
+//~~~~~~~~~~~~~~~
+//~~~ EXPORTS ~~~
+//~~~~~~~~~~~~~~~
+module.exports = mongoose.model('Bug', BugSchema);

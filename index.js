@@ -51,15 +51,14 @@ server.use((req, res, next) => {
 
 //Listens for connections on the PORT.
 server.listen(PORT, async () => {
-	//Connect to Mongoose for MongoDB connection.
-	mongoose.connect(
-		process.env.DB_CONNECTION,
-		{ useNewUrlParser: true, useUnifiedTopology: true },
-		() => console.log('Connected to DB!')
-	);
-	console.log(`DEFCON Bug Tracker is running on ${PORT}`);
-
+	console.log(`Bug Hunt is running on ${PORT}`);
 	try {
+		//Connect to Mongoose for MongoDB connection.
+		await mongoose.connect(
+			process.env.DB_CONNECTION,
+			{ useNewUrlParser: true, useUnifiedTopology: true },
+			() => console.log('Connected to Bug Hunt DB!')
+		);
 		console.log('Database is running!');
 	} catch (error) {
 		console.error('Database is closed!\n', error);
