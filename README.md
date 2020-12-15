@@ -1,4 +1,4 @@
-# DEFCON Bug Tracker
+# Bug Hunt
 
 DEFCON Bug Tracker is a web application that allows users to keep track of bugs on projects with a gamified twist for added enjoyment.
 
