@@ -7,7 +7,13 @@ const usersRouter = require('express').Router();
 const User = require('../models/User');
 
 //--- Validation Imports ---
-const { registerValidation } = require('../services/validation');
+const {
+	registerValidation,
+	loginValidation,
+} = require('../services/validation');
+
+//--- Hashing Imports ---
+const { hashPassword } = require('../services/password_hashing');
 
 //~~~~~~~~~~~~~~~~~~
 //~~~ ROUTES ~~~
@@ -29,21 +35,23 @@ usersRouter.post('/register', async (req, res) => {
 	const emailExists = await User.findOne({ email: req.body.email });
 	if (emailExists) return res.status(400).send('Email already exists.');
 
-	//Create new User.
+	//Create new User. Hash users password.
 	const user = new User({
 		username: req.body.username,
 		email: req.body.email,
-		password: req.body.password,
+		password: await hashPassword(req.body.password),
 	});
 
 	try {
 		await user.save();
-		res.send(user);
+		res.send({ userId: user._id });
 	} catch (err) {
 		res.status(404);
 		res.send({ message: err });
 	}
 });
+
+usersRouter.post('/login', async (req, res) => {});
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
