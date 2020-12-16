@@ -17,17 +17,23 @@ bugsRouter.get('/', (req, res, next) => {
 
 //--- GET Routes ---
 //Get all user's bugs.
-bugsRouter.get('/:userId', (req, res, next) => {});
+bugsRouter.get('/:userId', (req, res) => {
+	try {
+	} catch (err) {
+		res.status();
+	}
+});
 
 //Get all project bugs.
-bugsRouter.get('/:projectId', (req, res, next) => {});
+bugsRouter.get('/:projectId', (req, res) => {});
 
 //Get a specific bug.
-bugsRouter.get('/:bugId', (req, res, next) => {});
+bugsRouter.get('/:bugId', (req, res) => {});
 
 //--- POST Routes ---
 //Post a new bug to a given project.
-bugsRouter.post('/:projectId', async (req, res, next) => {
+bugsRouter.post('/:projectId', async (req, res) => {
+	//Check for valid entry
 	const bug = new Bug({
 		project_id: req.body.project_id,
 		title: req.body.title,
@@ -35,16 +41,17 @@ bugsRouter.post('/:projectId', async (req, res, next) => {
 		createdAt: Date.now(),
 	});
 
-	console.log(bug);
-
 	try {
 		await bug.save(function (err) {
 			if (err) throw err;
-			res.end('Author successfully saved.');
+			res.send({
+				message: 'Bug created successfully!',
+				bug,
+			});
 		});
-	} catch (error) {
+	} catch (err) {
 		res.status(404);
-		res.send({ message: error });
+		res.send({ message: err });
 	}
 	// bug
 	// 	.save()
@@ -59,11 +66,11 @@ bugsRouter.post('/:projectId', async (req, res, next) => {
 
 //--- PATCH Routes ---
 //Updates a given bug's content.
-bugsRouter.patch('/:bugId', (req, res, next) => {});
+bugsRouter.patch('/:bugId', (req, res) => {});
 
 //--- DELETE Routes ---
 //Deletes a given bug.
-bugsRouter.delete('/:bugId', (req, res, next) => {});
+bugsRouter.delete('/:bugId', (req, res) => {});
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~

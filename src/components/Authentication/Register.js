@@ -22,9 +22,7 @@ function Register() {
 			<Form>
 				<h2 className='text-center'>Register</h2>
 				<Form.Group controlId='formBasicEmail'>
-					<Form.Label htmlFor='registerEmail'>
-						Email address
-					</Form.Label>
+					<Form.Label htmlFor='registerEmail'>Email address</Form.Label>
 					<Form.Control
 						type='email'
 						placeholder='Enter email'
@@ -41,9 +39,8 @@ function Register() {
 						aria-describedby='passwordHelpBlock'
 					/>
 					<Form.Text id='passwordHelpBlock' className='text-muted'>
-						Your password must be 8-20 characters long, contain
-						letters and numbers, and must not contain spaces,
-						special characters, or emoji.
+						Your password must be 8-20 characters long, contain letters and
+						numbers, and must not contain spaces, special characters, or emoji.
 					</Form.Text>
 				</Form.Group>
 				<Button type='submit'>Submit</Button>

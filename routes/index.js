@@ -13,7 +13,7 @@ const usersRouter = require('./users');
 //~~~~~~~~~~~~~~
 
 //--- API Connect Verification Message ---
-apiRouter.get('/', (req, res, next) => {
+apiRouter.get('/', (req, res) => {
 	res.send({
 		message: 'API is under construction.',
 	});
