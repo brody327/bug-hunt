@@ -28,13 +28,28 @@ const loginValidation = (data) => {
 	return userSchema.validate(data);
 };
 
-const bugSchema = Joi.object({
-	project_id: Joi.string().required(),
-	title: Joi.string().required(),
-	creator: Joi.string().required(),
-});
+//--- Bug Validation ---
+const bugValidation = (data) => {
+	const bugSchema = Joi.object({
+		project_id: Joi.string().required(),
+		title: Joi.string().required(),
+		creator: Joi.string().required(),
+		priority: Joi.string().required(),
+	});
 
-const projectSchema = Joi.object({});
+	return bugSchema.validate(data);
+};
+
+//--- Project Validation ---
+const projectValidation = (data) => {
+	const projectSchema = Joi.object({
+		title: Joi.string().required(),
+		creator: Joi.string().required(),
+		description: Joi.string(),
+	});
+
+	return projectSchema.validate(data);
+};
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
@@ -42,4 +57,6 @@ const projectSchema = Joi.object({});
 module.exports = {
 	registerValidation,
 	loginValidation,
+	bugValidation,
+	projectValidation,
 };
