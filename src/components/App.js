@@ -413,7 +413,10 @@ const App = () => {
 							/>
 						</Route>
 						<Route exact path='/login'>
-							<Login />
+							<Login
+								currentUser={currentUser}
+								setCurrentUser={setCurrentUser}
+							/>
 						</Route>
 						<Route exact path='/register'>
 							<Register />
@@ -430,11 +433,7 @@ const App = () => {
 						<Route exact path='/bugs/:bug' component={Bug}>
 							{/* <Bug /> */}
 						</Route>
-						<Route
-							exact
-							path='/projects/:project'
-							component={ProjectPage}
-						>
+						<Route exact path='/projects/:project' component={ProjectPage}>
 							{/* <ProjectPage /> */}
 						</Route>
 						<Route path='*'>
