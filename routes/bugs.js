@@ -6,10 +6,13 @@ const bugsRouter = require('express').Router();
 //--- Schema Imports ---
 const Bug = require('../models/Bug');
 
+//--- Authentication Imports ---
+const verify = require('../services/verifyToken');
+
 //~~~~~~~~~~~~~~~~~~
 //~~~ MIDDLEWARE ~~~
 //~~~~~~~~~~~~~~~~~~
-bugsRouter.get('/', (req, res, next) => {
+bugsRouter.get('/', (req, res) => {
 	res.send({
 		message: 'Bugs route is still under construction.',
 	});
@@ -32,7 +35,7 @@ bugsRouter.get('/:bugId', (req, res) => {});
 
 //--- POST Routes ---
 //Post a new bug to a given project.
-bugsRouter.post('/:projectId', async (req, res) => {
+bugsRouter.post('/:projectId', verify, async (req, res) => {
 	//Check for valid entry
 	const bug = new Bug({
 		project_id: req.body.project_id,
@@ -50,18 +53,9 @@ bugsRouter.post('/:projectId', async (req, res) => {
 			});
 		});
 	} catch (err) {
-		res.status(404);
+		res.status(400);
 		res.send({ message: err });
 	}
-	// bug
-	// 	.save()
-	// 	.then((data) => {
-	// 		res.json(data);
-	// 	})
-	// 	.catch((err) => {
-	// 		res.status(200);
-	// 		res.json({ message: err });
-	// 	});
 });
 
 //--- PATCH Routes ---
