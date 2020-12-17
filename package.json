@@ -1,52 +1,54 @@
 {
-  "name": "defcon-bug-tracker",
-  "version": "1.0.0",
-  "description": "DEFCON Bug Tracker is a web application that allows users to keep track of bugs on projects with a gamified twist for added enjoyment.",
-  "main": "index.js",
-  "scripts": {
-    "client:dev": "react-scripts start",
-    "client:build": "react-scripts build",
-    "server:dev": "nodemon index.js",
-    "db:build": "node ./db/init_db",
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "bcrypt": "^5.0.0",
-    "bootstrap": "^4.5.3",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "joi": "^17.3.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongodb": "^3.6.2",
-    "mongoose": "^5.10.16",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.5",
-    "react": "^16.14.0",
-    "react-bootstrap": "^1.4.0",
-    "react-dom": "^16.14.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brody327/defcon-bug-tracker.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/brody327/defcon-bug-tracker/issues"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "defcon-bug-tracker",
+	"version": "1.0.0",
+	"description": "DEFCON Bug Tracker is a web application that allows users to keep track of bugs on projects with a gamified twist for added enjoyment.",
+	"main": "index.js",
+	"scripts": {
+		"client:dev": "react-scripts start",
+		"client:build": "react-scripts build",
+		"server:dev": "nodemon index.js",
+		"db:build": "node ./db/init_db",
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"axios": "^0.21.0",
+		"bcrypt": "^5.0.0",
+		"bootstrap": "^4.5.3",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"joi": "^17.3.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongodb": "^3.6.2",
+		"mongoose": "^5.10.16",
+		"morgan": "^1.10.0",
+		"nodemon": "^2.0.5",
+		"react": "^16.14.0",
+		"react-bootstrap": "^1.4.0",
+		"react-dom": "^16.14.0",
+		"react-router-dom": "^5.2.0",
+		"react-scripts": "^3.4.3"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/brody327/defcon-bug-tracker.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/brody327/defcon-bug-tracker/issues"
+	},
+	"proxy": "http://localhost:3000",
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }
