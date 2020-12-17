@@ -6,6 +6,9 @@ const bugsRouter = require('express').Router();
 //--- Schema Imports ---
 const Bug = require('../models/Bug');
 
+//--- Validation Imports ---
+const { bugValidation } = require('../services/validation');
+
 //--- Authentication Imports ---
 const verify = require('../services/verifyToken');
 
@@ -37,11 +40,14 @@ bugsRouter.get('/:bugId', (req, res) => {});
 //Post a new bug to a given project.
 bugsRouter.post('/:projectId', verify, async (req, res) => {
 	//Check for valid entry
+	const { error } = await bugValidation(req.body);
+	if (error) return res.status(400).send(error.details[0].message);
+
 	const bug = new Bug({
 		project_id: req.body.project_id,
 		title: req.body.title,
 		creator: req.body.creator,
-		createdAt: Date.now(),
+		priority: req.body.priority,
 	});
 
 	try {

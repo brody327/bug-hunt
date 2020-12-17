@@ -50,6 +50,8 @@ const UserSchema = mongoose.Schema(
 				default: 0,
 			},
 		},
+		projects: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }],
+		bugs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bug' }],
 	},
 	{ timestamps: true }
 );

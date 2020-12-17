@@ -10,7 +10,8 @@ const BugSchema = mongoose.Schema(
 	{
 		// project_id: Number,
 		project_id: {
-			type: Number,
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Project',
 			required: true,
 		},
 		title: {
@@ -23,14 +24,11 @@ const BugSchema = mongoose.Schema(
 			required: true,
 		},
 		assignee: String,
-		// createdAt: {
-		// 	type: Date,
-		// 	required: true,
-		// 	default: Date.now(),
-		// },
-		// lastUpdated: Date,
 		description: String,
-		priority: String,
+		priority: {
+			type: String,
+			required: true,
+		},
 		comments: [
 			{
 				_id: Number,
