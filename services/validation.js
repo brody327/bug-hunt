@@ -19,7 +19,7 @@ const registerValidation = (data) => {
 };
 
 //Login Validation
-const loginValidation = () => {
+const loginValidation = (data) => {
 	const userSchema = Joi.object({
 		email: Joi.string().required().email(),
 		password: Joi.string().min(6).required(),

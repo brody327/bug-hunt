@@ -2,6 +2,7 @@
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
 const usersRouter = require('express').Router();
+const jwt = require('jsonwebtoken');
 
 //--- Schema Imports ---
 const User = require('../models/User');
@@ -13,7 +14,7 @@ const {
 } = require('../services/validation');
 
 //--- Hashing Imports ---
-const { hashPassword } = require('../services/password_hashing');
+const { hashPassword, checkPassword } = require('../services/password_hashing');
 
 //~~~~~~~~~~~~~~~~~~
 //~~~ ROUTES ~~~
@@ -42,6 +43,7 @@ usersRouter.post('/register', async (req, res) => {
 		password: await hashPassword(req.body.password),
 	});
 
+	//Add new user to database.
 	try {
 		await user.save();
 		res.send({ userId: user._id });
@@ -51,7 +53,24 @@ usersRouter.post('/register', async (req, res) => {
 	}
 });
 
-usersRouter.post('/login', async (req, res) => {});
+//Login a user.
+usersRouter.post('/login', async (req, res) => {
+	//Validate user input data.
+	const { error } = loginValidation(req.body);
+	if (error) return res.status(400).send(error.details[0].message);
+
+	//Check if user already exists.
+	const user = await User.findOne({ email: req.body.email });
+	if (!user) return res.status(400).send('Email does not exist.');
+
+	//Check for password correct.
+	const isValid = await checkPassword(req.body.password, user.password);
+	if (!isValid) return res.status(400).send('Invalid password.');
+
+	//Create and assign a JWT.
+	const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
+	res.header('auth-token', token).send(token);
+});
 
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
