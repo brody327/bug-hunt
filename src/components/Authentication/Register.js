@@ -29,6 +29,7 @@ function Register() {
 	let history = useHistory();
 
 	//--- Functions ---
+	//Handles registering user after pressing submit.
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -36,15 +37,19 @@ function Register() {
 		if (password !== confirm) {
 			//TODO: Create error message system!
 			alert('The password and password confirmation do not match!');
+			return;
 		}
+
+		//TODO: Check for valid entry.
 
 		try {
 			const user = await createUser({
 				username,
-				email,
+				email: email.toLowerCase(),
 				password,
 			});
-			console.log(user);
+
+			//TODO: Send confirmation message?
 
 			//Reset register fields.
 			setUsername('');
@@ -56,10 +61,11 @@ function Register() {
 			history.push('/login');
 		} catch (err) {
 			console.error(err);
-			alert('Uh Oh! An error occured: \n', err);
+			alert('Uh Oh! An error occurred: \n', err);
 		}
 	};
 
+	//User input field handlers.
 	const handleUsernameChange = (event) => {
 		setUsername(event.target.value);
 	};
@@ -79,59 +85,68 @@ function Register() {
 			<Form onSubmit={handleSubmit}>
 				<h2 className='text-center'>Register</h2>
 				<Form.Group controlId='formBasicUsername'>
-					<Form.Label htmlFor='registerUsername'>Username</Form.Label>
+					<Form.Label>Username</Form.Label>
 					<Form.Control
 						type='username'
 						placeholder='Enter username'
-						id='registerUsername'
+						aria-describedby='usernameHelp'
 						value={username}
 						onChange={handleUsernameChange}
 						minLength='6'
 						maxLength='16'
 						required
 					/>
+					<Form.Text id='usernameHelp' className='text-muted'>
+						Create a username. Your username must be between 6 and 16 characters
+						long. You username can only contain letters or numbers. Other users
+						WILL see this.
+					</Form.Text>
 				</Form.Group>
 				<Form.Group controlId='formBasicEmail'>
-					<Form.Label htmlFor='registerEmail'>Email address</Form.Label>
+					<Form.Label>Email address</Form.Label>
 					<Form.Control
 						type='email'
 						placeholder='Enter email'
-						id='registerEmail'
+						aria-describedby='emailHelp'
 						value={email}
 						onChange={handleEmailChange}
 						required
 					/>
+					<Form.Text id='emailHelp' className='text-muted'>
+						Enter a valid email. This is used to login. Other users will NOT see
+						this.
+					</Form.Text>
 				</Form.Group>
-
 				<Form.Group controlId='formBasicPassword'>
-					<Form.Label htmlFor='registerPassword'>Password</Form.Label>
+					<Form.Label>Password</Form.Label>
 					<Form.Control
 						type='password'
 						placeholder='Password'
-						id='registerPassword'
-						aria-describedby='passwordHelpBlock'
+						aria-describedby='passwordHelp'
 						value={password}
 						onChange={handlePasswordChange}
 						minLength='8'
+						maxLength='20'
 						required
 					/>
-					{/* <Form.Text id='passwordHelpBlock' className='text-muted'>
+					<Form.Text id='passwordHelp' className='text-muted'>
 						Your password must be 8-20 characters long, contain letters and
 						numbers, and must not contain spaces, special characters, or emoji.
-					</Form.Text> */}
+					</Form.Text>
 				</Form.Group>
 				<Form.Group controlId='formBasicConfirmPassword'>
-					<Form.Label htmlFor='registerConfirmPassword'>
-						Confirm Password
-					</Form.Label>
+					<Form.Label>Confirm Password</Form.Label>
 					<Form.Control
 						type='password'
 						placeholder='Re-type Password'
-						id='registerConfirmPassword'
+						aria-describedby='confirmPasswordHelp'
 						value={confirm}
 						onChange={handleConfirmChange}
 						required
 					/>
+					<Form.Text id='confirmPasswordHelp' className='text-muted'>
+						Re-enter the password you typed in the password field above.
+					</Form.Text>
 				</Form.Group>
 				<Button type='submit'>Submit</Button>
 			</Form>

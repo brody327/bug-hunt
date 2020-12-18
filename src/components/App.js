@@ -38,18 +38,6 @@ const App = () => {
 	//--- Effects ---
 	//Sets default test data.
 	useEffect(() => {
-		setCurrentUser({
-			_id: 1,
-			username: 'Brody555',
-			email: 'brody@email.com',
-			company: 'TekCompany',
-			game: { score: 5000, rank: 'Associate' },
-			stats: {
-				projectCount: 3,
-				bugsFixedCount: 10,
-				completedProjectCount: 2,
-			},
-		});
 		setUserProjects([
 			{
 				_id: 2,
