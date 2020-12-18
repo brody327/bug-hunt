@@ -15,7 +15,7 @@ const BASE_URL = '/api';
 
 //--- POST Functions ---
 //Registers a new user.
-export async function createUser(user) {
+export const createUser = async (user) => {
 	console.log('FE API:', user);
 	try {
 		const { data } = await axios.post(`${BASE_URL}/users/register`, {
@@ -26,4 +26,18 @@ export async function createUser(user) {
 	} catch (err) {
 		throw err;
 	}
-}
+};
+
+//Login an existing user.
+export const loginUser = async ({ email, password }) => {
+	try {
+		const { data } = await axios.post(`${BASE_URL}/users/login`, {
+			email,
+			password,
+		});
+
+		return data;
+	} catch (err) {
+		throw err;
+	}
+};
