@@ -21,7 +21,12 @@ import '../../styles/typography.css';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-const HeaderNav = () => {
+const HeaderNav = ({ currentUser, setCurrentUser }) => {
+	//--- State ---
+
+	//--- Functions ---
+	//TODO: Create logout function/button if logged in.
+
 	let history = useHistory();
 	//--- JSX ---
 	return (
@@ -33,32 +38,27 @@ const HeaderNav = () => {
 				</Navbar.Brand>
 			</Link>
 			<NavbarToggle aria-controls='responsive-navbar' />
-			<NavbarCollapse
-				className='font-sub-head font-nav'
-				id='responsive-navbar'
-			>
+			<NavbarCollapse className='font-sub-head font-nav' id='responsive-navbar'>
 				<Nav className='mr-auto'>
 					<NavLink onClick={() => history.push('/')}>Home</NavLink>
 					<NavLink onClick={() => history.push('/projects')}>
 						My Projects
 					</NavLink>
-					<NavLink onClick={() => history.push('/bugs')}>
-						My Bugs
-					</NavLink>
-					<NavLink onClick={() => history.push('/account')}>
-						My Account
-					</NavLink>
+					<NavLink onClick={() => history.push('/bugs')}>My Bugs</NavLink>
+					<NavLink onClick={() => history.push('/account')}>My Account</NavLink>
 				</Nav>
 				<Nav>
-					<NavLink onClick={() => history.push('/login')}>
-						Login
-					</NavLink>
-					<NavLink onClick={() => history.push('/register')}>
-						Register
-					</NavLink>
-					<NavLink onClick={() => history.push('/register/error')}>
-						404
-					</NavLink>
+					{currentUser != null ? (
+						'Logout Button HERE'
+					) : (
+						<>
+							<NavLink onClick={() => history.push('/login')}>Login</NavLink>
+							<NavLink onClick={() => history.push('/register')}>
+								Register
+							</NavLink>
+						</>
+					)}
+					<NavLink onClick={() => history.push('/register/error')}>404</NavLink>
 				</Nav>
 			</NavbarCollapse>
 		</Navbar>

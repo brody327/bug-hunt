@@ -33,7 +33,7 @@ const App = () => {
 	const [appStatus, setAppStatus] = useState('testing');
 	const [userProjects, setUserProjects] = useState([]);
 	const [userBugs, setUserBugs] = useState([]);
-	const [currentUser, setCurrentUser] = useState({});
+	const [currentUser, setCurrentUser] = useState(null);
 
 	//--- Effects ---
 	//Sets default test data.
@@ -389,7 +389,7 @@ const App = () => {
 	return (
 		<Router>
 			<Container fluid id='app'>
-				<Header />
+				<Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
 				<Container id='content' fluid>
 					<Switch>
 						<Route exact path='/'>
