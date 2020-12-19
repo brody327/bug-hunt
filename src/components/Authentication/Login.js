@@ -68,7 +68,7 @@ function Login({ currentUser, setCurrentUser }) {
 			<Form onSubmit={handleSubmit}>
 				<h2 className='text-center'>Login</h2>
 				<Form.Group controlId='formBasicEmail'>
-					<Form.Label>Email address</Form.Label>
+					<Form.Label>Email Address</Form.Label>
 					<Form.Control
 						type='email'
 						placeholder='Enter email'

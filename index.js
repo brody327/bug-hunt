@@ -13,8 +13,8 @@ const mongoose = require('mongoose');
 //Use dotenv for credentials.
 require('dotenv/config');
 
-//Uses env port or 3000 if it does not exist.
-const PORT = process.env.PORT || 3000;
+//Uses env port or 5000 if it does not exist.
+const PORT = process.env.PORT || 5000;
 
 //--- Middleware Imports ---
 //Used for logging.

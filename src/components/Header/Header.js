@@ -15,11 +15,11 @@ import '../../styles/components/Header.css';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-const Header = () => {
+const Header = ({ currentUser, setCurrentUser }) => {
 	//--- JSX ---
 	return (
 		<Container id='header' className='background-primary' fluid>
-			<HeaderNav />
+			<HeaderNav currentUser={currentUser} setCurrentUser={setCurrentUser} />
 		</Container>
 	);
 };

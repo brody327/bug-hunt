@@ -6,16 +6,32 @@ const jwt = require('jsonwebtoken');
 //~~~~~~~~~~~~~~~~~
 //~~~ FUNCTIONS ~~~
 //~~~~~~~~~~~~~~~~~
-module.exports = function (req, res, next) {
-	const token = req.header('auth-token');
+module.exports = async function (req, res, next) {
+	const prefix = 'Bearer ';
+	const auth = req.header('Authorization');
 
-	if (!token) return res.status(401).send('Access denied.');
+	if (!auth) next();
+	else if (auth.startsWith(prefix)) {
+		const token = auth.slice(prefix.length);
 
-	try {
-		const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-		req.user = verified;
-		next();
-	} catch (err) {
-		res.status(400).send('Invalid token');
-	}
+		try {
+			const { _id } = jwt.verify(token, process.env.TOKEN_SECRET);
+
+			if (_id) {
+				console.log(_id);
+				try {
+				} catch (error) {}
+			}
+		} catch (err) {
+			throw err;
+		}
+	} else res.status(403).send(`Authorization token must start with ${prefix}.`);
+	// try {
+	// 	const verified = jwt.verify(token, process.env.TOKEN_SECRET);
+	// 	console.log(verified);
+	// 	req.user = verified;
+	// 	next();
+	// } catch (err) {
+	// 	res.status(400).send('Invalid token');
+	// }
 };
