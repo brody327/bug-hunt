@@ -33,7 +33,7 @@ usersRouter.get('/', (req, res) => {
 //--- GET Routes ---
 //Gets user data given a user id.
 usersRouter.get('/:userId', async (req, res) => {
-	const user = await getUserById(req.body.userId);
+	const user = await getUserById(req.params.userId);
 	if (!user) return res.status(400).send('User does not exist.');
 
 	res.send({
@@ -47,6 +47,7 @@ usersRouter.get('/:userId', async (req, res) => {
 			bugs: user.bugs,
 			createdAt: user.createdAt,
 			updatedAt: user.updatedAt,
+			company: user.company,
 		},
 	});
 });
@@ -63,7 +64,7 @@ usersRouter.post('/register', async (req, res) => {
 		const emailExists = await getUserByEmail(req.body.email);
 		if (emailExists) return res.status(400).send('Email already exists.');
 
-		//TODO: Check if username already exists
+		//Check if username already exists
 		const usernameExists = await getUserByUsername(req.body.username);
 		if (usernameExists) return res.status(400).send('Username already exists.');
 
@@ -105,7 +106,13 @@ usersRouter.post('/login', async (req, res) => {
 			process.env.TOKEN_SECRET,
 			{ expiresIn: '24h' }
 		);
-		res.header('Authorization', `Bearer ${token}`).send(token);
+
+		res.send({
+			token,
+			user,
+			message: 'You have successfully logged in!',
+		});
+		// res.header('Authorization', `Bearer ${token}`).send(token);
 	} catch (err) {
 		res.status(400).send({ message: err });
 	}

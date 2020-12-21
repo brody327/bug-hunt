@@ -16,7 +16,7 @@ import Card from 'react-bootstrap/Card';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function AccountInfoCard() {
+function AccountInfoCard({ username, email, company }) {
 	//--- JSX ---
 	return (
 		<Card
@@ -29,19 +29,19 @@ function AccountInfoCard() {
 					<Row>
 						<Col>
 							<h3>Username:</h3>
-							<p>Brody555</p>
+							<p>{username}</p>
 						</Col>
 					</Row>
 					<Row>
 						<Col>
 							<h3>Email:</h3>
-							<p>Brody@email.com</p>
+							<p>{email}</p>
 						</Col>
 					</Row>
 					<Row>
 						<Col>
 							<h3>Company:</h3>
-							<p>TekCompany</p>
+							<p>{company}</p>
 						</Col>
 					</Row>
 				</Container>

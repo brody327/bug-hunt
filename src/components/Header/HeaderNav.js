@@ -45,11 +45,24 @@ const HeaderNav = ({ currentUser, setCurrentUser }) => {
 						My Projects
 					</NavLink>
 					<NavLink onClick={() => history.push('/bugs')}>My Bugs</NavLink>
-					<NavLink onClick={() => history.push('/account')}>My Account</NavLink>
 				</Nav>
 				<Nav>
 					{currentUser != null ? (
-						'Logout Button HERE'
+						<>
+							<NavLink onClick={() => history.push('/account')}>
+								My Account
+							</NavLink>
+							<NavLink
+								onClick={() => {
+									localStorage.clear();
+									setCurrentUser(null);
+									history.push('/');
+									window.location.reload();
+								}}
+							>
+								Logout
+							</NavLink>
+						</>
 					) : (
 						<>
 							<NavLink onClick={() => history.push('/login')}>Login</NavLink>
