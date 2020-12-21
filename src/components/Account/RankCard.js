@@ -20,7 +20,9 @@ function RankCard() {
 	//--- JSX ---
 	return (
 		<Card className='card-corner-color-primary rounded hover-parent background-secondary full-width text-center'>
-			<Card.Body></Card.Body>
+			<Card.Body>
+				<Card.Title as='h2'>Rank</Card.Title>
+			</Card.Body>
 		</Card>
 	);
 }

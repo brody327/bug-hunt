@@ -25,6 +25,9 @@ import '../styles/typography.css';
 import '../styles/cards.css';
 import '../styles/animations.css';
 
+//--- API ---
+import { getUserById } from '../api/index';
+
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
@@ -36,6 +39,19 @@ const App = () => {
 	const [currentUser, setCurrentUser] = useState(null);
 
 	//--- Effects ---
+	//Check for persistent logged-in user.
+	useEffect(() => {
+		const id = localStorage.getItem('userId');
+		if (id !== null) {
+			getUserById(id)
+				.then((response) => {
+					setCurrentUser(response.user);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+	}, []);
 	//Sets default test data.
 	useEffect(() => {
 		setUserProjects([

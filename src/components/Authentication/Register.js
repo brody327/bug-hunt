@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 //--- CSS ---
 import '../../styles/components/Authentication.css';
 
-//--- API Imports ---
+//--- API ---
 import { createUser } from '../../api/index';
 
 //~~~~~~~~~~~~~~~~~

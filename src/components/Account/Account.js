@@ -27,12 +27,18 @@ import '../../styles/hover-card.css';
 //~~~~~~~~~~~~~~~~~
 function Account({ currentUser }) {
 	//--- JSX ---
-	return (
+	return currentUser === null ? (
+		'LOADING'
+	) : (
 		<Container id='account-container' fluid>
 			<Row>
 				<Col lg={6} md={12}>
 					<Row id='account-info-container' className='full-width '>
-						<AccountInfoCard />
+						<AccountInfoCard
+							username={currentUser.username}
+							email={currentUser.email}
+							company={currentUser.company}
+						/>
 					</Row>
 					<Row id='edit-account-contianer' className='full-width '>
 						<EditAccountCard />

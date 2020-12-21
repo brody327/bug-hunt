@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 //--- CSS ---
 import '../../styles/components/Authentication.css';
 
-//--- API Imports ---
+//--- API ---
 import { loginUser } from '../../api/index';
 
 //~~~~~~~~~~~~~~~~~
@@ -45,7 +45,12 @@ function Login({ currentUser, setCurrentUser }) {
 			setPassword('');
 
 			//Update current user state.
-			setCurrentUser(user);
+			setCurrentUser(user.user);
+
+			//Store user information for persistent login.
+			localStorage.clear();
+			localStorage.setItem('userId', user.user._id);
+			localStorage.setItem('token', user.token);
 
 			history.push('/');
 		} catch (err) {

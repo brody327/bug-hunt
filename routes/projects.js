@@ -26,7 +26,6 @@ projectsRouter.get('/', (req, res) => {
 //--- POST Routes ---
 //Create new project.
 projectsRouter.post('/', requireUser, async (req, res) => {
-	console.log(req.body);
 	//Check for valid data entry.
 	const { error } = await projectValidation(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
