@@ -10,7 +10,7 @@ const Project = require('../models/Project');
 const { projectValidation } = require('../services/validation');
 
 //--- Authentication Imports ---
-const verify = require('../services/verifyToken');
+const { requireUser } = require('../services/requireUser');
 
 //~~~~~~~~~~~~~~~~~~
 //~~~ ROUTES ~~~
@@ -25,7 +25,7 @@ projectsRouter.get('/', (req, res) => {
 
 //--- POST Routes ---
 //Create new project.
-projectsRouter.post('/', verify, async (req, res) => {
+projectsRouter.post('/', requireUser, async (req, res) => {
 	console.log(req.body);
 	//Check for valid data entry.
 	const { error } = await projectValidation(req.body);

@@ -10,11 +10,9 @@ const usersRouter = require('./users');
 
 const jwt = require('jsonwebtoken');
 
-const verify = require('../services/verifyToken');
-
-//~~~~~~~~~~~~~~
-//~~~ ROUTES ~~~
-//~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~
+//~~~ MIDDLEWARE ~~~
+//~~~~~~~~~~~~~~~~~~
 
 //Verify request sent from client.
 apiRouter.use(async function (req, res, next) {
@@ -35,7 +33,7 @@ apiRouter.use(async function (req, res, next) {
 				}
 			}
 		} catch (err) {
-			throw err;
+			res.status(403).send({ message: err });
 		}
 	} else res.status(403).send(`Authorization token must start with ${prefix}.`);
 });

@@ -10,7 +10,7 @@ const Bug = require('../models/Bug');
 const { bugValidation } = require('../services/validation');
 
 //--- Authentication Imports ---
-const verify = require('../services/verifyToken');
+const { requireUser } = require('../services/requireUser');
 
 //~~~~~~~~~~~~~~~~~~
 //~~~ MIDDLEWARE ~~~
@@ -38,7 +38,7 @@ bugsRouter.get('/:bugId', (req, res) => {});
 
 //--- POST Routes ---
 //Post a new bug to a given project.
-bugsRouter.post('/:projectId', verify, async (req, res) => {
+bugsRouter.post('/:projectId', requireUser, async (req, res) => {
 	//Check for valid entry
 	const { error } = await bugValidation(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
