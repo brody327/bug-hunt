@@ -3,10 +3,10 @@
 //~~~~~~~~~~~~~~~
 //--- Schema Imports ---
 const User = require('../models/User');
+
 //~~~~~~~~~~~~~~~~~
 //~~~ FUNCTIONS ~~~
 //~~~~~~~~~~~~~~~~~
-
 //--- GET Functions ---
 //Get user data by id.
 const getUserById = async (userId) => {
@@ -23,6 +23,17 @@ const getUserById = async (userId) => {
 const getUserByEmail = async (email) => {
 	try {
 		const user = await User.findOne({ email: email });
+
+		return user;
+	} catch (err) {
+		throw err;
+	}
+};
+
+//TODO: Get user by username.
+const getUserByUsername = async (username) => {
+	try {
+		const user = await User.findOne({ username: username });
 
 		return user;
 	} catch (err) {
@@ -52,4 +63,4 @@ const createUser = async ({ username, email, password }) => {
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-module.exports = { getUserById, getUserByEmail, createUser };
+module.exports = { getUserById, getUserByEmail, getUserByUsername, createUser };

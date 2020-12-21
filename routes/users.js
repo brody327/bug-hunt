@@ -11,10 +11,15 @@ const {
 } = require('../services/validation');
 
 //--- Hashing Imports ---
-const { hashPassword, checkPassword } = require('../services/password_hashing');
+const { hashPassword, checkPassword } = require('../services/passwordHashing');
 
 //--- Database Imports ---
-const { getUserById, getUserByEmail, createUser } = require('../db/index');
+const {
+	getUserById,
+	getUserByEmail,
+	getUserByUsername,
+	createUser,
+} = require('../db/index');
 
 //~~~~~~~~~~~~~~~~~~
 //~~~ ROUTES ~~~
@@ -31,7 +36,19 @@ usersRouter.get('/:userId', async (req, res) => {
 	const user = await getUserById(req.body.userId);
 	if (!user) return res.status(400).send('User does not exist.');
 
-	res.send(user);
+	res.send({
+		message: 'User data retrieved successfully.',
+		user: {
+			username: user.username,
+			email: user.email,
+			game: user.game,
+			stats: user.stats,
+			projects: user.projects,
+			bugs: user.bugs,
+			createdAt: user.createdAt,
+			updatedAt: user.updatedAt,
+		},
+	});
 });
 
 //--- POST Routes ---
@@ -45,6 +62,10 @@ usersRouter.post('/register', async (req, res) => {
 		//Check if user already exists.
 		const emailExists = await getUserByEmail(req.body.email);
 		if (emailExists) return res.status(400).send('Email already exists.');
+
+		//TODO: Check if username already exists
+		const usernameExists = await getUserByUsername(req.body.username);
+		if (usernameExists) return res.status(400).send('Username already exists.');
 
 		//Hashes users password.
 		const hashedPassword = await hashPassword(req.body.password);
