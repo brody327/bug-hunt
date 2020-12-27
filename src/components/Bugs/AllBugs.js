@@ -15,15 +15,25 @@ import { BugCard } from './index';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function AllBugs({ userBugs }) {
+function AllBugs({ userBugs, currentUser }) {
 	//--- JSX ---
 	return (
 		<Container fluid>
-			<Row>
-				{userBugs !== undefined
-					? userBugs.map((bug) => <BugCard bug={bug} />)
-					: ''}
-			</Row>
+			{currentUser !== null ? (
+				<Row>
+					{userBugs !== undefined
+						? userBugs.map((bug) => <BugCard bug={bug} />)
+						: ''}
+				</Row>
+			) : (
+				<div>
+					<p>
+						Login or register to start tracking your projects and their bugs!
+					</p>
+					<p>register button</p>
+					<p>login button</p>
+				</div>
+			)}
 		</Container>
 	);
 }

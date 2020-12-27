@@ -16,6 +16,7 @@ import { ErrorPage } from './ErrorPage/index';
 import { AllProjectsPage, NewProjectForm, ProjectPage } from './Projects/index';
 import { AllBugs, Bug } from './Bugs/index';
 import { Account } from './Account/index';
+import { LandingPage } from './Landing';
 
 //--- CSS ---
 import '../styles/body.css';
@@ -409,12 +410,16 @@ const App = () => {
 				<Container id='content' fluid>
 					<Switch>
 						<Route exact path='/'>
-							<Home
-								userProjects={userProjects}
-								userBugs={userBugs}
-								currentUser={currentUser}
-								appStatus={appStatus}
-							/>
+							{currentUser !== null ? (
+								<Home
+									userProjects={userProjects}
+									userBugs={userBugs}
+									currentUser={currentUser}
+									appStatus={appStatus}
+								/>
+							) : (
+								<LandingPage />
+							)}
 						</Route>
 						<Route exact path='/login'>
 							<Login
@@ -426,10 +431,13 @@ const App = () => {
 							<Register />
 						</Route>
 						<Route exact path='/projects'>
-							<AllProjectsPage userProjects={userProjects} />
+							<AllProjectsPage
+								userProjects={userProjects}
+								currentUser={currentUser}
+							/>
 						</Route>
 						<Route exact path='/bugs'>
-							<AllBugs userBugs={userBugs} />
+							<AllBugs userBugs={userBugs} currentUser={currentUser} />
 						</Route>
 						<Route exact path='/account'>
 							<Account currentUser={currentUser} />
