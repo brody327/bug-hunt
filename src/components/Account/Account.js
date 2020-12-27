@@ -28,7 +28,7 @@ import '../../styles/hover-card.css';
 function Account({ currentUser }) {
 	//--- JSX ---
 	return currentUser === null ? (
-		'LOADING'
+		'Log in or sign up to start viewing your account details!'
 	) : (
 		<Container id='account-container' fluid>
 			<Row>
