@@ -16,12 +16,14 @@ import Card from 'react-bootstrap/Card';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function RankCard() {
+function RankCard({ rank }) {
 	//--- JSX ---
 	return (
 		<Card className='card-corner-color-primary rounded hover-parent background-secondary full-width text-center'>
 			<Card.Body>
 				<Card.Title as='h2'>Rank</Card.Title>
+				<div className='divider'></div>
+				<Card.Text as='h3'>{rank}</Card.Text>
 			</Card.Body>
 		</Card>
 	);

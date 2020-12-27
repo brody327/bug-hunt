@@ -16,12 +16,26 @@ import Card from 'react-bootstrap/Card';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function AccountStatsCard() {
+function AccountStatsCard({
+	stats: { projectCount, bugsFixedCount, completedProjectCount },
+	bugs,
+	projects,
+}) {
 	//--- JSX ---
 	return (
 		<Card className='card-corner-color-primary rounded hover-parent background-secondary full-width text-center'>
 			<Card.Body>
 				<Card.Title as='h2'>Statistics</Card.Title>
+				<div className='divider'></div>
+				<Row>
+					<Col>
+						<Card.Text>Project Count: {projectCount}</Card.Text>
+						<Card.Text>Completed Projects: {completedProjectCount}</Card.Text>
+					</Col>
+					<Col>
+						<Card.Text>Bugs Fixed: {bugsFixedCount}</Card.Text>
+					</Col>
+				</Row>
 			</Card.Body>
 		</Card>
 	);

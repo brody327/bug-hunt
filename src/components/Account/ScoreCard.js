@@ -16,12 +16,14 @@ import Card from 'react-bootstrap/Card';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function ScoreCard() {
+function ScoreCard({ score }) {
 	//--- JSX ---
 	return (
 		<Card className='card-corner-color-primary rounded hover-parent background-secondary full-width text-center'>
 			<Card.Body>
 				<Card.Title as='h2'>Hunter Score</Card.Title>
+				<div className='divider'></div>
+				<Card.Text as='h3'>{score}</Card.Text>
 			</Card.Body>
 		</Card>
 	);

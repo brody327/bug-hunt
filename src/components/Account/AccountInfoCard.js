@@ -25,6 +25,7 @@ function AccountInfoCard({ username, email, company }) {
 		>
 			<Card.Body>
 				<Card.Title as='h2'>Account Information</Card.Title>
+				<div className='divider'></div>
 				<Container fluid>
 					<Row>
 						<Col>
