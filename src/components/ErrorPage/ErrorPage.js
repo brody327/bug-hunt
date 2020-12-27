@@ -16,7 +16,9 @@ function ErrorPage() {
 	//--- JSX ---
 	return (
 		<div>
-			<h1>404 Page</h1>
+			<h1>Uh oh!</h1>
+			<h2>Looks like there are some bugs in the system...</h2>
+			<h4>Go to Home</h4>
 		</div>
 	);
 }

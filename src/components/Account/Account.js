@@ -46,13 +46,17 @@ function Account({ currentUser }) {
 				</Col>
 				<Col lg={6} md={12}>
 					<Row className='full-width '>
-						<RankCard />
+						<RankCard rank={currentUser.game.rank} />
 					</Row>
 					<Row className='full-width '>
-						<ScoreCard />
+						<ScoreCard score={currentUser.game.score} />
 					</Row>
 					<Row className='full-width '>
-						<AccountStatsCard />
+						<AccountStatsCard
+							stats={currentUser.stats}
+							bugs={currentUser.bugs}
+							projects={currentUser.projects}
+						/>
 					</Row>
 				</Col>
 			</Row>
