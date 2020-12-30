@@ -24,7 +24,7 @@ function ProjectCard({ project }) {
 					<Card.Body>
 						<Card.Title as='h1'>{project.title}</Card.Title>
 						<Card.Subtitle as='h4'>
-							Last Updated: {project.lastUpdated}
+							Last Updated: {project.updatedAt}
 						</Card.Subtitle>
 						<Card.Text className='hover-child fade-in-full'>
 							Created By: {project.creator}

@@ -33,23 +33,28 @@ usersRouter.get('/', (req, res) => {
 //--- GET Routes ---
 //Gets user data given a user id.
 usersRouter.get('/:userId', async (req, res) => {
-	const user = await getUserById(req.params.userId);
-	if (!user) return res.status(400).send('User does not exist.');
+	try {
+		const user = await getUserById(req.params.userId);
+		if (!user) return res.status(400).send('User does not exist.');
 
-	res.send({
-		message: 'User data retrieved successfully.',
-		user: {
-			username: user.username,
-			email: user.email,
-			game: user.game,
-			stats: user.stats,
-			projects: user.projects,
-			bugs: user.bugs,
-			createdAt: user.createdAt,
-			updatedAt: user.updatedAt,
-			company: user.company,
-		},
-	});
+		res.send({
+			message: 'User data retrieved successfully.',
+			user: {
+				username: user.username,
+				email: user.email,
+				game: user.game,
+				stats: user.stats,
+				projects: user.projects,
+				bugs: user.bugs,
+				createdAt: user.createdAt,
+				updatedAt: user.updatedAt,
+				company: user.company,
+			},
+		});
+	} catch (err) {
+		res.status(404);
+		res.send({ message: err });
+	}
 });
 
 //--- POST Routes ---

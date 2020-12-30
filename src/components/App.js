@@ -27,7 +27,7 @@ import '../styles/cards.css';
 import '../styles/animations.css';
 
 //--- API ---
-import { getUserById } from '../api/index';
+import { getUserById, getAllUserProjects } from '../api/index';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -53,95 +53,110 @@ const App = () => {
 				});
 		}
 	}, []);
+
+	//Get logged-in users projects.
+	useEffect(() => {
+		if (currentUser != null) {
+			getAllUserProjects(currentUser._id || localStorage.getItem('userId'))
+				.then((response) => {
+					console.log(response);
+					setUserProjects(response.projects);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+	}, [currentUser]);
+
 	//Sets default test data.
 	useEffect(() => {
-		setUserProjects([
-			{
-				_id: 2,
-				title: 'My Second Project',
-				creator: 'Brody555',
-				contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-				createdAt: '11/2/2020',
-				lastUpdated: '11/2/2020',
-				description:
-					"This is my second project that I'm making with my friends!",
-				bugs: [1],
-			},
-			{
-				_id: 1,
-				title: 'My First Project',
-				creator: 'Brody555',
-				contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-				createdAt: '10/30/2020',
-				lastUpdated: '10/31/2020',
-				description:
-					"This is my first project that I'm making with my friends!",
-				//These will be references to bugs below.
-				bugs: [1, 2],
-			},
-			{
-				_id: 3,
-				title: 'My Third Project',
-				creator: 'Brody555',
-				contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-				createdAt: '10/30/2020',
-				lastUpdated: '11/3/2020',
-				description:
-					"This is my first project that I'm making with my friends!",
-				//These will be references to bugs below.
-				bugs: [1, 2],
-			},
-			{
-				_id: 3,
-				title: 'My Fourth Project',
-				creator: 'Brody555',
-				contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-				createdAt: '10/30/2020',
-				lastUpdated: '11/4/2020',
-				description:
-					"This is my first project that I'm making with my friends!",
-				//These will be references to bugs below.
-				bugs: [1, 2],
-			},
-			{
-				_id: 3,
-				title: 'My Fifth Project',
-				creator: 'Brody555',
-				contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-				createdAt: '10/30/2020',
-				lastUpdated: '11/5/2020',
-				description:
-					"This is my first project that I'm making with my friends!",
-				//These will be references to bugs below.
-				bugs: [1, 2],
-			},
-			{
-				_id: 3,
-				title: 'My Sixth Project',
-				creator: 'Brody555',
-				contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-				createdAt: '10/30/2020',
-				lastUpdated: '11/6/2020',
-				description:
-					"This is my first project that I'm making with my friends!",
-				//These will be references to bugs below.
-				bugs: [1, 2],
-			},
-			{
-				_id: 3,
-				title: 'My Zero Project',
-				creator: 'Brody555',
-				contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-				createdAt: '10/30/2020',
-				lastUpdated: '11/7/2020',
-				description:
-					"This is my first project that I'm making with my friends!",
-				//These will be references to bugs below.
-				bugs: [1, 2],
-			},
+		// setUserProjects([
+		// 	{
+		// 		_id: 2,
+		// 		title: 'My Second Project',
+		// 		creator: 'Brody555',
+		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+		// 		createdAt: '11/2/2020',
+		// 		lastUpdated: '11/2/2020',
+		// 		description:
+		// 			"This is my second project that I'm making with my friends!",
+		// 		bugs: [1],
+		// 	},
+		// 	{
+		// 		_id: 1,
+		// 		title: 'My First Project',
+		// 		creator: 'Brody555',
+		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+		// 		createdAt: '10/30/2020',
+		// 		lastUpdated: '10/31/2020',
+		// 		description:
+		// 			"This is my first project that I'm making with my friends!",
+		// 		//These will be references to bugs below.
+		// 		bugs: [1, 2],
+		// 	},
+		// 	{
+		// 		_id: 3,
+		// 		title: 'My Third Project',
+		// 		creator: 'Brody555',
+		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+		// 		createdAt: '10/30/2020',
+		// 		lastUpdated: '11/3/2020',
+		// 		description:
+		// 			"This is my first project that I'm making with my friends!",
+		// 		//These will be references to bugs below.
+		// 		bugs: [1, 2],
+		// 	},
+		// 	{
+		// 		_id: 3,
+		// 		title: 'My Fourth Project',
+		// 		creator: 'Brody555',
+		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+		// 		createdAt: '10/30/2020',
+		// 		lastUpdated: '11/4/2020',
+		// 		description:
+		// 			"This is my first project that I'm making with my friends!",
+		// 		//These will be references to bugs below.
+		// 		bugs: [1, 2],
+		// 	},
+		// 	{
+		// 		_id: 3,
+		// 		title: 'My Fifth Project',
+		// 		creator: 'Brody555',
+		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+		// 		createdAt: '10/30/2020',
+		// 		lastUpdated: '11/5/2020',
+		// 		description:
+		// 			"This is my first project that I'm making with my friends!",
+		// 		//These will be references to bugs below.
+		// 		bugs: [1, 2],
+		// 	},
+		// 	{
+		// 		_id: 3,
+		// 		title: 'My Sixth Project',
+		// 		creator: 'Brody555',
+		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+		// 		createdAt: '10/30/2020',
+		// 		lastUpdated: '11/6/2020',
+		// 		description:
+		// 			"This is my first project that I'm making with my friends!",
+		// 		//These will be references to bugs below.
+		// 		bugs: [1, 2],
+		// 	},
+		// 	{
+		// 		_id: 3,
+		// 		title: 'My Zero Project',
+		// 		creator: 'Brody555',
+		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+		// 		createdAt: '10/30/2020',
+		// 		lastUpdated: '11/7/2020',
+		// 		description:
+		// 			"This is my first project that I'm making with my friends!",
+		// 		//These will be references to bugs below.
+		// 		bugs: [1, 2],
+		// 	},
 
-			//TODO: Add projects where user is contributor AND creator to userProjects
-		]);
+		// 	//TODO: Add projects where user is contributor AND creator to userProjects
+		// ]);
 		setUserBugs([
 			{
 				_id: 1,
@@ -446,7 +461,11 @@ const App = () => {
 							{/* <Bug /> */}
 						</Route>
 						<Route exact path='/projects/new'>
-							<NewProjectForm />
+							<NewProjectForm
+								userProjects={userProjects}
+								setUserProjects={setUserProjects}
+								currentUser={currentUser}
+							/>
 						</Route>
 						<Route exact path='/projects/:project' component={ProjectPage}>
 							{/* <ProjectPage /> */}

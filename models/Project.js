@@ -13,10 +13,11 @@ const ProjectSchema = mongoose.Schema(
 			required: true,
 		},
 		creator: {
-			type: String,
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
 			required: true,
 		},
-		contributors: [String],
+		contributors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 		description: String,
 		bugs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bug' }],
 	},

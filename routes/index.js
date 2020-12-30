@@ -10,6 +10,9 @@ const usersRouter = require('./users');
 
 const jwt = require('jsonwebtoken');
 
+//--- Database Imports ---
+const { getUserById } = require('../db/index');
+
 //~~~~~~~~~~~~~~~~~~
 //~~~ MIDDLEWARE ~~~
 //~~~~~~~~~~~~~~~~~~
@@ -27,10 +30,11 @@ apiRouter.use(async function (req, res, next) {
 			const { _id } = jwt.verify(token, process.env.TOKEN_SECRET);
 
 			if (_id) {
-				console.log(_id);
+				console.log('check Id', _id);
+				req.user = await getUserById(_id);
+				console.log('Check req.user', req.user);
 
-				if (_id) {
-				}
+				next();
 			}
 		} catch (err) {
 			res.status(403).send({ message: err });
