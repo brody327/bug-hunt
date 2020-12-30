@@ -9,29 +9,47 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+//--- API ---
+import { createProject } from '../../api/index';
+
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function NewProjectForm() {
+function NewProjectForm({ currentUser, userProjects, setUserProjects }) {
 	//--- State ---
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 
+	const history = useHistory();
+
 	//--- Functions ---
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		//TODO: check for valid entry
 
-		//TODO: send project data to api
+		//Send project data to api
+		try {
+			const project = await createProject({
+				title: name,
+				creator: currentUser._id,
+				description,
+			});
+			//Add new project object to user projects
+			setUserProjects([...userProjects, project]);
 
-		//TODO: Add new project object to user projects
+			//Clear fields
+			setName('');
+			setDescription('');
 
-		//TODO: Send Confirmation message
+			//TODO: Send Confirmation message
 
-		//TODO: Clear fields?
-
-		//TODO: go to projects
+			//TODO: go to projects
+			history.push('/projects');
+		} catch (err) {
+			console.error(err);
+			alert(`Uh Oh! An error occurred: \n ${err}`);
+		}
 	};
 
 	const handleNameChange = (e) => {

@@ -19,7 +19,7 @@ import { loginUser } from '../../api/index';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function Login({ currentUser, setCurrentUser }) {
+function Login({ setCurrentUser }) {
 	//--- State ---
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');

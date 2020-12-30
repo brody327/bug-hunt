@@ -60,7 +60,26 @@ const createUser = async ({ username, email, password }) => {
 	}
 };
 
+//--- UPDATE Functions ---
+//Updates users project count.
+const updateUserProjectCount = async (userId) => {
+	try {
+		await User.findOneAndUpdate(
+			{ _id: userId },
+			{ $inc: { 'stats.projectCount': 1 } }
+		);
+	} catch (err) {
+		throw err;
+	}
+};
+
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-module.exports = { getUserById, getUserByEmail, getUserByUsername, createUser };
+module.exports = {
+	getUserById,
+	getUserByEmail,
+	getUserByUsername,
+	createUser,
+	updateUserProjectCount,
+};

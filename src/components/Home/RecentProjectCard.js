@@ -30,7 +30,7 @@ function RecentProjectCard({ recentProject }) {
 				<Card.Text className='hover-child fade-in-full' as='h4'>
 					{recentProject === undefined
 						? ''
-						: `Last Updated: ${recentProject.lastUpdated}`}
+						: `Last Updated: ${recentProject.updatedAt}`}
 				</Card.Text>
 			</Card.Body>
 		</Card>
