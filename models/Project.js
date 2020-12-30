@@ -18,7 +18,10 @@ const ProjectSchema = mongoose.Schema(
 			required: true,
 		},
 		contributors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-		description: String,
+		description: {
+			type: String,
+			default: 'None',
+		},
 		bugs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bug' }],
 	},
 	{ timestamps: true }

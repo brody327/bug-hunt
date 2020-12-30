@@ -22,6 +22,8 @@ apiRouter.use(async function (req, res, next) {
 	const prefix = 'Bearer ';
 	const auth = req.header('Authorization');
 
+	console.log('Checking authorization header', auth);
+
 	if (!auth) next();
 	else if (auth.startsWith(prefix)) {
 		const token = auth.slice(prefix.length);
@@ -30,9 +32,7 @@ apiRouter.use(async function (req, res, next) {
 			const { _id } = jwt.verify(token, process.env.TOKEN_SECRET);
 
 			if (_id) {
-				console.log('check Id', _id);
 				req.user = await getUserById(_id);
-				console.log('Check req.user', req.user);
 
 				next();
 			}

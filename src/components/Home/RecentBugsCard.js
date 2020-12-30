@@ -3,6 +3,7 @@
 //~~~~~~~~~~~~~~~
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 //--- Bootstrap ---
 import Card from 'react-bootstrap/Card';
@@ -26,9 +27,7 @@ function RecentBugsCard({ userBugs }) {
 		>
 			<Card.Body>
 				<Card.Title as='h2'>Recent Bugs</Card.Title>
-				<Card.Text as='h4'>
-					View recent bugs from all your projects.
-				</Card.Text>
+				<Card.Text as='h4'>View recent bugs from all your projects.</Card.Text>
 				<Table>
 					<thead>
 						<tr>
@@ -41,7 +40,8 @@ function RecentBugsCard({ userBugs }) {
 					<tbody>
 						{userBugs.map((bug) => (
 							<tr key={bug._id}>
-								<td>{bug.lastUpdated}</td>
+								{/*updatedAt*/}
+								<td>{moment(bug.lastUpdated).format('HH:mm MM-DD-YYYY')}</td>
 								<td>
 									<Link
 										to={{

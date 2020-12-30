@@ -3,6 +3,8 @@
 //~~~~~~~~~~~~~~~~~~~
 import axios from 'axios';
 
+import { config } from './index';
+
 //~~~~~~~~~~~~~~~~~~~
 //~~~~ VARIABLES ~~~~
 //~~~~~~~~~~~~~~~~~~~
@@ -28,9 +30,13 @@ export async function getAllUserProjects(userId) {
 export async function createProject(project) {
 	try {
 		console.log('API PROJECT DATA:', project);
-		const { data } = await axios.post(`${BASE_URL}/projects`, {
-			...project,
-		});
+		const { data } = await axios.post(
+			`${BASE_URL}/projects`,
+			{
+				...project,
+			},
+			config
+		);
 
 		return data;
 	} catch (err) {

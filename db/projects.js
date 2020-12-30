@@ -9,7 +9,15 @@ const Project = require('../models/Project');
 //~~~~~~~~~~~~~~~~~
 //--- GET Functions ---
 //Get a project by id.
-const getProjectByProjectId = async (projectId) => {};
+const getProjectByProjectId = async (projectId) => {
+	try {
+		const project = await Project.findById(projectId);
+
+		return project;
+	} catch (err) {
+		throw err;
+	}
+};
 
 //Get all projects by user id.
 const getAllProjectsByUserId = async (userId) => {
@@ -53,7 +61,29 @@ const createProject = async ({ title, creator, description }) => {
 		throw err;
 	}
 };
+
+//--- UPDATE Routes ---
+const updateProjectBugs = async (projectId, bug) => {
+	try {
+		//TODO: Check for unable to update/find project
+		const updatedProject = await Project.findByIdAndUpdate(
+			projectId,
+			{ $push: { bugs: bug } },
+			{ new: true }
+		);
+
+		return updatedProject;
+	} catch (err) {
+		throw err;
+	}
+};
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-module.exports = { getProjectByName, getAllProjectsByUserId, createProject };
+module.exports = {
+	getProjectByProjectId,
+	getProjectByName,
+	getAllProjectsByUserId,
+	createProject,
+	updateProjectBugs,
+};

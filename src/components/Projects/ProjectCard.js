@@ -3,6 +3,7 @@
 //~~~~~~~~~~~~~~~
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 //--- Bootstrap ---
 import Col from 'react-bootstrap/Col';
@@ -24,7 +25,8 @@ function ProjectCard({ project }) {
 					<Card.Body>
 						<Card.Title as='h1'>{project.title}</Card.Title>
 						<Card.Subtitle as='h4'>
-							Last Updated: {project.updatedAt}
+							Last Updated:{' '}
+							{moment(project.updatedAt).format('HH:mm MM-DD-YYYY')}
 						</Card.Subtitle>
 						<Card.Text className='hover-child fade-in-full'>
 							Created By: {project.creator}
