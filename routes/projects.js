@@ -36,30 +36,25 @@ projectsRouter.get('/:userId', async (req, res) => {
 
 //--- POST Routes ---
 //Create new project.
-//TODO: FIX REQUIRE USER
-projectsRouter.post('/', async (req, res) => {
-	console.log('PRO Data:', req.body);
+projectsRouter.post('/', requireUser, async (req, res) => {
 	//Check for valid data entry.
 	const { error } = await projectValidation(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
-	console.log('check valid data');
 
 	//Check for existing project.
+	//TODO: Only check for existing project name for user id?
 	const projectExists = await getProjectByName(req.body.title);
 	if (projectExists)
 		return res.status(400).send('Project name already exists.');
-	console.log('check exsisting project');
 
 	try {
 		//Create new project.
-		console.log('Creating project');
 		const project = await createProject({
 			title: req.body.title,
 			creator: req.body.creator,
 			description: req.body.description,
 		});
 
-		console.log('Created! project');
 		//Increment users project count.
 		await updateUserProjectCount(req.body.creator);
 
@@ -69,6 +64,8 @@ projectsRouter.post('/', async (req, res) => {
 		res.send({ message: err });
 	}
 });
+
+//--- UPDATE Routes ---
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~

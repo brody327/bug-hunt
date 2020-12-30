@@ -11,7 +11,7 @@ const User = require('../models/User');
 //Get user data by id.
 const getUserById = async (userId) => {
 	try {
-		const user = await User.findOne({ _id: userId });
+		const user = await User.findById(userId);
 
 		return user;
 	} catch (err) {
@@ -64,10 +64,13 @@ const createUser = async ({ username, email, password }) => {
 //Updates users project count.
 const updateUserProjectCount = async (userId) => {
 	try {
-		await User.findOneAndUpdate(
+		const updatedUser = await User.findOneAndUpdate(
 			{ _id: userId },
-			{ $inc: { 'stats.projectCount': 1 } }
+			{ $inc: { 'stats.projectCount': 1 } },
+			{ new: true }
 		);
+
+		return updatedUser;
 	} catch (err) {
 		throw err;
 	}

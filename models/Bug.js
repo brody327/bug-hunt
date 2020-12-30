@@ -18,13 +18,19 @@ const BugSchema = mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		description: String,
 		creator: {
-			type: String,
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
 			required: true,
 		},
-		assignee: String,
-		description: String,
+		assignee: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
+		},
+		description: {
+			type: String,
+			default: 'None',
+		},
 		priority: {
 			type: String,
 			required: true,

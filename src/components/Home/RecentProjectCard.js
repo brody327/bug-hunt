@@ -2,6 +2,7 @@
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
 import React from 'react';
+import moment from 'moment';
 
 //--- Bootstrap ---
 import Card from 'react-bootstrap/Card';
@@ -30,7 +31,9 @@ function RecentProjectCard({ recentProject }) {
 				<Card.Text className='hover-child fade-in-full' as='h4'>
 					{recentProject === undefined
 						? ''
-						: `Last Updated: ${recentProject.updatedAt}`}
+						: `Last Updated: ${moment(recentProject.updatedAt).format(
+								' HH:mm MM-DD-YYYY'
+						  )}`}
 				</Card.Text>
 			</Card.Body>
 		</Card>
