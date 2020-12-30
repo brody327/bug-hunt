@@ -27,6 +27,13 @@ projectsRouter.get('/:userId', async (req, res) => {
 		const projects = await getAllProjectsByUserId(req.params.userId);
 		if (!projects) return res.status(400).send('No projects for this user.');
 
+		//Sort projects by most recent.
+		projects.sort((a, b) => {
+			return new Date(b.updatedAt) - new Date(a.updatedAt);
+		});
+
+		console.log(projects);
+
 		res.send({ message: 'User projects retrieved!', projects });
 	} catch (err) {
 		res.status(404);

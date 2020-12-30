@@ -40,6 +40,7 @@ usersRouter.get('/:userId', async (req, res) => {
 		res.send({
 			message: 'User data retrieved successfully.',
 			user: {
+				_id: user._id,
 				username: user.username,
 				email: user.email,
 				game: user.game,

@@ -14,32 +14,22 @@ const BASE_URL = '/api';
 //~~~~ FUNCTIONS ~~~~
 //~~~~~~~~~~~~~~~~~~~
 //--- GET Functions ---
-//Get all projects associated with a userId.
-export async function getAllUserProjects(userId) {
-	try {
-		const { data } = await axios.get(`${BASE_URL}/projects/${userId}`);
-
-		return data;
-	} catch (err) {
-		throw err;
-	}
-}
 
 //--- POST Functions ---
-//Create a new project.
-export async function createProject(project) {
+export const createBug = async (bug) => {
 	try {
-		console.log('API PROJECT DATA:', project);
 		const { data } = await axios.post(
-			`${BASE_URL}/projects`,
+			`${BASE_URL}/bugs/${bug.project_id}`,
 			{
-				...project,
+				...bug,
 			},
 			getConfig()
 		);
 
+		console.log(data);
+
 		return data;
 	} catch (err) {
 		throw err;
 	}
-}
+};
