@@ -20,7 +20,14 @@ function ProjectCard({ project }) {
 	//--- Functions ---
 	return (
 		<Col className='col' lg={4} md={6} sm={12} xs={12}>
-			<Link to={`/projects/${project.title}`}>
+			<Link
+				to={{
+					pathname: `/projects/${project._id}`,
+					state: {
+						project,
+					},
+				}}
+			>
 				<Card className='card project-card rounded hover-parent background-secondary card-corner-color-primary'>
 					<Card.Body>
 						<Card.Title as='h1'>{project.title}</Card.Title>

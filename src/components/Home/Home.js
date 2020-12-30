@@ -47,24 +47,19 @@ function Home({ userProjects, userBugs, currentUser, appStatus }) {
 					<Row className='first-row'>
 						<Col>
 							<Link
-								to={`/projects/${
-									userProjects[0] === undefined
-										? ''
-										: userProjects[0].title
-								}`}
+								to={{
+									pathname: `/projects/${
+										userProjects[0] === undefined ? '' : userProjects[0]._id
+									}`,
+									state: { project: userProjects[0] },
+								}}
 							>
-								<RecentProjectCard
-									recentProject={userProjects[0]}
-								/>
+								<RecentProjectCard recentProject={userProjects[0]} />
 							</Link>
 						</Col>
 					</Row>
 					<Row>
-						<Col
-							lg={6}
-							md={6}
-							className='responsive-padding-correction'
-						>
+						<Col lg={6} md={6} className='responsive-padding-correction'>
 							<Link to='projects'>
 								<AllProjectsCard />
 							</Link>

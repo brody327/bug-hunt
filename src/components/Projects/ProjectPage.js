@@ -2,8 +2,11 @@
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //--- Bootstrap ---
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 
 //--- Components ---
 
@@ -14,20 +17,25 @@ import React from 'react';
 //~~~~~~~~~~~~~~~~~
 function ProjectPage({ match, location }) {
 	//--- JSX ---
+	const project = location.state.project;
 	return (
-		<div>
-			<h1>A Project</h1>
-			<p>ID: {match.params.project}</p>
+		<Container fluid>
+			<h1>{project.title}</h1>
 			<p>Project Info</p>
-			<p>Project Creator</p>
-			<p>Delete Project</p>
-			<p>Complete Project</p>
+			<p>ID: {project._id}</p>
+			<p>Project Creator: {project.creator}</p>
+			<Button>Delete Project</Button>
+			<Button>Complete Project</Button>
 			<p>Project Contributors</p>
+			<p>{project.contributors}</p>
 			<p>Project Stats</p>
 			<p>Project Bugs</p>
-			<p>Delete Bug</p>
-			<p>Create Bug</p>
-		</div>
+			<p>{project.bugs}</p>
+			<Button>Delete Bug</Button>
+			<Link to={{ pathname: '/bugs/new', state: { project } }}>
+				<Button>Create Bug</Button>
+			</Link>
+		</Container>
 	);
 }
 

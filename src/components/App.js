@@ -14,7 +14,7 @@ import { Home } from './Home/index';
 import { Login, Register } from './Authentication/index';
 import { ErrorPage } from './ErrorPage/index';
 import { AllProjectsPage, NewProjectForm, ProjectPage } from './Projects/index';
-import { AllBugs, Bug } from './Bugs/index';
+import { AllBugs, Bug, NewBugForm } from './Bugs/index';
 import { Account } from './Account/index';
 import { LandingPage } from './Landing';
 
@@ -406,12 +406,6 @@ const App = () => {
 		]);
 	}, [appStatus]);
 	//--- Functions ---
-	//Sorts projects in array by most recently updated.
-	//TODO: Should be done on back end call!
-	userProjects.sort((a, b) => {
-		return new Date(b.lastUpdated) - new Date(a.lastUpdated);
-	});
-
 	//Sorts bugs in array by most recently updated.
 	//TODO: Should be done on back end call!
 	userBugs.sort((a, b) => {
@@ -457,6 +451,18 @@ const App = () => {
 						<Route exact path='/account'>
 							<Account currentUser={currentUser} />
 						</Route>
+						<Route
+							exact
+							path='/bugs/new'
+							render={(props) => (
+								<NewBugForm
+									{...props}
+									userBugs={userBugs}
+									setUserBugs={setUserBugs}
+									currentUser={currentUser}
+								/>
+							)}
+						></Route>
 						<Route exact path='/bugs/:bug' component={Bug}>
 							{/* <Bug /> */}
 						</Route>

@@ -35,6 +35,7 @@ const bugValidation = (data) => {
 		title: Joi.string().required(),
 		creator: Joi.string().required(),
 		priority: Joi.string().required(),
+		description: Joi.string().empty('').default('None'),
 	});
 
 	return bugSchema.validate(data);
@@ -45,7 +46,7 @@ const projectValidation = (data) => {
 	const projectSchema = Joi.object({
 		title: Joi.string().required(),
 		creator: Joi.string().required(),
-		description: Joi.string(),
+		description: Joi.string().allow(''),
 	});
 
 	return projectSchema.validate(data);

@@ -1,9 +1,13 @@
 //~~~~~~~~~~~~~~~~~~~
 //~~~~ VARIABLES ~~~~
 //~~~~~~~~~~~~~~~~~~~
-export const config = {
-	headers: {
-		'Content-Type': 'application/json',
-		Authorization: `Bearer ${localStorage.getItem('token')}`,
-	},
+export const getConfig = () => {
+	const config = {
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('token')}`,
+		},
+	};
+
+	return config;
 };
