@@ -17,7 +17,7 @@ function Bug({ match, location }) {
 	const bug = location.state.bug;
 	return (
 		<div>
-			<h1>A Bug</h1>
+			<h1>{bug.title}</h1>
 			<p>ID: {bug._id}</p>
 			<p>Name: {bug.title}</p>
 			<p>{bug.creator}</p>

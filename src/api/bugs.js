@@ -14,6 +14,15 @@ const BASE_URL = '/api';
 //~~~~ FUNCTIONS ~~~~
 //~~~~~~~~~~~~~~~~~~~
 //--- GET Functions ---
+export const getAllUserBugs = async (userId) => {
+	try {
+		const { data } = await axios.get(`${BASE_URL}/bugs/${userId}`);
+
+		return data;
+	} catch (err) {
+		throw err;
+	}
+};
 
 //--- POST Functions ---
 export const createBug = async (bug) => {

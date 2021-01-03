@@ -32,8 +32,6 @@ projectsRouter.get('/:userId', async (req, res) => {
 			return new Date(b.updatedAt) - new Date(a.updatedAt);
 		});
 
-		console.log(projects);
-
 		res.send({ message: 'User projects retrieved!', projects });
 	} catch (err) {
 		res.status(404);

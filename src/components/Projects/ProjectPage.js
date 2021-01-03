@@ -24,6 +24,7 @@ function ProjectPage({ match, location }) {
 			<p>Project Info</p>
 			<p>ID: {project._id}</p>
 			<p>Project Creator: {project.creator}</p>
+			<p>Project Created: {project.createdAt}</p>
 			<Button>Delete Project</Button>
 			<Button>Complete Project</Button>
 			<p>Project Contributors</p>

@@ -44,8 +44,11 @@ function NewProjectForm({ currentUser, userProjects, setUserProjects }) {
 
 			//TODO: Send Confirmation message
 
-			//TODO: go to projects
+			//Go to projects
 			history.push('/projects');
+
+			//TODO: refresh page
+			window.location.reload();
 		} catch (err) {
 			console.error(err);
 			alert(`Uh Oh! An error occurred: \n ${err}`);

@@ -41,7 +41,7 @@ function Home({ userProjects, userBugs, currentUser, appStatus }) {
 					lg={6}
 					md={12}
 				>
-					<RecentBugsCard userBugs={userBugs} />
+					<RecentBugsCard userBugs={userBugs} userProjects={userProjects} />
 				</Col>
 				<Col xl={8} lg={6} md={12}>
 					<Row className='first-row'>

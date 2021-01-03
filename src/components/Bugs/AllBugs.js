@@ -2,10 +2,12 @@
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //--- Bootstrap ---
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 
 //--- Components ---
 import { BugCard } from './index';
@@ -30,8 +32,12 @@ function AllBugs({ userBugs, currentUser }) {
 					<p>
 						Login or register to start tracking your projects and their bugs!
 					</p>
-					<p>register button</p>
-					<p>login button</p>
+					<Link to='/login'>
+						<Button>Login</Button>
+					</Link>
+					<Link to='/register'>
+						<Button>Register</Button>
+					</Link>
 				</div>
 			)}
 		</Container>

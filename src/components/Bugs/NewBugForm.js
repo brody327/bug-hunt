@@ -15,7 +15,15 @@ import { createBug } from '../../api/index';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function NewBugForm({ userBugs, setUserBugs, currentUser, match, location }) {
+function NewBugForm({
+	userProjects,
+	setUserProjects,
+	userBugs,
+	setUserBugs,
+	currentUser,
+	match,
+	location,
+}) {
 	//--- State ---
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
@@ -27,6 +35,7 @@ function NewBugForm({ userBugs, setUserBugs, currentUser, match, location }) {
 	const history = useHistory();
 
 	//--- Functions ---
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -43,6 +52,19 @@ function NewBugForm({ userBugs, setUserBugs, currentUser, match, location }) {
 			});
 
 			console.log(bug);
+
+			//Add bug to user Bugs
+			setUserBugs([...userBugs, bug]);
+
+			console.log(userBugs);
+
+			//Add bug to project bugs
+			const currentProject = userProjects.filter(
+				(userProject) => project._id === userProject._id
+			);
+
+			currentProject[0].bugs.push(bug._id);
+
 			//Clear fields
 			setName('');
 			setDescription('');

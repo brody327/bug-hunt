@@ -8,6 +8,16 @@ const Bug = require('../models/Bug');
 //~~~ FUNCTIONS ~~~
 //~~~~~~~~~~~~~~~~~
 //--- GET Functions ---
+const getAllUserBugs = async (userId) => {
+	try {
+		const bugs = await Bug.find({ creator: userId });
+		bugs.push(...(await Bug.find({ assignee: userId })));
+
+		return bugs;
+	} catch (err) {
+		throw err;
+	}
+};
 
 //--- POST Functions ---
 const createBug = async ({
@@ -36,4 +46,4 @@ const createBug = async ({
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-module.exports = { createBug };
+module.exports = { getAllUserBugs, createBug };
