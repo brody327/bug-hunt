@@ -2,8 +2,10 @@
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //--- Bootstrap ---
+import Button from 'react-bootstrap/Button';
 
 //--- Components ---
 
@@ -18,7 +20,9 @@ function ErrorPage() {
 		<div>
 			<h1>Uh oh!</h1>
 			<h2>Looks like there are some bugs in the system...</h2>
-			<h4>Go to Home</h4>
+			<Link to='/'>
+				<Button>Home</Button>
+			</Link>
 		</div>
 	);
 }

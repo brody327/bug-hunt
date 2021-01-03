@@ -34,7 +34,7 @@ const HeaderNav = ({ currentUser, setCurrentUser }) => {
 			<Link to='/'>
 				<Navbar.Brand className='font-head font-brand'>
 					<Image className='logo pulse-in' src={logo} fluid />
-					BUG HUNTER
+					BUG HUNT
 				</Navbar.Brand>
 			</Link>
 			<NavbarToggle aria-controls='responsive-navbar' />

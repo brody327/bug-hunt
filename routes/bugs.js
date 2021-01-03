@@ -16,24 +16,33 @@ const { requireUser } = require('../services/requireUser');
 const {
 	createBug,
 	getProjectByProjectId,
+	getAllUserBugs,
 	updateProjectBugs,
 } = require('../db/index');
 
 //~~~~~~~~~~~~~~~~~~
 //~~~ MIDDLEWARE ~~~
 //~~~~~~~~~~~~~~~~~~
-bugsRouter.get('/', (req, res) => {
-	res.send({
-		message: 'Bugs route is still under construction.',
-	});
-});
-
 //--- GET Routes ---
 //Get all user's bugs.
-bugsRouter.get('/:userId', (req, res) => {
+bugsRouter.get('/:userId', async (req, res) => {
 	try {
+		const bugs = await getAllUserBugs(req.params.userId);
+		if (!bugs) return res.status(400).send('No bugs for this user.');
+
+		console.log('Bugs on DB:', bugs);
+
+		//Sort projects by most recent.
+		bugs.sort((a, b) => {
+			return new Date(b.updatedAt) - new Date(a.updatedAt);
+		});
+
+		console.log(bugs);
+
+		res.send({ message: 'User bugs retrieved!', bugs });
 	} catch (err) {
-		res.status();
+		res.status(404);
+		res.send({ message: err });
 	}
 });
 

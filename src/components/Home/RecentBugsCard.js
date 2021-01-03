@@ -18,8 +18,19 @@ import Table from 'react-bootstrap/Table';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function RecentBugsCard({ userBugs }) {
+function RecentBugsCard({ userBugs, userProjects }) {
 	//--- JSX ---
+	//Gets
+	const getRecentBugProjectName = (bug) => {
+		const project = userProjects.filter(
+			(project) => project._id === bug.project_id
+		)[0];
+
+		if (project) {
+			return project.title;
+		}
+	};
+
 	return (
 		<Card
 			id='recent-bugs-card'
@@ -40,18 +51,19 @@ function RecentBugsCard({ userBugs }) {
 					<tbody>
 						{userBugs.map((bug) => (
 							<tr key={bug._id}>
-								{/*updatedAt*/}
-								<td>{moment(bug.lastUpdated).format('HH:mm MM-DD-YYYY')}</td>
+								<td>{moment(bug.updatedAt).format('HH:mm MM-DD-YYYY')}</td>
 								<td>
 									<Link
 										to={{
 											pathname: `/projects/${bug.project_id}`,
 											state: {
-												projectId: bug.project_id,
+												project: userProjects.filter(
+													(project) => project._id === bug.project_id
+												)[0],
 											},
 										}}
 									>
-										{bug.project_id}
+										{getRecentBugProjectName(bug)}
 									</Link>
 								</td>
 								<td>

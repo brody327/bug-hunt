@@ -9,6 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 //--- Components ---
 import { ProjectCard } from './index';
@@ -47,8 +48,12 @@ function AllProjectsPage({ userProjects, currentUser }) {
 					<p>
 						Login or register to start tracking your projects and their bugs!
 					</p>
-					<p>register button</p>
-					<p>login button</p>
+					<Link to='/login'>
+						<Button>Login</Button>
+					</Link>
+					<Link to='/register'>
+						<Button>Register</Button>
+					</Link>
 				</div>
 			)}
 		</Container>

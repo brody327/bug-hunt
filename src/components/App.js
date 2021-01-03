@@ -27,7 +27,7 @@ import '../styles/cards.css';
 import '../styles/animations.css';
 
 //--- API ---
-import { getUserById, getAllUserProjects } from '../api/index';
+import { getUserById, getAllUserProjects, getAllUserBugs } from '../api/index';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -54,13 +54,19 @@ const App = () => {
 		}
 	}, []);
 
-	//Get logged-in users projects.
+	//Get logged-in users projects and bugs.
 	useEffect(() => {
 		if (currentUser != null) {
 			getAllUserProjects(currentUser._id || localStorage.getItem('userId'))
 				.then((response) => {
-					console.log(response);
 					setUserProjects(response.projects);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+			getAllUserBugs(currentUser._id || localStorage.getItem('userId'))
+				.then((response) => {
+					setUserBugs(response.bugs);
 				})
 				.catch((error) => {
 					console.log(error);
@@ -68,343 +74,343 @@ const App = () => {
 		}
 	}, [currentUser]);
 
-	//Sets default test data.
-	useEffect(() => {
-		// setUserProjects([
-		// 	{
-		// 		_id: 2,
-		// 		title: 'My Second Project',
-		// 		creator: 'Brody555',
-		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-		// 		createdAt: '11/2/2020',
-		// 		lastUpdated: '11/2/2020',
-		// 		description:
-		// 			"This is my second project that I'm making with my friends!",
-		// 		bugs: [1],
-		// 	},
-		// 	{
-		// 		_id: 1,
-		// 		title: 'My First Project',
-		// 		creator: 'Brody555',
-		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-		// 		createdAt: '10/30/2020',
-		// 		lastUpdated: '10/31/2020',
-		// 		description:
-		// 			"This is my first project that I'm making with my friends!",
-		// 		//These will be references to bugs below.
-		// 		bugs: [1, 2],
-		// 	},
-		// 	{
-		// 		_id: 3,
-		// 		title: 'My Third Project',
-		// 		creator: 'Brody555',
-		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-		// 		createdAt: '10/30/2020',
-		// 		lastUpdated: '11/3/2020',
-		// 		description:
-		// 			"This is my first project that I'm making with my friends!",
-		// 		//These will be references to bugs below.
-		// 		bugs: [1, 2],
-		// 	},
-		// 	{
-		// 		_id: 3,
-		// 		title: 'My Fourth Project',
-		// 		creator: 'Brody555',
-		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-		// 		createdAt: '10/30/2020',
-		// 		lastUpdated: '11/4/2020',
-		// 		description:
-		// 			"This is my first project that I'm making with my friends!",
-		// 		//These will be references to bugs below.
-		// 		bugs: [1, 2],
-		// 	},
-		// 	{
-		// 		_id: 3,
-		// 		title: 'My Fifth Project',
-		// 		creator: 'Brody555',
-		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-		// 		createdAt: '10/30/2020',
-		// 		lastUpdated: '11/5/2020',
-		// 		description:
-		// 			"This is my first project that I'm making with my friends!",
-		// 		//These will be references to bugs below.
-		// 		bugs: [1, 2],
-		// 	},
-		// 	{
-		// 		_id: 3,
-		// 		title: 'My Sixth Project',
-		// 		creator: 'Brody555',
-		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-		// 		createdAt: '10/30/2020',
-		// 		lastUpdated: '11/6/2020',
-		// 		description:
-		// 			"This is my first project that I'm making with my friends!",
-		// 		//These will be references to bugs below.
-		// 		bugs: [1, 2],
-		// 	},
-		// 	{
-		// 		_id: 3,
-		// 		title: 'My Zero Project',
-		// 		creator: 'Brody555',
-		// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
-		// 		createdAt: '10/30/2020',
-		// 		lastUpdated: '11/7/2020',
-		// 		description:
-		// 			"This is my first project that I'm making with my friends!",
-		// 		//These will be references to bugs below.
-		// 		bugs: [1, 2],
-		// 	},
+	// //Sets default test data.
+	// useEffect(() => {
+	// 	// setUserProjects([
+	// 	// 	{
+	// 	// 		_id: 2,
+	// 	// 		title: 'My Second Project',
+	// 	// 		creator: 'Brody555',
+	// 	// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+	// 	// 		createdAt: '11/2/2020',
+	// 	// 		lastUpdated: '11/2/2020',
+	// 	// 		description:
+	// 	// 			"This is my second project that I'm making with my friends!",
+	// 	// 		bugs: [1],
+	// 	// 	},
+	// 	// 	{
+	// 	// 		_id: 1,
+	// 	// 		title: 'My First Project',
+	// 	// 		creator: 'Brody555',
+	// 	// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+	// 	// 		createdAt: '10/30/2020',
+	// 	// 		lastUpdated: '10/31/2020',
+	// 	// 		description:
+	// 	// 			"This is my first project that I'm making with my friends!",
+	// 	// 		//These will be references to bugs below.
+	// 	// 		bugs: [1, 2],
+	// 	// 	},
+	// 	// 	{
+	// 	// 		_id: 3,
+	// 	// 		title: 'My Third Project',
+	// 	// 		creator: 'Brody555',
+	// 	// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+	// 	// 		createdAt: '10/30/2020',
+	// 	// 		lastUpdated: '11/3/2020',
+	// 	// 		description:
+	// 	// 			"This is my first project that I'm making with my friends!",
+	// 	// 		//These will be references to bugs below.
+	// 	// 		bugs: [1, 2],
+	// 	// 	},
+	// 	// 	{
+	// 	// 		_id: 3,
+	// 	// 		title: 'My Fourth Project',
+	// 	// 		creator: 'Brody555',
+	// 	// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+	// 	// 		createdAt: '10/30/2020',
+	// 	// 		lastUpdated: '11/4/2020',
+	// 	// 		description:
+	// 	// 			"This is my first project that I'm making with my friends!",
+	// 	// 		//These will be references to bugs below.
+	// 	// 		bugs: [1, 2],
+	// 	// 	},
+	// 	// 	{
+	// 	// 		_id: 3,
+	// 	// 		title: 'My Fifth Project',
+	// 	// 		creator: 'Brody555',
+	// 	// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+	// 	// 		createdAt: '10/30/2020',
+	// 	// 		lastUpdated: '11/5/2020',
+	// 	// 		description:
+	// 	// 			"This is my first project that I'm making with my friends!",
+	// 	// 		//These will be references to bugs below.
+	// 	// 		bugs: [1, 2],
+	// 	// 	},
+	// 	// 	{
+	// 	// 		_id: 3,
+	// 	// 		title: 'My Sixth Project',
+	// 	// 		creator: 'Brody555',
+	// 	// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+	// 	// 		createdAt: '10/30/2020',
+	// 	// 		lastUpdated: '11/6/2020',
+	// 	// 		description:
+	// 	// 			"This is my first project that I'm making with my friends!",
+	// 	// 		//These will be references to bugs below.
+	// 	// 		bugs: [1, 2],
+	// 	// 	},
+	// 	// 	{
+	// 	// 		_id: 3,
+	// 	// 		title: 'My Zero Project',
+	// 	// 		creator: 'Brody555',
+	// 	// 		contributors: ['Brody555', 'AndyCandy', 'Kazama', 'JoeShmoe'],
+	// 	// 		createdAt: '10/30/2020',
+	// 	// 		lastUpdated: '11/7/2020',
+	// 	// 		description:
+	// 	// 			"This is my first project that I'm making with my friends!",
+	// 	// 		//These will be references to bugs below.
+	// 	// 		bugs: [1, 2],
+	// 	// 	},
 
-		// 	//TODO: Add projects where user is contributor AND creator to userProjects
-		// ]);
-		setUserBugs([
-			{
-				_id: 1,
-				project_id: 1,
-				title: 'Bug 001',
-				creator: 'Brody555',
-				assignee: 'Brody555',
-				createdAt: '10/30/2020',
-				lastUpdated: '10/30/2020',
-				description: 'This is a severe bug!',
-				priority: 'Severe',
-				comments: [
-					{
-						_id: 1,
-						content: 'I think this may help...',
-						creator: 'AndyCandy',
-						createdAt: '10/31/2020',
-						lastUpdated: null,
-					},
-					{
-						_id: 2,
-						content: "You're right! I'll fix it today!",
-						creator: 'Brody555',
-						createdAt: '11/1/2020',
-						lastUpdated: '11/1/2020',
-					},
-				],
-			},
-			{
-				_id: 2,
-				project_id: 2,
-				title: 'Bug 002',
-				creator: 'Brody555',
-				assignee: 'Brody555',
-				createdAt: '10/29/2020',
-				lastUpdated: '10/29/2020',
-				description: 'This is a severe bug!',
-				priority: 'Severe',
-				comments: [
-					{
-						_id: 1,
-						content: 'I think this may help...',
-						creator: 'AndyCandy',
-						createdAt: '10/31/2020',
-						lastUpdated: null,
-					},
-					{
-						_id: 2,
-						content: "You're right! I'll fix it today!",
-						creator: 'Brody555',
-						createdAt: '11/1/2020',
-						lastUpdated: '11/1/2020',
-					},
-				],
-			},
-			{
-				_id: 3,
-				project_id: 2,
-				title: 'Bug 003',
-				creator: 'Brody555',
-				assignee: 'Brody555',
-				createdAt: '10/29/2020',
-				lastUpdated: '10/29/2020',
-				description: 'This is a severe bug!',
-				priority: 'Severe',
-				comments: [
-					{
-						_id: 1,
-						content: 'I think this may help...',
-						creator: 'AndyCandy',
-						createdAt: '10/31/2020',
-						lastUpdated: null,
-					},
-					{
-						_id: 2,
-						content: "You're right! I'll fix it today!",
-						creator: 'Brody555',
-						createdAt: '11/1/2020',
-						lastUpdated: '11/1/2020',
-					},
-				],
-			},
-			{
-				_id: 3,
-				project_id: 2,
-				title: 'Bug 003',
-				creator: 'Brody555',
-				assignee: 'Brody555',
-				createdAt: '10/29/2020',
-				lastUpdated: '10/29/2020',
-				description: 'This is a severe bug!',
-				priority: 'Severe',
-				comments: [
-					{
-						_id: 1,
-						content: 'I think this may help...',
-						creator: 'AndyCandy',
-						createdAt: '10/31/2020',
-						lastUpdated: null,
-					},
-					{
-						_id: 2,
-						content: "You're right! I'll fix it today!",
-						creator: 'Brody555',
-						createdAt: '11/1/2020',
-						lastUpdated: '11/1/2020',
-					},
-				],
-			},
-			{
-				_id: 3,
-				project_id: 2,
-				title: 'Bug 003',
-				creator: 'Brody555',
-				assignee: 'Brody555',
-				createdAt: '10/29/2020',
-				lastUpdated: '10/29/2020',
-				description: 'This is a severe bug!',
-				priority: 'Severe',
-				comments: [
-					{
-						_id: 1,
-						content: 'I think this may help...',
-						creator: 'AndyCandy',
-						createdAt: '10/31/2020',
-						lastUpdated: null,
-					},
-					{
-						_id: 2,
-						content: "You're right! I'll fix it today!",
-						creator: 'Brody555',
-						createdAt: '11/1/2020',
-						lastUpdated: '11/1/2020',
-					},
-				],
-			},
-			{
-				_id: 3,
-				project_id: 2,
-				title: 'Bug 003',
-				creator: 'Brody555',
-				assignee: 'Brody555',
-				createdAt: '10/29/2020',
-				lastUpdated: '10/29/2020',
-				description: 'This is a severe bug!',
-				priority: 'Severe',
-				comments: [
-					{
-						_id: 1,
-						content: 'I think this may help...',
-						creator: 'AndyCandy',
-						createdAt: '10/31/2020',
-						lastUpdated: null,
-					},
-					{
-						_id: 2,
-						content: "You're right! I'll fix it today!",
-						creator: 'Brody555',
-						createdAt: '11/1/2020',
-						lastUpdated: '11/1/2020',
-					},
-				],
-			},
-			{
-				_id: 3,
-				project_id: 2,
-				title: 'Bug 003',
-				creator: 'Brody555',
-				assignee: 'Brody555',
-				createdAt: '10/29/2020',
-				lastUpdated: '10/29/2020',
-				description: 'This is a severe bug!',
-				priority: 'Severe',
-				comments: [
-					{
-						_id: 1,
-						content: 'I think this may help...',
-						creator: 'AndyCandy',
-						createdAt: '10/31/2020',
-						lastUpdated: null,
-					},
-					{
-						_id: 2,
-						content: "You're right! I'll fix it today!",
-						creator: 'Brody555',
-						createdAt: '11/1/2020',
-						lastUpdated: '11/1/2020',
-					},
-				],
-			},
-			{
-				_id: 3,
-				project_id: 2,
-				title: 'Bug 003',
-				creator: 'Brody555',
-				assignee: 'Brody555',
-				createdAt: '10/29/2020',
-				lastUpdated: '10/29/2020',
-				description: 'This is a severe bug!',
-				priority: 'Severe',
-				comments: [
-					{
-						_id: 1,
-						content: 'I think this may help...',
-						creator: 'AndyCandy',
-						createdAt: '10/31/2020',
-						lastUpdated: null,
-					},
-					{
-						_id: 2,
-						content: "You're right! I'll fix it today!",
-						creator: 'Brody555',
-						createdAt: '11/1/2020',
-						lastUpdated: '11/1/2020',
-					},
-				],
-			},
-			{
-				_id: 3,
-				project_id: 2,
-				title: 'Bug 003',
-				creator: 'Brody555',
-				assignee: 'Brody555',
-				createdAt: '10/29/2020',
-				lastUpdated: '10/29/2020',
-				description: 'This is a severe bug!',
-				priority: 'Severe',
-				comments: [
-					{
-						_id: 1,
-						content: 'I think this may help...',
-						creator: 'AndyCandy',
-						createdAt: '10/31/2020',
-						lastUpdated: null,
-					},
-					{
-						_id: 2,
-						content: "You're right! I'll fix it today!",
-						creator: 'Brody555',
-						createdAt: '11/1/2020',
-						lastUpdated: '11/1/2020',
-					},
-				],
-			},
+	// 	// 	//TODO: Add projects where user is contributor AND creator to userProjects
+	// 	// ]);
+	// 	setUserBugs([
+	// 		{
+	// 			_id: 1,
+	// 			project_id: 1,
+	// 			title: 'Bug 001',
+	// 			creator: 'Brody555',
+	// 			assignee: 'Brody555',
+	// 			createdAt: '10/30/2020',
+	// 			lastUpdated: '10/30/2020',
+	// 			description: 'This is a severe bug!',
+	// 			priority: 'Severe',
+	// 			comments: [
+	// 				{
+	// 					_id: 1,
+	// 					content: 'I think this may help...',
+	// 					creator: 'AndyCandy',
+	// 					createdAt: '10/31/2020',
+	// 					lastUpdated: null,
+	// 				},
+	// 				{
+	// 					_id: 2,
+	// 					content: "You're right! I'll fix it today!",
+	// 					creator: 'Brody555',
+	// 					createdAt: '11/1/2020',
+	// 					lastUpdated: '11/1/2020',
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			_id: 2,
+	// 			project_id: 2,
+	// 			title: 'Bug 002',
+	// 			creator: 'Brody555',
+	// 			assignee: 'Brody555',
+	// 			createdAt: '10/29/2020',
+	// 			lastUpdated: '10/29/2020',
+	// 			description: 'This is a severe bug!',
+	// 			priority: 'Severe',
+	// 			comments: [
+	// 				{
+	// 					_id: 1,
+	// 					content: 'I think this may help...',
+	// 					creator: 'AndyCandy',
+	// 					createdAt: '10/31/2020',
+	// 					lastUpdated: null,
+	// 				},
+	// 				{
+	// 					_id: 2,
+	// 					content: "You're right! I'll fix it today!",
+	// 					creator: 'Brody555',
+	// 					createdAt: '11/1/2020',
+	// 					lastUpdated: '11/1/2020',
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			_id: 3,
+	// 			project_id: 2,
+	// 			title: 'Bug 003',
+	// 			creator: 'Brody555',
+	// 			assignee: 'Brody555',
+	// 			createdAt: '10/29/2020',
+	// 			lastUpdated: '10/29/2020',
+	// 			description: 'This is a severe bug!',
+	// 			priority: 'Severe',
+	// 			comments: [
+	// 				{
+	// 					_id: 1,
+	// 					content: 'I think this may help...',
+	// 					creator: 'AndyCandy',
+	// 					createdAt: '10/31/2020',
+	// 					lastUpdated: null,
+	// 				},
+	// 				{
+	// 					_id: 2,
+	// 					content: "You're right! I'll fix it today!",
+	// 					creator: 'Brody555',
+	// 					createdAt: '11/1/2020',
+	// 					lastUpdated: '11/1/2020',
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			_id: 3,
+	// 			project_id: 2,
+	// 			title: 'Bug 003',
+	// 			creator: 'Brody555',
+	// 			assignee: 'Brody555',
+	// 			createdAt: '10/29/2020',
+	// 			lastUpdated: '10/29/2020',
+	// 			description: 'This is a severe bug!',
+	// 			priority: 'Severe',
+	// 			comments: [
+	// 				{
+	// 					_id: 1,
+	// 					content: 'I think this may help...',
+	// 					creator: 'AndyCandy',
+	// 					createdAt: '10/31/2020',
+	// 					lastUpdated: null,
+	// 				},
+	// 				{
+	// 					_id: 2,
+	// 					content: "You're right! I'll fix it today!",
+	// 					creator: 'Brody555',
+	// 					createdAt: '11/1/2020',
+	// 					lastUpdated: '11/1/2020',
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			_id: 3,
+	// 			project_id: 2,
+	// 			title: 'Bug 003',
+	// 			creator: 'Brody555',
+	// 			assignee: 'Brody555',
+	// 			createdAt: '10/29/2020',
+	// 			lastUpdated: '10/29/2020',
+	// 			description: 'This is a severe bug!',
+	// 			priority: 'Severe',
+	// 			comments: [
+	// 				{
+	// 					_id: 1,
+	// 					content: 'I think this may help...',
+	// 					creator: 'AndyCandy',
+	// 					createdAt: '10/31/2020',
+	// 					lastUpdated: null,
+	// 				},
+	// 				{
+	// 					_id: 2,
+	// 					content: "You're right! I'll fix it today!",
+	// 					creator: 'Brody555',
+	// 					createdAt: '11/1/2020',
+	// 					lastUpdated: '11/1/2020',
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			_id: 3,
+	// 			project_id: 2,
+	// 			title: 'Bug 003',
+	// 			creator: 'Brody555',
+	// 			assignee: 'Brody555',
+	// 			createdAt: '10/29/2020',
+	// 			lastUpdated: '10/29/2020',
+	// 			description: 'This is a severe bug!',
+	// 			priority: 'Severe',
+	// 			comments: [
+	// 				{
+	// 					_id: 1,
+	// 					content: 'I think this may help...',
+	// 					creator: 'AndyCandy',
+	// 					createdAt: '10/31/2020',
+	// 					lastUpdated: null,
+	// 				},
+	// 				{
+	// 					_id: 2,
+	// 					content: "You're right! I'll fix it today!",
+	// 					creator: 'Brody555',
+	// 					createdAt: '11/1/2020',
+	// 					lastUpdated: '11/1/2020',
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			_id: 3,
+	// 			project_id: 2,
+	// 			title: 'Bug 003',
+	// 			creator: 'Brody555',
+	// 			assignee: 'Brody555',
+	// 			createdAt: '10/29/2020',
+	// 			lastUpdated: '10/29/2020',
+	// 			description: 'This is a severe bug!',
+	// 			priority: 'Severe',
+	// 			comments: [
+	// 				{
+	// 					_id: 1,
+	// 					content: 'I think this may help...',
+	// 					creator: 'AndyCandy',
+	// 					createdAt: '10/31/2020',
+	// 					lastUpdated: null,
+	// 				},
+	// 				{
+	// 					_id: 2,
+	// 					content: "You're right! I'll fix it today!",
+	// 					creator: 'Brody555',
+	// 					createdAt: '11/1/2020',
+	// 					lastUpdated: '11/1/2020',
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			_id: 3,
+	// 			project_id: 2,
+	// 			title: 'Bug 003',
+	// 			creator: 'Brody555',
+	// 			assignee: 'Brody555',
+	// 			createdAt: '10/29/2020',
+	// 			lastUpdated: '10/29/2020',
+	// 			description: 'This is a severe bug!',
+	// 			priority: 'Severe',
+	// 			comments: [
+	// 				{
+	// 					_id: 1,
+	// 					content: 'I think this may help...',
+	// 					creator: 'AndyCandy',
+	// 					createdAt: '10/31/2020',
+	// 					lastUpdated: null,
+	// 				},
+	// 				{
+	// 					_id: 2,
+	// 					content: "You're right! I'll fix it today!",
+	// 					creator: 'Brody555',
+	// 					createdAt: '11/1/2020',
+	// 					lastUpdated: '11/1/2020',
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			_id: 3,
+	// 			project_id: 2,
+	// 			title: 'Bug 003',
+	// 			creator: 'Brody555',
+	// 			assignee: 'Brody555',
+	// 			createdAt: '10/29/2020',
+	// 			lastUpdated: '10/29/2020',
+	// 			description: 'This is a severe bug!',
+	// 			priority: 'Severe',
+	// 			comments: [
+	// 				{
+	// 					_id: 1,
+	// 					content: 'I think this may help...',
+	// 					creator: 'AndyCandy',
+	// 					createdAt: '10/31/2020',
+	// 					lastUpdated: null,
+	// 				},
+	// 				{
+	// 					_id: 2,
+	// 					content: "You're right! I'll fix it today!",
+	// 					creator: 'Brody555',
+	// 					createdAt: '11/1/2020',
+	// 					lastUpdated: '11/1/2020',
+	// 				},
+	// 			],
+	// 		},
 
-			//TODO: Add bugs where user is creator AND assignee to userBugs
-		]);
-	}, [appStatus]);
+	// 		//TODO: Add bugs where user is creator AND assignee to userBugs
+	// 	]);
+	// }, [appStatus]);
 	//--- Functions ---
 	//Sorts bugs in array by most recently updated.
 	//TODO: Should be done on back end call!
@@ -457,6 +463,8 @@ const App = () => {
 							render={(props) => (
 								<NewBugForm
 									{...props}
+									setUserProjects={setUserProjects}
+									userProjects={userProjects}
 									userBugs={userBugs}
 									setUserBugs={setUserBugs}
 									currentUser={currentUser}
