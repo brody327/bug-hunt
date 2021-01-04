@@ -26,19 +26,14 @@ const {
 //--- GET Routes ---
 //Get all user's bugs.
 bugsRouter.get('/:userId', async (req, res) => {
-	//DELET ME
 	try {
 		const bugs = await getAllUserBugs(req.params.userId);
 		if (!bugs) return res.status(400).send('No bugs for this user.');
-
-		console.log('Bugs on DB:', bugs);
 
 		//Sort projects by most recent.
 		bugs.sort((a, b) => {
 			return new Date(b.updatedAt) - new Date(a.updatedAt);
 		});
-
-		console.log(bugs);
 
 		res.send({ message: 'User bugs retrieved!', bugs });
 	} catch (err) {
