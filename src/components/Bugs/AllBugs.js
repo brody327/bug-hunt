@@ -25,14 +25,14 @@ function AllBugs({ userBugs, currentUser }) {
 			{currentUser !== null ? (
 				<>
 					{userBugs.length === 0 ? (
-						<>
+						<div className='text-center'>
 							<Card.Text as='h3'>
 								No bugs were found! Go to a project to start tracking your bugs!
 							</Card.Text>
 							<Link to='/projects'>
 								<Button>My Projects</Button>
 							</Link>
-						</>
+						</div>
 					) : (
 						<Row>
 							{userBugs !== undefined

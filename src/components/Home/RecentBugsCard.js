@@ -41,7 +41,7 @@ function RecentBugsCard({ userBugs, userProjects, currentUser }) {
 				<Card.Title as='h2'>Recent Bugs</Card.Title>
 				<Card.Text as='h4'>View recent bugs from all your projects.</Card.Text>
 				{userBugs.length === 0 ? (
-					<>
+					<div>
 						<Card.Text as='h5'>
 							No bugs were found! Go to a project to start tracking your bugs!
 						</Card.Text>
@@ -49,7 +49,7 @@ function RecentBugsCard({ userBugs, userProjects, currentUser }) {
 							<Card.Link>Go to My Projects</Card.Link>
 							{/* <Button>My Projects</Button> */}
 						</Link>
-					</>
+					</div>
 				) : (
 					<Table>
 						<thead>
