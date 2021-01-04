@@ -1,5 +1,7 @@
 # Bug Hunt
 
+[View Site](https://brody-bug-hunt.herokuapp.com/)
+
 DEFCON Bug Tracker is a web application that allows users to keep track of bugs on projects with a gamified twist for added enjoyment.
 
 ## Usage
