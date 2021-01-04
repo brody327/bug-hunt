@@ -2,6 +2,8 @@
 
 [View Site](https://brody-bug-hunt.herokuapp.com/)
 
+Heroku deploy 1/4/21 5:28
+
 Bug Hunt is a web application that allows users to keep track of bugs on projects with a gamified twist for added enjoyment.
 
 ## Usage
