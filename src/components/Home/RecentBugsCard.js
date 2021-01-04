@@ -20,6 +20,7 @@ import Button from 'react-bootstrap/Button';
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
 //TESTING GIT HUB
+//MORE TESTING
 function RecentBugsCard({ userBugs, userProjects, currentUser }) {
 	//--- JSX ---
 	//Gets
