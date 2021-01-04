@@ -22,6 +22,7 @@ import Button from 'react-bootstrap/Button';
 //TESTING GIT HUB
 //MORE TESTING a;lfjhaslkfjhasdf
 //RESET HEROKU
+//Nore testing
 function RecentBugsCard({ userBugs, userProjects, currentUser }) {
 	//--- JSX ---
 	//Gets
