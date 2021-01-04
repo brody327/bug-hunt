@@ -26,6 +26,7 @@ const {
 //--- GET Routes ---
 //Get all user's bugs.
 bugsRouter.get('/:userId', async (req, res) => {
+	//DELET ME
 	try {
 		const bugs = await getAllUserBugs(req.params.userId);
 		if (!bugs) return res.status(400).send('No bugs for this user.');
