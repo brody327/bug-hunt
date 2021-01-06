@@ -16,6 +16,7 @@ const { requireUser } = require('../services/requireUser');
 const {
 	createBug,
 	getProjectByProjectId,
+	getUserById,
 	getAllUserBugs,
 	updateProjectBugs,
 } = require('../db/index');
@@ -72,7 +73,10 @@ bugsRouter.post('/:projectId', requireUser, async (req, res) => {
 		});
 
 		//Add bug id to project bugs.
-		await updateProjectBugs(req.body.project_id, bug._id);
+		await updateProjectBugs(req.body.project_id, {
+			_id: bug._id,
+			name: bug.title,
+		});
 		// await updateProject(req.body.project_id, req.body.creator, {
 		// 	bugs: bug._id,
 		// });

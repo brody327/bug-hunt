@@ -33,7 +33,7 @@ const bugValidation = (data) => {
 	const bugSchema = Joi.object({
 		project_id: Joi.string().required(),
 		title: Joi.string().required(),
-		creator: Joi.string().required(),
+		creator: Joi.object().required(),
 		priority: Joi.string().required(),
 		description: Joi.string().empty('').default('None'),
 	});
@@ -45,7 +45,7 @@ const bugValidation = (data) => {
 const projectValidation = (data) => {
 	const projectSchema = Joi.object({
 		title: Joi.string().required(),
-		creator: Joi.string().required(),
+		creator: Joi.object().required(),
 		description: Joi.string().allow(''),
 	});
 
