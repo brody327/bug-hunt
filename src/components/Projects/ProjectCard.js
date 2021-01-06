@@ -18,6 +18,7 @@ import '../../styles/components/ProjectCard.css';
 //~~~~~~~~~~~~~~~~~
 function ProjectCard({ project }) {
 	//--- Functions ---
+	//--- JSX ---
 	return (
 		<Col className='col' lg={4} md={6} sm={12} xs={12}>
 			<Link
@@ -36,10 +37,7 @@ function ProjectCard({ project }) {
 							{moment(project.updatedAt).format('HH:mm MM-DD-YYYY')}
 						</Card.Subtitle>
 						<Card.Text className='hover-child fade-in-full'>
-							Created By: {project.creator}
-						</Card.Text>
-						<Card.Text className='hover-child fade-in-full'>
-							Contributors: {project.contributors.join(', ')}
+							Created By: {project.creator.username}
 						</Card.Text>
 					</Card.Body>
 				</Card>
