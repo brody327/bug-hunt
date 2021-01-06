@@ -48,13 +48,14 @@ function NewBugForm({
 				description,
 				priority,
 				project_id: project._id,
-				creator: currentUser._id,
+				creator: { _id: currentUser._id, username: currentUser.username },
 			});
 
+			console.log(userBugs);
 			console.log(bug);
 
 			//Add bug to user Bugs
-			setUserBugs([...userBugs, bug]);
+			setUserBugs([...userBugs, bug.bug]);
 
 			console.log(userBugs);
 

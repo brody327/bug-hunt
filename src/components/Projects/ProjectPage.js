@@ -3,6 +3,7 @@
 //~~~~~~~~~~~~~~~
 import React from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 //--- Bootstrap ---
 import Container from 'react-bootstrap/Container';
@@ -27,10 +28,17 @@ function ProjectPage({ match, location }) {
 			<Row>
 				<Col>
 					<Card>
-						<p>Project Info</p>
+						<h2>Project Info</h2>
 						<p>ID: {project._id}</p>
-						<p>Project Creator: {project.creator}</p>
-						<p>Project Created: {project.createdAt}</p>
+						<p>Project Creator: {project.creator.username}</p>
+						<p>
+							Project Created At:
+							{moment(project.createdAt).format('HH:mm MM-DD-YYYY')}
+						</p>
+						<p>
+							Project Last Updated At:
+							{moment(project.updatedAt).format('HH:mm MM-DD-YYYY')}
+						</p>
 					</Card>
 					<div className='text-center'>
 						<Button>Delete Project</Button>
@@ -41,31 +49,37 @@ function ProjectPage({ match, location }) {
 			<Row>
 				<Col>
 					<Card>
-						<p>Project Contributors</p>
+						<h2>Project Contributors</h2>
 						<div>
 							{project.contributors.map((contributor) => (
-								<Card.Text>{contributor}</Card.Text>
+								<Card.Text>
+									{contributor.username}
+									{project.contributors.length > 1 ? ', ' : ''}
+								</Card.Text>
 							))}
 						</div>
 					</Card>
 				</Col>
 				<Col>
 					<Card>
-						<p>Project Stats</p>
+						<h2>Project Stats</h2>
 					</Card>
 				</Col>
 			</Row>
 			<Row>
 				<Col>
 					<Card>
-						<p>Project Bugs</p>
+						<h2>Project Bugs</h2>
 						<div>
 							<Link to={{ pathname: '/bugs/new', state: { project } }}>
 								<Button>Create Bug</Button>
 							</Link>
 						</div>
-						<div></div>
-						<p>{project.bugs}</p>
+						<div>
+							{project.bugs.map((bug) => (
+								<Card.Text>{bug.name}</Card.Text>
+							))}
+						</div>
 						<Button>Delete Bug</Button>
 					</Card>
 				</Col>

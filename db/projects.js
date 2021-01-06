@@ -22,7 +22,7 @@ const getProjectByProjectId = async (projectId) => {
 //Get all projects by user id.
 const getAllProjectsByUserId = async (userId) => {
 	try {
-		const projects = await Project.find({ contributors: userId });
+		const projects = await Project.find({ 'contributors._id': userId });
 
 		return projects;
 	} catch (err) {

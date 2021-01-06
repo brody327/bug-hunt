@@ -10,7 +10,7 @@ const Bug = require('../models/Bug');
 //--- GET Functions ---
 const getAllUserBugs = async (userId) => {
 	try {
-		const bugs = await Bug.find({ creator: userId });
+		const bugs = await Bug.find({ 'creator._id': userId });
 		bugs.push(...(await Bug.find({ assignee: userId })));
 
 		return bugs;

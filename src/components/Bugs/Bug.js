@@ -20,7 +20,7 @@ function Bug({ match, location }) {
 			<h1>{bug.title}</h1>
 			<p>ID: {bug._id}</p>
 			<p>Name: {bug.title}</p>
-			<p>{bug.creator}</p>
+			<p>{bug.creator.username}</p>
 			<p>{bug.createdAt}</p>
 			<p>bug description</p>
 			<p>{bug.priority}</p>

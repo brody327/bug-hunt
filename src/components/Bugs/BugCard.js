@@ -31,7 +31,7 @@ function BugCard({ bug }) {
 						<Card.Title as='h2'>{bug.title}</Card.Title>
 						<Card.Subtitle as='h4'>{bug.lastUpdated}</Card.Subtitle>
 						<Card.Text className='hover-child fade-in-full'>
-							Created By: {bug.creator}
+							Created By: {bug.creator.username}
 						</Card.Text>
 						<Card.Text className='hover-child fade-in-full'>
 							Assignee: {bug.assignee}
