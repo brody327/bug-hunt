@@ -13,16 +13,29 @@ const ProjectSchema = mongoose.Schema(
 			required: true,
 		},
 		creator: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'User',
-			required: true,
+			_id: {
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'User',
+				required: true,
+			},
+			username: { type: String },
 		},
-		contributors: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+		contributors: [
+			{
+				_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+				username: { type: String },
+			},
+		],
 		description: {
 			type: String,
 			default: 'None',
 		},
-		bugs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bug' }],
+		bugs: [
+			{
+				_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Bug' },
+				name: { type: String },
+			},
+		],
 	},
 	{ timestamps: true }
 );

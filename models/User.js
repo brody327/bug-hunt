@@ -53,8 +53,18 @@ const UserSchema = mongoose.Schema(
 				default: 0,
 			},
 		},
-		projects: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Project' }],
-		bugs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bug' }],
+		projects: [
+			{
+				_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Project' },
+				name: { type: String },
+			},
+		],
+		bugs: [
+			{
+				_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Bug' },
+				username: { type: String },
+			},
+		],
 		company: {
 			type: String,
 			default: 'None',

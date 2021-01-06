@@ -19,9 +19,12 @@ const BugSchema = mongoose.Schema(
 			required: true,
 		},
 		creator: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'User',
-			required: true,
+			_id: {
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'User',
+				required: true,
+			},
+			username: { type: String },
 		},
 		assignee: {
 			type: mongoose.Schema.Types.ObjectId,

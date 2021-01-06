@@ -32,7 +32,7 @@ function NewProjectForm({ currentUser, userProjects, setUserProjects }) {
 		try {
 			const project = await createProject({
 				title: name,
-				creator: currentUser._id,
+				creator: { _id: currentUser._id, username: currentUser.username },
 				description,
 			});
 			//Add new project object to user projects
