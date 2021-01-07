@@ -14,6 +14,19 @@ const BASE_URL = '/api';
 //~~~~ FUNCTIONS ~~~~
 //~~~~~~~~~~~~~~~~~~~
 //--- GET Functions ---
+//Get a bug using its id.
+export const getBugById = async (id) => {
+	console.log(id);
+	try {
+		const { data } = await axios.get(`${BASE_URL}/bugs/bug/${id}`);
+
+		return data;
+	} catch (err) {
+		throw err;
+	}
+};
+
+//Get all user bugs associated with a user id.
 export const getAllUserBugs = async (userId) => {
 	try {
 		const { data } = await axios.get(`${BASE_URL}/bugs/${userId}`);

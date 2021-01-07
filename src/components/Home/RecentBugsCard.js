@@ -51,7 +51,7 @@ function RecentBugsCard({ userBugs, userProjects, currentUser }) {
 						</Link>
 					</div>
 				) : (
-					<Table>
+					<Table id='recent-bugs-table'>
 						<thead>
 							<tr>
 								<th>Date</th>
