@@ -51,20 +51,22 @@ function NewBugForm({
 				creator: { _id: currentUser._id, username: currentUser.username },
 			});
 
-			console.log(userBugs);
-			console.log(bug);
-
 			//Add bug to user Bugs
 			setUserBugs([...userBugs, bug.bug]);
 
-			console.log(userBugs);
-
 			//Add bug to project bugs
-			const currentProject = userProjects.filter(
+			const projectIndex = userProjects.findIndex(
 				(userProject) => project._id === userProject._id
 			);
+			userProjects[projectIndex].bugs.push({
+				_id: bug.bug._id,
+				name: bug.bug.title,
+			});
+			setUserProjects([...userProjects]);
+			console.log(userProjects);
 
-			currentProject[0].bugs.push(bug._id);
+			//Update userProjects
+			// setUserProjects([...userProjects, currentProject[0]]);
 
 			//Clear fields
 			setName('');

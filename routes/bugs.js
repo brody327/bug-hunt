@@ -17,6 +17,7 @@ const {
 	createBug,
 	getProjectByProjectId,
 	getUserById,
+	getBugById,
 	getAllUserBugs,
 	updateProjectBugs,
 } = require('../db/index');
@@ -25,6 +26,19 @@ const {
 //~~~ MIDDLEWARE ~~~
 //~~~~~~~~~~~~~~~~~~
 //--- GET Routes ---
+//Get a bug given an id.
+bugsRouter.get('/bug/:id', async (req, res) => {
+	try {
+		const bug = await getBugById(req.params.id);
+		if (!bug) return res.status(400).send('No bug found for this id.');
+
+		res.send({ message: 'Bug retrieved using id!', bug });
+	} catch (err) {
+		res.status(404);
+		res.send({ message: err });
+	}
+});
+
 //Get all user's bugs.
 bugsRouter.get('/:userId', async (req, res) => {
 	try {

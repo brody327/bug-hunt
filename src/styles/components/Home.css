@@ -17,6 +17,10 @@
 	height: 100%;
 }
 
+#recent-bugs-table {
+	overflow: auto;
+}
+
 .account-card {
 	height: 200px;
 }
