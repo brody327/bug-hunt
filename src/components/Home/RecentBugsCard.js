@@ -37,7 +37,7 @@ function RecentBugsCard({ userBugs, userProjects, currentUser }) {
 			id='recent-bugs-card'
 			className='card card-corner-color-primary hover-parent rounded background-secondary'
 		>
-			<Card.Body>
+			<Card.Body id='recent-bugs-card-content'>
 				<Card.Title as='h2'>Recent Bugs</Card.Title>
 				<Card.Text as='h4'>View recent bugs from all your projects.</Card.Text>
 				{userBugs.length === 0 ? (
