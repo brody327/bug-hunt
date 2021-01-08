@@ -3,6 +3,8 @@
 //~~~~~~~~~~~~~~~
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
 //--- Bootstrap ---
 import Container from 'react-bootstrap/Container';
@@ -65,6 +67,30 @@ function Register() {
 		}
 	};
 
+	//Validation functions
+	const validateUsername = (username) => {
+		//check username length 6-16
+		if (username.length < 6 || username.length > 16) {
+			return 'Username must be between 6 and 16 characters';
+		}
+		//check username has only letters and numbers
+		//return true or false
+	};
+
+	const validateEmail = (email) => {
+		//check if is valid email
+		//return true or false
+	};
+
+	const validatePassword = (password) => {
+		//check password length 8-20
+		if (password.length < 8 || password.length > 20) {
+			return 'Password must be between 8 and 20 characters';
+		}
+		//Check password contains only letters, numbers,
+		//return true or false
+	};
+
 	//User input field handlers.
 	const handleUsernameChange = (event) => {
 		setUsername(event.target.value);
@@ -96,6 +122,7 @@ function Register() {
 						maxLength='16'
 						required
 					/>
+					<Form.Control.Feedback>Looks good!</Form.Control.Feedback>
 					<Form.Text id='usernameHelp' className='text-muted'>
 						Create a username. Your username must be between 6 and 16 characters
 						long. You username can only contain letters or numbers. Other users

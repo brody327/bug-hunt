@@ -15,9 +15,10 @@
 
 #recent-bugs-card {
 	height: 100%;
+	max-height: 660px;
 }
 
-#recent-bugs-table {
+#recent-bugs-card-content {
 	overflow: auto;
 }
 
@@ -58,9 +59,6 @@
 	.one-element-row {
 		padding-bottom: 30px;
 	}
-}
-
-@media (max-width: 767px) {
 	.responsive-padding-correction {
 		padding-bottom: 30px;
 	}
