@@ -21,6 +21,7 @@ const UserSchema = mongoose.Schema(
 			required: [true, 'A password is required'],
 			minLength: [8, 'must be at least 8 characters long'],
 			required: true,
+			//match: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
 			// match: [/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, 'is invalid']
 		},
 		email: {
