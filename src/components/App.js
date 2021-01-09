@@ -11,7 +11,7 @@ import Container from 'react-bootstrap/Container';
 import { Header } from './Header/index';
 import { Footer } from './Footer/index';
 import { Home } from './Home/index';
-import { Login, Register } from './Authentication/index';
+import { Login, Register, RegisterValidated } from './Authentication/index';
 import { ErrorPage } from './ErrorPage/index';
 import { AllProjectsPage, NewProjectForm, ProjectPage } from './Projects/index';
 import { AllBugs, Bug, NewBugForm } from './Bugs/index';
@@ -109,7 +109,8 @@ const App = () => {
 							/>
 						</Route>
 						<Route exact path='/register'>
-							<Register />
+							<RegisterValidated />
+							{/* <Register /> */}
 						</Route>
 						<Route exact path='/projects'>
 							<AllProjectsPage
