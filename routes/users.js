@@ -62,12 +62,7 @@ usersRouter.post('/register', async (req, res, next) => {
 	try {
 		//Check if user already exists.
 		const emailExists = await getUserByEmail(req.body.email);
-		if (emailExists) {
-			console.log('sending error');
-			return res.status(400).send('Email already exists.');
-			// return next({ status: 400, message: 'Email already exists.' });
-			// throw new Error('Email already exists.');
-		}
+		if (emailExists) return res.status(400).send('Email already exists.');
 
 		//Check if username already exists
 		const usernameExists = await getUserByUsername(req.body.username);

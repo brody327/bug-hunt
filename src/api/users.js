@@ -45,9 +45,8 @@ export const loginUser = async ({ email, password }) => {
 			password,
 		});
 		delete data.user.password;
-		console.log(data);
 		return data;
 	} catch (err) {
-		throw err;
+		throw err.response;
 	}
 };
