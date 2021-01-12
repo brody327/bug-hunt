@@ -13,6 +13,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 //--- Components ---
+import { ErrorMessage } from '../Error';
 
 //--- CSS ---
 import '../../styles/components/Authentication.css';
@@ -25,10 +26,11 @@ import { createUser } from '../../api/index';
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
 //Create history object.
-const RegisterValidated = () => {
+const RegisterValidated = ({ setCurrentError, currentError }) => {
 	const history = useHistory();
 	return (
 		<Container id='register-container' className='authentication-container'>
+			{currentError ? <ErrorMessage currentError={currentError} /> : null}
 			<Formik
 				initialValues={{
 					username: '',
@@ -37,9 +39,6 @@ const RegisterValidated = () => {
 					confirm: '',
 				}}
 				onSubmit={async (values, { setSubmitting }) => {
-					console.log('Submitting');
-					console.log(values);
-
 					try {
 						const user = await createUser({
 							username: values.username,
@@ -48,12 +47,12 @@ const RegisterValidated = () => {
 						});
 
 						//TODO: Send confirmation message?
-
+						setCurrentError(null);
 						//Redirect to Login Page.
 						history.push('/login');
 					} catch (err) {
-						console.error(err);
-						alert('Uh Oh! An error occurred: \n', err);
+						setCurrentError(err.data);
+						alert(`Uh Oh! An error occurred: \n${err.data}`);
 					}
 				}}
 				//With Yup library

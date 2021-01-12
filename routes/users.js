@@ -24,12 +24,6 @@ const {
 //~~~~~~~~~~~~~~~~~~
 //~~~ ROUTES ~~~
 //~~~~~~~~~~~~~~~~~~
-usersRouter.get('/', (req, res) => {
-	res.send({
-		message: 'Users route is still under construction.',
-	});
-});
-
 //--- GET Routes ---
 //Gets user data given a user id.
 usersRouter.get('/:userId', async (req, res) => {
@@ -60,7 +54,7 @@ usersRouter.get('/:userId', async (req, res) => {
 
 //--- POST Routes ---
 //Register a new user.
-usersRouter.post('/register', async (req, res) => {
+usersRouter.post('/register', async (req, res, next) => {
 	//Validate user input data.
 	const { error } = registerValidation(req.body);
 	if (error) return res.status(400).send(error.details[0].message);
@@ -68,7 +62,12 @@ usersRouter.post('/register', async (req, res) => {
 	try {
 		//Check if user already exists.
 		const emailExists = await getUserByEmail(req.body.email);
-		if (emailExists) return res.status(400).send('Email already exists.');
+		if (emailExists) {
+			console.log('sending error');
+			return res.status(400).send('Email already exists.');
+			// return next({ status: 400, message: 'Email already exists.' });
+			// throw new Error('Email already exists.');
+		}
 
 		//Check if username already exists
 		const usernameExists = await getUserByUsername(req.body.username);
@@ -86,8 +85,7 @@ usersRouter.post('/register', async (req, res) => {
 
 		res.send({ userId: user._id });
 	} catch (err) {
-		res.status(404);
-		res.send({ message: err });
+		res.status(404).send(err);
 	}
 });
 
