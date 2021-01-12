@@ -1,5 +1,5 @@
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-export { default as Login } from './Login';
+export { default as LoginValidated } from './LoginValidated';
 export { default as RegisterValidated } from './RegisterValidated';
