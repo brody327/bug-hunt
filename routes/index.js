@@ -55,6 +55,24 @@ apiRouter.use('/bugs', bugsRouter);
 apiRouter.use('/projects', projectsRouter);
 apiRouter.use('/users', usersRouter);
 
+//--- Error Handler Middleware ---
+// apiRouter.use((req, res, next) => {
+// 	console.log('here');
+// 	const error = new Error('Not Found');
+// 	error.status = 404;
+// 	next(error);
+// });
+
+// apiRouter.use((error, req, res, next) => {
+// 	console.log('this is the error ', error);
+// 	res.status(error.status || 500);
+// 	res.send({
+// 		error: {
+// 			message: error.message,
+// 		},
+// 	});
+// });
+
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~

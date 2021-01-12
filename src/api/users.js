@@ -33,7 +33,7 @@ export const createUser = async (user) => {
 
 		return data;
 	} catch (err) {
-		throw err;
+		throw err.response;
 	}
 };
 

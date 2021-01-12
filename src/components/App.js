@@ -38,6 +38,7 @@ const App = () => {
 	const [userProjects, setUserProjects] = useState([]);
 	const [userBugs, setUserBugs] = useState([]);
 	const [currentUser, setCurrentUser] = useState(null);
+	const [currentError, setCurrentError] = useState(null);
 
 	//--- Effects ---
 	//Check for persistent logged-in user.
@@ -109,7 +110,10 @@ const App = () => {
 							/>
 						</Route>
 						<Route exact path='/register'>
-							<RegisterValidated />
+							<RegisterValidated
+								setCurrentError={setCurrentError}
+								currentError={currentError}
+							/>
 							{/* <Register /> */}
 						</Route>
 						<Route exact path='/projects'>
