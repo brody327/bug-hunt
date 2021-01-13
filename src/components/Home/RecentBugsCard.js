@@ -46,7 +46,7 @@ function RecentBugsCard({ userBugs, userProjects, currentUser }) {
 							No bugs were found! Go to a project to start tracking your bugs!
 						</Card.Text>
 						<Link to='/projects'>
-							<Card.Link>Go to My Projects</Card.Link>
+							Go to My Projects
 							{/* <Button>My Projects</Button> */}
 						</Link>
 					</div>

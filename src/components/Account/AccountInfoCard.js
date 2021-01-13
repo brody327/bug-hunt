@@ -21,7 +21,7 @@ function AccountInfoCard({ username, email, company }) {
 	return (
 		<Card
 			id='account-info-card'
-			className='card-corner-color-primary rounded hover-parent background-secondary full-width text-center'
+			className='rounded hover-parent full-width text-center'
 		>
 			<Card.Body>
 				<Card.Title as='h2'>Account Information</Card.Title>

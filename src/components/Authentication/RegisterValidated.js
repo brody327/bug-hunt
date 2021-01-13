@@ -17,7 +17,6 @@ import { ErrorMessage } from '../Error';
 
 //--- CSS ---
 import '../../styles/components/Authentication.css';
-import '../../styles/forms.css';
 
 //--- API ---
 import { createUser } from '../../api/index';
@@ -144,7 +143,7 @@ const RegisterValidated = ({ setCurrentError, currentError }) => {
 				}) => {
 					return (
 						<Form onSubmit={handleSubmit}>
-							<h2 className='text-center'>Register</h2>
+							<h1 className='text-center'>Register</h1>
 							<Form.Group controlId='formBasicUsername'>
 								<Form.Label>Username</Form.Label>
 								<Form.Control
@@ -205,7 +204,7 @@ const RegisterValidated = ({ setCurrentError, currentError }) => {
 							<Form.Group controlId='formBasicPassword'>
 								<Form.Label>Password</Form.Label>
 								<Form.Control
-									type='text'
+									type='password'
 									name='password'
 									placeholder='Password'
 									aria-describedby='passwordHelp'
@@ -234,7 +233,7 @@ const RegisterValidated = ({ setCurrentError, currentError }) => {
 							<Form.Group controlId='formBasicConfirmPassword'>
 								<Form.Label>Confirm Password</Form.Label>
 								<Form.Control
-									type='text'
+									type='password'
 									name='confirm'
 									placeholder='Re-type Password'
 									aria-describedby='confirmPasswordHelp'

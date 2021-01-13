@@ -18,8 +18,12 @@ import {
 	RegisterValidated,
 } from './Authentication/index';
 import { ErrorPage } from './ErrorPage/index';
-import { AllProjectsPage, NewProjectForm, ProjectPage } from './Projects/index';
-import { AllBugs, Bug, NewBugForm } from './Bugs/index';
+import {
+	AllProjectsPage,
+	ProjectPage,
+	ValidatedProjectForm,
+} from './Projects/index';
+import { AllBugs, Bug, ValidatedBugForm } from './Bugs/index';
 import { Account } from './Account/index';
 import { LandingPage } from './Landing';
 
@@ -30,6 +34,7 @@ import '../styles/images.css';
 import '../styles/typography.css';
 import '../styles/cards.css';
 import '../styles/animations.css';
+import '../styles/forms.css';
 
 //--- API ---
 import { getUserById, getAllUserProjects, getAllUserBugs } from '../api/index';
@@ -138,7 +143,7 @@ const App = () => {
 							exact
 							path='/bugs/new'
 							render={(props) => (
-								<NewBugForm
+								<ValidatedBugForm
 									{...props}
 									setUserProjects={setUserProjects}
 									userProjects={userProjects}
@@ -152,7 +157,7 @@ const App = () => {
 							{/* <Bug /> */}
 						</Route>
 						<Route exact path='/projects/new'>
-							<NewProjectForm
+							<ValidatedProjectForm
 								userProjects={userProjects}
 								setUserProjects={setUserProjects}
 								currentUser={currentUser}

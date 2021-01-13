@@ -2,11 +2,13 @@
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //--- Bootstrap ---
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 //--- Components ---
 import {
@@ -28,9 +30,18 @@ import '../../styles/hover-card.css';
 function Account({ currentUser }) {
 	//--- JSX ---
 	return currentUser === null ? (
-		'Log in or sign up to start viewing your account details!'
+		<div>
+			<p>Log in or sign up to start viewing your account details!</p>
+			<Link to='/login'>
+				<Button>Login</Button>
+			</Link>
+			<Link to='/register'>
+				<Button>Register</Button>
+			</Link>
+		</div>
 	) : (
 		<Container id='account-container' fluid>
+			<h1 className='text-center'>My Account</h1>
 			<Row>
 				<Col lg={6} md={12}>
 					<Row id='account-info-container' className='full-width '>

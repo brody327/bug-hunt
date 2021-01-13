@@ -24,6 +24,7 @@ function AllBugs({ userBugs, currentUser }) {
 		<Container fluid>
 			{currentUser !== null ? (
 				<>
+					<h1 className='text-center'>My Bugs</h1>
 					{userBugs.length === 0 ? (
 						<div className='text-center'>
 							<Card.Text as='h3'>
@@ -36,7 +37,7 @@ function AllBugs({ userBugs, currentUser }) {
 					) : (
 						<Row>
 							{userBugs !== undefined
-								? userBugs.map((bug) => <BugCard bug={bug} />)
+								? userBugs.map((bug) => <BugCard key={bug._id} bug={bug} />)
 								: ''}
 						</Row>
 					)}
