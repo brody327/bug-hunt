@@ -33,12 +33,15 @@ function Home({ userProjects, userBugs, currentUser, appStatus }) {
 	//--- JSX ---
 	return (
 		<Container id='home' fluid>
+			<h1 className='text-center'>
+				Welcome back, {currentUser.game.rank} {currentUser.username}!
+			</h1>
 			<Row>
 				<Col
 					id='recent-bugs-card-container'
 					className='col-padding one-element-col responsive-padding-correction'
-					xl={4}
-					lg={6}
+					xl={6}
+					lg={8}
 					md={12}
 				>
 					<RecentBugsCard
@@ -47,7 +50,7 @@ function Home({ userProjects, userBugs, currentUser, appStatus }) {
 						currentUser={currentUser}
 					/>
 				</Col>
-				<Col xl={8} lg={6} md={12}>
+				<Col xl={6} lg={4} md={12}>
 					<Row className='first-row'>
 						<Col>
 							<Link

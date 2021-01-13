@@ -84,7 +84,7 @@ function LoginValidated({ setCurrentUser, setCurrentError, currentError }) {
 				}) => {
 					return (
 						<Form onSubmit={handleSubmit}>
-							<h2 className='text-center'>Login</h2>
+							<h1 className='text-center'>Login</h1>
 							<Form.Group controlId='formBasicEmail'>
 								<Form.Label>Email Address</Form.Label>
 								<Form.Control
@@ -105,7 +105,7 @@ function LoginValidated({ setCurrentUser, setCurrentError, currentError }) {
 							<Form.Group controlId='formBasicPassword'>
 								<Form.Label>Password</Form.Label>
 								<Form.Control
-									type='text'
+									type='password'
 									name='password'
 									placeholder='Password'
 									value={values.password}

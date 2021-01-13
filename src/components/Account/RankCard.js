@@ -19,7 +19,7 @@ import Card from 'react-bootstrap/Card';
 function RankCard({ rank }) {
 	//--- JSX ---
 	return (
-		<Card className='card-corner-color-primary rounded hover-parent background-secondary full-width text-center'>
+		<Card className='rounded hover-parent full-width text-center'>
 			<Card.Body>
 				<Card.Title as='h2'>Rank</Card.Title>
 				<div className='divider'></div>
