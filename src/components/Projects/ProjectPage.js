@@ -81,7 +81,10 @@ function ProjectPage({ match, location }) {
 								<Container>
 									<Row>
 										<Link
-											to={{ pathname: `/bugs/${bug._id}`, state: { bug } }}
+											to={{
+												pathname: `/bugs/${bug._id}`,
+												state: { bug, project },
+											}}
 											key={bug._id}
 										>
 											<Card.Text>{bug.name}</Card.Text>

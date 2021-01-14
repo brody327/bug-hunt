@@ -21,7 +21,27 @@ export async function getAllUserProjects(userId) {
 
 		return data;
 	} catch (err) {
-		throw err;
+		throw err.response;
+	}
+}
+
+export async function getProjectByBugId(bugId) {
+	try {
+		const { data } = await axios.get(`${BASE_URL}/projects/${bugId}`);
+
+		return data;
+	} catch (err) {
+		throw err.response;
+	}
+}
+
+export async function getProjectById(projectId) {
+	try {
+		const { data } = axios.get(`${BASE_URL}/projects/${projectId}`);
+
+		return data;
+	} catch (err) {
+		throw err.response;
 	}
 }
 
@@ -39,6 +59,6 @@ export async function createProject(project) {
 
 		return data;
 	} catch (err) {
-		throw err;
+		throw err.response;
 	}
 }
