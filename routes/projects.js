@@ -12,9 +12,11 @@ const { requireUser } = require('../services/requireUser');
 //--- Database Imports ---
 const {
 	getProjectByName,
+	getProjectByProjectId,
 	createProject,
 	getAllProjectsByUserId,
 	updateUserProjectCount,
+	getProjectByBugId,
 } = require('../db/index');
 
 //~~~~~~~~~~~~~~~~~~
@@ -36,6 +38,32 @@ projectsRouter.get('/:userId', async (req, res) => {
 	} catch (err) {
 		res.status(404);
 		res.send({ message: err });
+	}
+});
+
+//Get project by bug id.
+projectsRouter.get('/:bugId', async (req, res) => {
+	try {
+		const project = await getProjectByBugId(req.params.bugId);
+		if (!project)
+			return res.status(400).send('No project was found for this bug.');
+
+		res.send({ message: 'Bugs project was successfully retrieved!', project });
+	} catch (err) {
+		res.status(404);
+		res.send({ message: err });
+	}
+});
+
+//Get project by project id.
+projectsRouter.get('/:projectId', async (req, res) => {
+	try {
+		const project = await getProjectByProjectId(req.params.projectId);
+		if (!project) return res.status(400).send('No project was found.');
+
+		res.send({ message: 'Project was successfully retrieved!', project });
+	} catch (err) {
+		res.status(404).send({ message: err });
 	}
 });
 

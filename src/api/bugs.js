@@ -16,14 +16,12 @@ const BASE_URL = '/api';
 //--- GET Functions ---
 //Get a bug using its id.
 export const getBugById = async (id) => {
-	console.log(id);
 	try {
 		const { data } = await axios.get(`${BASE_URL}/bugs/bug/${id}`);
 
 		return data;
 	} catch (err) {
-		console.log(err);
-		throw err;
+		throw err.response;
 	}
 };
 
@@ -34,7 +32,7 @@ export const getAllUserBugs = async (userId) => {
 
 		return data;
 	} catch (err) {
-		throw err;
+		throw err.response;
 	}
 };
 
@@ -49,10 +47,8 @@ export const createBug = async (bug) => {
 			getConfig()
 		);
 
-		console.log(data);
-
 		return data;
 	} catch (err) {
-		throw err;
+		throw err.response;
 	}
 };

@@ -41,10 +41,20 @@ const getProjectByName = async (title) => {
 	}
 };
 
+//Get project by bug id.
+const getProjectByBugId = async (bugId) => {
+	try {
+		const project = await Project.findOne({ 'bugs._id': bugId });
+
+		return project;
+	} catch (err) {
+		throw err;
+	}
+};
+
 //--- POST Functions ---
 //Create a new project.
 const createProject = async ({ title, creator, description }) => {
-	console.log('GOT PROJECT DATA TO DB');
 	const project = new Project({
 		title,
 		creator,
@@ -84,6 +94,7 @@ module.exports = {
 	getProjectByProjectId,
 	getProjectByName,
 	getAllProjectsByUserId,
+	getProjectByBugId,
 	createProject,
 	updateProjectBugs,
 };

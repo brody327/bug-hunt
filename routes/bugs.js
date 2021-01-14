@@ -32,7 +32,15 @@ bugsRouter.get('/bug/:id', async (req, res) => {
 		const bug = await getBugById(req.params.id);
 		if (!bug) return res.status(400).send('No bug found for this id.');
 
-		res.send({ message: 'Bug retrieved using id!', bug });
+		//Get project associated with bug.
+		const project = await getProjectByProjectId(bug.project_id);
+		if (!project)
+			return res.status(400).send('No project was found for this bug.');
+
+		//Put project object into bug.
+		const newBug = { ...bug._doc, project };
+
+		res.send({ message: 'Bug retrieved using id!', bug: newBug });
 	} catch (err) {
 		res.status(404);
 		res.send({ message: err });
