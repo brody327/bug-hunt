@@ -52,3 +52,17 @@ export const createBug = async (bug) => {
 		throw err.response;
 	}
 };
+
+//--- DELETE Functions ---
+export const deleteBug = async (bugId, projectId) => {
+	try {
+		const { data } = await axios.delete(
+			`${BASE_URL}/bugs/${projectId}/${bugId}`,
+			getConfig()
+		);
+
+		return data;
+	} catch (err) {
+		throw err.response;
+	}
+};

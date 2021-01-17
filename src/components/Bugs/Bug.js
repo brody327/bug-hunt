@@ -2,6 +2,8 @@
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import moment from 'moment';
 
 //--- Bootstrap ---
 import Container from 'react-bootstrap/Container';
@@ -12,22 +14,34 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 //--- Components ---
+import { ErrorMessage } from '../Error';
 
 //--- CSS ---
 
 //--- API ---
-import { getBugById, getProjectById } from '../../api/index';
+import { getBugById, getProjectById, deleteBug } from '../../api/index';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function Bug({ match, location }) {
+function Bug({
+	userProjects,
+	setUserProjects,
+	userBugs,
+	setUserBugs,
+	currentError,
+	setCurrentError,
+	match,
+	location,
+}) {
 	//--- State ---
 	const [bug, setBug] = useState(null);
 	const [project, setProject] = useState(null);
 
 	const bugData = location.state.bug;
 	const projectData = location.state.project;
+
+	const history = useHistory();
 
 	//--- Effects ---
 	//Set bug to location bug.
@@ -62,9 +76,39 @@ function Bug({ match, location }) {
 	// 	return () => (mounted = false);
 	// }, [bug]);
 
+	//--- Functions ---
+	const onDelete = async (bugId, projectId) => {
+		try {
+			const deletedBug = await deleteBug(bugId, projectId);
+
+			//Remove bug from userBugs and update.
+			const bugIndex = userBugs.findIndex((userBug) => bug._id === userBug._id);
+			userBugs.splice(bugIndex, 1);
+			setUserBugs([...userBugs]);
+
+			//Remove bug from project bugs.
+			const projectIndex = userProjects.findIndex(
+				(userProject) => bug.project._id === userProject._id
+			);
+			userProjects.splice(projectIndex, 1);
+			setUserProjects([...userProjects, deletedBug.project]);
+
+			//Go to project page.
+			history.push({
+				pathname: `/projects/${projectId}`,
+				state: { project: deletedBug.project },
+			});
+		} catch (err) {
+			console.error(err);
+			setCurrentError(err);
+			alert(`Uh Oh! An error occurred: \n ${err}`);
+		}
+	};
+
 	//--- JSX ---
 	return (
 		<Container fluid>
+			{currentError ? <ErrorMessage currentError={currentError} /> : null}
 			{bug === null ? (
 				<Alert variant='danger'>Sorry we could not find your bug!</Alert>
 			) : (
@@ -90,23 +134,38 @@ function Bug({ match, location }) {
 									<Col>
 										<Card.Body>
 											<p>Creator: {bug.creator.username}</p>
-											<p>Created At: {bug.createdAt}</p>
-											<p>Last Updated: {bug.updatedAt}</p>
+											<p>
+												Created:{' '}
+												{moment(bug.createdAt).format(' HH:mm MM-DD-YYYY')}
+											</p>
+											<p>
+												Last Updated:{' '}
+												{moment(bug.updatedAt).format(' HH:mm MM-DD-YYYY')}
+											</p>
 										</Card.Body>
 									</Col>
 								</Row>
 							</Card>
 						</Col>
 					</Row>
-					<Button>Edit Bug</Button>
-					<Button>Delete Bug</Button>
+					<div className='creator-privileges'>
+						<Button onClick={() => onDelete(bug._id, bug.project._id)}>
+							Delete Bug
+						</Button>
+					</div>
+					<div className='assignee-privileges'>
+						<Button>Mark Bug Complete</Button>
+						<Button>Edit Bug</Button>
+					</div>
 					<Row>
 						<Col>
 							<Card>
 								<Row>
 									<Col>
-										<p>{bug.description}</p>
-										<p>{bug.priority}</p>
+										<Card.Body>
+											<p>{bug.description}</p>
+											<p>{bug.priority}</p>
+										</Card.Body>
 									</Col>
 								</Row>
 							</Card>
