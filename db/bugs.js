@@ -54,7 +54,19 @@ const createBug = async ({
 		throw err;
 	}
 };
+
+//--- DELETE Functions ---
+//Delete a bug given a bug id and the bug's project id.
+const deleteBug = async (bugId) => {
+	try {
+		const bug = await Bug.findByIdAndDelete(bugId);
+
+		return bug;
+	} catch (err) {
+		throw err;
+	}
+};
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
-module.exports = { getBugById, getAllUserBugs, createBug };
+module.exports = { getBugById, getAllUserBugs, createBug, deleteBug };

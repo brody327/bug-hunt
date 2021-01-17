@@ -2,7 +2,7 @@
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import moment from 'moment';
 
 //--- Bootstrap ---
@@ -17,12 +17,54 @@ import Button from 'react-bootstrap/Button';
 //--- CSS ---
 import '../../styles/components/ProjectPage.css';
 
+//--- API ---
+import { deleteBug } from '../../api/index';
+
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function ProjectPage({ match, location }) {
-	//--- JSX ---
+function ProjectPage({
+	userProjects,
+	setUserProjects,
+	userBugs,
+	setUserBugs,
+	currentError,
+	setCurrentError,
+	match,
+	location,
+}) {
 	const project = location.state.project;
+	const history = useHistory();
+	//--- Functions ---
+	const onDelete = async (bugId, projectId) => {
+		try {
+			const deletedBug = await deleteBug(bugId, projectId);
+
+			//Remove bug from userBugs and update.
+			const bugIndex = userBugs.findIndex((userBug) => bugId === userBug._id);
+			userBugs.splice(bugIndex, 1);
+			setUserBugs([...userBugs]);
+
+			//Remove bug from project bugs.
+			const projectIndex = userProjects.findIndex(
+				(userProject) => project._id === userProject._id
+			);
+			userProjects.splice(projectIndex, 1);
+			setUserProjects([...userProjects, deletedBug.project]);
+
+			//Go to project page.
+			history.push({
+				pathname: `/projects/${projectId}`,
+				state: { project: deletedBug.project },
+			});
+		} catch (err) {
+			console.error(err);
+			setCurrentError(err);
+			alert(`Uh Oh! An error occurred: \n ${err}`);
+		}
+	};
+
+	//--- JSX ---
 	return (
 		<Container fluid>
 			<h1>{project.title}</h1>
@@ -89,7 +131,9 @@ function ProjectPage({ match, location }) {
 										>
 											<Card.Text>{bug.name}</Card.Text>
 										</Link>
-										<Button>Delete Bug</Button>
+										<Button onClick={() => onDelete(bug._id, project._id)}>
+											Delete Bug
+										</Button>
 									</Row>
 								</Container>
 							))}

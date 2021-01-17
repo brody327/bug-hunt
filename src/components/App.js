@@ -125,7 +125,6 @@ const App = () => {
 								setCurrentError={setCurrentError}
 								currentError={currentError}
 							/>
-							{/* <Register /> */}
 						</Route>
 						<Route exact path='/projects'>
 							<AllProjectsPage
@@ -150,22 +149,50 @@ const App = () => {
 									userBugs={userBugs}
 									setUserBugs={setUserBugs}
 									currentUser={currentUser}
+									currentError={currentError}
+									setCurrentError={setCurrentError}
 								/>
 							)}
 						></Route>
-						<Route exact path='/bugs/:bug' component={Bug}>
-							{/* <Bug /> */}
-						</Route>
+						<Route
+							exact
+							path='/bugs/:bug'
+							render={(props) => (
+								<Bug
+									{...props}
+									setUserProjects={setUserProjects}
+									userProjects={userProjects}
+									userBugs={userBugs}
+									setUserBugs={setUserBugs}
+									currentError={currentError}
+									setCurrentError={setCurrentError}
+								/>
+							)}
+						></Route>
 						<Route exact path='/projects/new'>
 							<ValidatedProjectForm
 								userProjects={userProjects}
 								setUserProjects={setUserProjects}
 								currentUser={currentUser}
+								currentError={currentError}
+								setCurrentError={setCurrentError}
 							/>
 						</Route>
-						<Route exact path='/projects/:project' component={ProjectPage}>
-							{/* <ProjectPage /> */}
-						</Route>
+						<Route
+							exact
+							path='/projects/:project'
+							render={(props) => (
+								<ProjectPage
+									{...props}
+									setUserProjects={setUserProjects}
+									userProjects={userProjects}
+									userBugs={userBugs}
+									setUserBugs={setUserBugs}
+									currentError={currentError}
+									setCurrentError={setCurrentError}
+								/>
+							)}
+						></Route>
 						<Route path='*'>
 							<ErrorPage />
 						</Route>

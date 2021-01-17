@@ -20,6 +20,8 @@ const {
 	getBugById,
 	getAllUserBugs,
 	updateProjectBugs,
+	deleteBug,
+	deleteProjectBug,
 } = require('../db/index');
 
 //~~~~~~~~~~~~~~~~~~
@@ -119,7 +121,24 @@ bugsRouter.patch('/:bugId', (req, res) => {});
 
 //--- DELETE Routes ---
 //Deletes a given bug.
-bugsRouter.delete('/:bugId', (req, res) => {});
+bugsRouter.delete('/:projectId/:bugId', requireUser, async (req, res) => {
+	const bugId = req.params.bugId;
+	const projectId = req.params.projectId;
+
+	try {
+		const bug = await deleteBug(bugId);
+		const project = await deleteProjectBug(projectId, bugId);
+
+		res.send({
+			message: 'Bug deleted succeeded',
+			bug,
+			project,
+		});
+	} catch (err) {
+		res.status(400);
+		res.send({ message: err });
+	}
+});
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~

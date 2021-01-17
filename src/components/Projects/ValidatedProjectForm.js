@@ -12,13 +12,22 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
+//--- Components ---
+import { ErrorMessage } from '../Error';
+
 //--- API ---
 import { createProject } from '../../api/index';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function NewProjectForm({ currentUser, userProjects, setUserProjects }) {
+function NewProjectForm({
+	currentUser,
+	userProjects,
+	setUserProjects,
+	currentError,
+	setCurrentError,
+}) {
 	//--- State ---
 	const history = useHistory();
 
@@ -34,6 +43,7 @@ function NewProjectForm({ currentUser, userProjects, setUserProjects }) {
 	//--- JSX ---
 	return (
 		<Container fluid id='new-project-form'>
+			{currentError ? <ErrorMessage currentError={currentError} /> : null}
 			<Formik
 				initialValues={{
 					title: '',
@@ -58,6 +68,7 @@ function NewProjectForm({ currentUser, userProjects, setUserProjects }) {
 						window.location.reload();
 					} catch (err) {
 						console.error(err);
+						setCurrentError(err);
 						alert(`Uh Oh! An error occurred: \n ${err}`);
 					}
 				}}

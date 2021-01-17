@@ -12,6 +12,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
+//--- Components ---
+import { ErrorMessage } from '../Error';
+
 //--- API ---
 import { createBug } from '../../api/index';
 
@@ -24,6 +27,8 @@ function ValidatedBugForm({
 	userBugs,
 	setUserBugs,
 	currentUser,
+	currentError,
+	setCurrentError,
 	match,
 	location,
 }) {
@@ -34,6 +39,7 @@ function ValidatedBugForm({
 	//--- JSX ---
 	return (
 		<Container fluid id='new-bug-form'>
+			{currentError ? <ErrorMessage currentError={currentError} /> : null}
 			<Formik
 				initialValues={{
 					title: '',
@@ -64,13 +70,11 @@ function ValidatedBugForm({
 						});
 						setUserProjects([...userProjects]);
 
-						//Update userProjects
-						// setUserProjects([...userProjects, currentProject[0]]);
-
 						//Go to projects
 						history.push('/projects');
 					} catch (err) {
 						console.error(err);
+						setCurrentError(err);
 						alert(`Uh Oh! An error occurred: \n ${err}`);
 					}
 				}}

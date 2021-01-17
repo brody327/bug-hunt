@@ -64,7 +64,6 @@ const createProject = async ({ title, creator, description }) => {
 
 	try {
 		await project.save();
-		console.log('created project!');
 
 		return project;
 	} catch (err) {
@@ -87,6 +86,20 @@ const updateProjectBugs = async (projectId, bug) => {
 		throw err;
 	}
 };
+
+const deleteProjectBug = async (projectId, bugId) => {
+	try {
+		const updatedProject = await Project.findByIdAndUpdate(
+			projectId,
+			{ $pull: { bugs: { _id: bugId } } },
+			{ new: true }
+		);
+
+		return updatedProject;
+	} catch (err) {
+		throw err;
+	}
+};
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
@@ -97,4 +110,5 @@ module.exports = {
 	getProjectByBugId,
 	createProject,
 	updateProjectBugs,
+	deleteProjectBug,
 };
