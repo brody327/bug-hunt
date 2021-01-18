@@ -91,9 +91,9 @@ projectsRouter.post('/', requireUser, async (req, res) => {
 		});
 
 		//Increment users project count.
-		await updateUserProjectCount(req.body.creator);
+		await updateUserProjectCount(project.creator._id, true);
 
-		res.send(project);
+		res.send({ message: 'Project successfully created!', project });
 	} catch (err) {
 		res.status(400);
 		res.send({ message: err });
@@ -106,21 +106,23 @@ projectsRouter.post('/', requireUser, async (req, res) => {
 //Delete a project and its bugs.
 projectsRouter.delete('/:projectId', requireUser, async (req, res) => {
 	const project = req.body;
-	console.log('This is the project data:', project);
 
 	try {
 		//Delete bugs from project bugs array.
-		await Promise.all(project.bugs.map((bug) => deleteBug(bug._id)));
+		if (project.bugs.length > 0) {
+			await Promise.all(project.bugs.map((bug) => deleteBug(bug._id)));
+		}
 
 		//Delete project.
 		const deletedProject = await deleteProject(project._id);
-		console.log('Deleted PRoject:', deletedProject);
 
 		//Decrement project count from users.
+		await updateUserProjectCount(project.creator._id, false);
+
 		res.send({
 			message:
 				'Project and its associated bugs have been successfully deleted!',
-			project: deletedProject,
+			project,
 		});
 	} catch (err) {
 		res.status(400);

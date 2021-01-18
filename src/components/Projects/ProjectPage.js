@@ -18,7 +18,7 @@ import Button from 'react-bootstrap/Button';
 import '../../styles/components/ProjectPage.css';
 
 //--- API ---
-import { deleteBug } from '../../api/index';
+import { deleteBug, deleteProject } from '../../api/index';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -63,15 +63,35 @@ function ProjectPage({
 			alert(`Uh Oh! An error occurred: \n ${err}`);
 		}
 	};
-	const onDeleteProject = async (projectId) => {
-		console.log(projectId);
-		//delete bugs associated with project
-		//Go through bugs array in project to delete
-		//Don't need to delete from array though
-		//delete project
-		//Update users project count by decrementing by one
-		//remove bugs from user bugs
-		//remove project from user projects
+	const onDeleteProject = async (project) => {
+		try {
+			const deletedProject = await deleteProject(project);
+
+			//remove bugs from user bugs
+			if (deletedProject.project.bugs.length > 0) {
+				deletedProject.project.bugs.forEach((bug) => {
+					const bugIndex = userBugs.findIndex(
+						(userBug) => userBug.id === bug._id
+					);
+					userBugs.splice(bugIndex, 1);
+				});
+				setUserBugs([...userBugs]);
+			}
+
+			//remove project from user projects
+			const projectIndex = userProjects.findIndex(
+				(userProject) => project._id === userProject._id
+			);
+			userProjects.splice(projectIndex, 1);
+			setUserProjects([...userProjects]);
+
+			//Go to projects page.
+			history.push('/projects');
+		} catch (err) {
+			console.error(err);
+			setCurrentError(err);
+			alert(`Uh Oh! An error occurred: \n ${err}`);
+		}
 	};
 
 	//--- JSX ---
@@ -94,7 +114,7 @@ function ProjectPage({
 						</p>
 					</Card>
 					<div className='text-center'>
-						<Button onClick={() => onDeleteProject(project._id)}>
+						<Button onClick={() => onDeleteProject(project)}>
 							Delete Project
 						</Button>
 						<Button>Complete Project</Button>
