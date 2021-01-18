@@ -105,7 +105,13 @@ const deleteProjectBug = async (projectId, bugId) => {
 //Delete a project given its project id.
 const deleteProject = async (projectId) => {
 	try {
-		const deletedProject = await Project.findByIdAndDelete(projectId);
+		const deletedProject = await Project.findByIdAndDelete(
+			projectId,
+			function (err) {
+				if (err) console.log(err);
+				console.log('Successful deletion');
+			}
+		);
 
 		return deletedProject;
 	} catch (err) {

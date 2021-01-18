@@ -35,7 +35,7 @@ function RecentBugsCard({ userBugs, userProjects, currentUser }) {
 	return (
 		<Card
 			id='recent-bugs-card'
-			className='card card-corner-color-primary hover-parent rounded background-secondary'
+			className='card card-corner-color-primary hover-parent rounded'
 		>
 			<Card.Body id='recent-bugs-card-content'>
 				<Card.Title as='h2'>Recent Bugs</Card.Title>
@@ -46,8 +46,7 @@ function RecentBugsCard({ userBugs, userProjects, currentUser }) {
 							No bugs were found! Go to a project to start tracking your bugs!
 						</Card.Text>
 						<Link to='/projects'>
-							Go to My Projects
-							{/* <Button>My Projects</Button> */}
+							<Button>Go to My Projects</Button>
 						</Link>
 					</div>
 				) : (

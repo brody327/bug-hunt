@@ -71,7 +71,10 @@ function ValidatedBugForm({
 						setUserProjects([...userProjects]);
 
 						//Go to projects
-						history.push('/projects');
+						history.push({
+							pathname: `/projects/${userProjects[projectIndex]._id}`,
+							state: { project: userProjects[projectIndex] },
+						});
 					} catch (err) {
 						console.error(err);
 						setCurrentError(err);

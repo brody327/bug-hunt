@@ -57,7 +57,7 @@ export async function createProject(project) {
 			getConfig()
 		);
 
-		return data;
+		return data.project;
 	} catch (err) {
 		throw err.response;
 	}
@@ -67,7 +67,7 @@ export async function createProject(project) {
 //Delete a specific project and the bugs associated with it.
 export async function deleteProject(project) {
 	try {
-		const { data } = await axios.delete(`${BASE_URL}/projects/${project}`, {
+		const { data } = await axios.delete(`${BASE_URL}/projects/${project._id}`, {
 			...getConfig(),
 			data: project,
 		});

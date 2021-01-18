@@ -61,16 +61,22 @@ const createUser = async ({ username, email, password }) => {
 };
 
 //--- UPDATE Functions ---
-//Updates users project count.
-const updateUserProjectCount = async (userId) => {
+//Updates users project count. True direction means increment by one. False direction means decrement by one.
+const updateUserProjectCount = async (userId, direction) => {
 	try {
-		const updatedUser = await User.findOneAndUpdate(
-			{ _id: userId },
-			{ $inc: { 'stats.projectCount': 1 } },
-			{ new: true }
-		);
-
-		return updatedUser;
+		if (direction) {
+			return await User.findOneAndUpdate(
+				{ _id: userId },
+				{ $inc: { 'stats.projectCount': 1 } },
+				{ new: true }
+			);
+		} else {
+			return await User.findOneAndUpdate(
+				{ _id: userId },
+				{ $inc: { 'stats.projectCount': -1 } },
+				{ new: true }
+			);
+		}
 	} catch (err) {
 		throw err;
 	}
