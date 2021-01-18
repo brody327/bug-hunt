@@ -62,3 +62,18 @@ export async function createProject(project) {
 		throw err.response;
 	}
 }
+
+//--- DELETE Functions ---
+//Delete a specific project and the bugs associated with it.
+export async function deleteProject(project) {
+	try {
+		const { data } = await axios.delete(`${BASE_URL}/projects/${project}`, {
+			...getConfig(),
+			data: project,
+		});
+
+		return data;
+	} catch (err) {
+		throw err.response;
+	}
+}

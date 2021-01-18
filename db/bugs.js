@@ -59,7 +59,10 @@ const createBug = async ({
 //Delete a bug given a bug id and the bug's project id.
 const deleteBug = async (bugId) => {
 	try {
-		const bug = await Bug.findByIdAndDelete(bugId);
+		const bug = await Bug.findByIdAndDelete(bugId, function (err) {
+			if (err) console.log(err);
+			console.log('Successful deletion');
+		});
 
 		return bug;
 	} catch (err) {

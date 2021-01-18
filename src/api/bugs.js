@@ -37,6 +37,7 @@ export const getAllUserBugs = async (userId) => {
 };
 
 //--- POST Functions ---
+//Create a bug given the passed bug data.
 export const createBug = async (bug) => {
 	try {
 		const { data } = await axios.post(
@@ -54,6 +55,7 @@ export const createBug = async (bug) => {
 };
 
 //--- DELETE Functions ---
+//Delete a bug given a bug id and the associated project id.
 export const deleteBug = async (bugId, projectId) => {
 	try {
 		const { data } = await axios.delete(

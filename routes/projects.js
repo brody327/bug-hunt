@@ -17,6 +17,8 @@ const {
 	getAllProjectsByUserId,
 	updateUserProjectCount,
 	getProjectByBugId,
+	deleteBug,
+	deleteProject,
 } = require('../db/index');
 
 //~~~~~~~~~~~~~~~~~~
@@ -99,6 +101,32 @@ projectsRouter.post('/', requireUser, async (req, res) => {
 });
 
 //--- UPDATE Routes ---
+
+//--- DELETE Routes ---
+//Delete a project and its bugs.
+projectsRouter.delete('/:projectId', requireUser, async (req, res) => {
+	const project = req.body;
+	console.log('This is the project data:', project);
+
+	try {
+		//Delete bugs from project bugs array.
+		await Promise.all(project.bugs.map((bug) => deleteBug(bug._id)));
+
+		//Delete project.
+		const deletedProject = await deleteProject(project._id);
+		console.log('Deleted PRoject:', deletedProject);
+
+		//Decrement project count from users.
+		res.send({
+			message:
+				'Project and its associated bugs have been successfully deleted!',
+			project: deletedProject,
+		});
+	} catch (err) {
+		res.status(400);
+		res.send({ message: err });
+	}
+});
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
