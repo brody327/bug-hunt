@@ -100,6 +100,18 @@ const deleteProjectBug = async (projectId, bugId) => {
 		throw err;
 	}
 };
+
+//--- DELETE Routes ---
+//Delete a project given its project id.
+const deleteProject = async (projectId) => {
+	try {
+		const deletedProject = await Project.findByIdAndDelete(projectId);
+
+		return deletedProject;
+	} catch (err) {
+		throw err;
+	}
+};
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
@@ -111,4 +123,5 @@ module.exports = {
 	createProject,
 	updateProjectBugs,
 	deleteProjectBug,
+	deleteProject,
 };

@@ -36,7 +36,7 @@ function ProjectPage({
 	const project = location.state.project;
 	const history = useHistory();
 	//--- Functions ---
-	const onDelete = async (bugId, projectId) => {
+	const onDeleteBug = async (bugId, projectId) => {
 		try {
 			const deletedBug = await deleteBug(bugId, projectId);
 
@@ -63,6 +63,16 @@ function ProjectPage({
 			alert(`Uh Oh! An error occurred: \n ${err}`);
 		}
 	};
+	const onDeleteProject = async (projectId) => {
+		console.log(projectId);
+		//delete bugs associated with project
+		//Go through bugs array in project to delete
+		//Don't need to delete from array though
+		//delete project
+		//Update users project count by decrementing by one
+		//remove bugs from user bugs
+		//remove project from user projects
+	};
 
 	//--- JSX ---
 	return (
@@ -84,7 +94,9 @@ function ProjectPage({
 						</p>
 					</Card>
 					<div className='text-center'>
-						<Button>Delete Project</Button>
+						<Button onClick={() => onDeleteProject(project._id)}>
+							Delete Project
+						</Button>
 						<Button>Complete Project</Button>
 					</div>
 				</Col>
@@ -131,7 +143,7 @@ function ProjectPage({
 										>
 											<Card.Text>{bug.name}</Card.Text>
 										</Link>
-										<Button onClick={() => onDelete(bug._id, project._id)}>
+										<Button onClick={() => onDeleteBug(bug._id, project._id)}>
 											Delete Bug
 										</Button>
 									</Row>
