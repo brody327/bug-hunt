@@ -151,11 +151,10 @@ bugsRouter.delete(
 
 		const fields = req.body.fields;
 		const userId = req.body.userId;
-		console.log(fields, userId);
 
 		try {
 			let newUser = {};
-			newUser = await updateUserStats(userId, fields.stats);
+			newUser = await updateUserStats(userId, { bugsFixedCount: null });
 			newUser = await updateUserGameStats(userId, fields.game);
 
 			const bug = await deleteBug(bugId);

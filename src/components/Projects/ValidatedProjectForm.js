@@ -31,15 +31,6 @@ function NewProjectForm({
 	//--- State ---
 	const history = useHistory();
 
-	//--- Functions ---
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-
-		//TODO: check for valid entry
-
-		//Send project data to api
-	};
-
 	//--- JSX ---
 	return (
 		<Container fluid id='new-project-form'>
@@ -68,8 +59,8 @@ function NewProjectForm({
 						window.location.reload();
 					} catch (err) {
 						console.error(err);
-						setCurrentError(err);
-						alert(`Uh Oh! An error occurred: \n ${err}`);
+						setCurrentError(err.data);
+						alert(`Uh Oh! An error occurred: \n ${err.data}`);
 					}
 				}}
 				validationSchema={Yup.object().shape({

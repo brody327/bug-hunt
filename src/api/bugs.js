@@ -74,10 +74,9 @@ export const completeBug = async (projectId, bugId, userId, fields) => {
 		const { data } = await axios.delete(
 			`${BASE_URL}/bugs/complete/${projectId}/${bugId}`,
 			{
-				fields,
-				userId,
-			},
-			getConfig()
+				data: { fields, userId },
+				...getConfig(),
+			}
 		);
 
 		return data;

@@ -23,7 +23,7 @@ import {
 	ProjectPage,
 	ValidatedProjectForm,
 } from './Projects/index';
-import { AllBugs, Bug, ValidatedBugForm } from './Bugs/index';
+import { AllBugs, Bug, ValidatedBugForm, RankUp } from './Bugs/index';
 import { Account } from './Account/index';
 import { LandingPage } from './Landing';
 
@@ -171,6 +171,9 @@ const App = () => {
 								/>
 							)}
 						></Route>
+						<Route exact path='/user/rankup'>
+							<RankUp />
+						</Route>
 						<Route exact path='/projects/new'>
 							<ValidatedProjectForm
 								userProjects={userProjects}

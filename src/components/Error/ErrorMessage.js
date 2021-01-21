@@ -13,7 +13,7 @@ import Card from 'react-bootstrap/Card';
 //--- Components ---
 
 //--- CSS ---
-
+import '../../styles/components/ErrorMessage.css';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
@@ -22,7 +22,7 @@ function ErrorMessage({ currentError }) {
 
 	//--- JSX ---
 	return (
-		<Container fluid>
+		<Container fluid className='error-message sticky'>
 			<Alert variant='danger'>{currentError}</Alert>
 		</Container>
 	);
