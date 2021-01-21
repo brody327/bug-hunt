@@ -24,6 +24,7 @@ import {
 	getProjectById,
 	deleteBug,
 	getRank,
+	getBugReward,
 } from '../../api/index';
 
 //~~~~~~~~~~~~~~~~~
