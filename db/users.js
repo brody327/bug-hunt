@@ -82,6 +82,63 @@ const updateUserProjectCount = async (userId, direction) => {
 	}
 };
 
+//Update a users stats given a value and field.
+const updateUserStats = async (userId, fields = {}) => {
+	try {
+		let newUser = null;
+		for (const property in fields) {
+			const field = `stats.${property}`;
+			newUser = await User.findOneAndUpdate(
+				{ _id: userId },
+				{ $inc: { [field]: 1 } },
+				{ new: true },
+				function (err) {
+					if (err) console.log(err);
+					console.log('Successful update');
+				}
+			);
+		}
+		return newUser;
+	} catch (err) {
+		throw err;
+	}
+};
+
+//Update a users game stats given a value and field.
+const updateUserGameStats = async (userId, fields = {}) => {
+	try {
+		let newUser = null;
+		for (const property in fields) {
+			const field = `game.${property}`;
+
+			if (field === 'game.score') {
+				newUser = await User.findOneAndUpdate(
+					{ _id: userId },
+					{ $inc: { [field]: fields[property] } },
+					{ new: true },
+					function (err) {
+						if (err) console.log(err);
+						console.log('Successful update');
+					}
+				);
+			} else {
+				newUser = await User.findOneAndUpdate(
+					{ _id: userId },
+					{ $set: { [field]: fields[property] } },
+					{ new: true },
+					function (err) {
+						if (err) console.log(err);
+						console.log('Successful update');
+					}
+				);
+			}
+		}
+		return newUser;
+	} catch (err) {
+		throw err;
+	}
+};
+
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~
@@ -91,4 +148,6 @@ module.exports = {
 	getUserByUsername,
 	createUser,
 	updateUserProjectCount,
+	updateUserStats,
+	updateUserGameStats,
 };

@@ -166,6 +166,8 @@ const App = () => {
 									setUserBugs={setUserBugs}
 									currentError={currentError}
 									setCurrentError={setCurrentError}
+									currentUser={currentUser}
+									setCurrentUser={setCurrentUser}
 								/>
 							)}
 						></Route>

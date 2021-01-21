@@ -20,6 +20,8 @@ const {
 	getBugById,
 	getAllUserBugs,
 	updateProjectBugs,
+	updateUserStats,
+	updateUserGameStats,
 	deleteBug,
 	deleteProjectBug,
 } = require('../db/index');
@@ -139,6 +141,38 @@ bugsRouter.delete('/:projectId/:bugId', requireUser, async (req, res) => {
 		res.send({ message: err });
 	}
 });
+
+bugsRouter.delete(
+	'/complete/:projectId/:bugId',
+	requireUser,
+	async (req, res) => {
+		const bugId = req.params.bugId;
+		const projectId = req.params.projectId;
+
+		const fields = req.body.fields;
+		const userId = req.body.userId;
+		console.log(fields, userId);
+
+		try {
+			let newUser = {};
+			newUser = await updateUserStats(userId, fields.stats);
+			newUser = await updateUserGameStats(userId, fields.game);
+
+			const bug = await deleteBug(bugId);
+			const project = await deleteProjectBug(projectId, bugId);
+
+			res.send({
+				message: 'Bug completed succeeded!',
+				bug,
+				project,
+				user: newUser,
+			});
+		} catch (err) {
+			res.status(400);
+			res.send({ message: err });
+		}
+	}
+);
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~

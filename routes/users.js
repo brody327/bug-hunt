@@ -117,6 +117,8 @@ usersRouter.post('/login', async (req, res) => {
 	}
 });
 
+//--- UPDATE Routes ---
+
 //~~~~~~~~~~~~~~~
 //~~~ EXPORTS ~~~
 //~~~~~~~~~~~~~~~

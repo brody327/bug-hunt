@@ -19,7 +19,12 @@ import { ErrorMessage } from '../Error';
 //--- CSS ---
 
 //--- API ---
-import { getBugById, getProjectById, deleteBug } from '../../api/index';
+import {
+	getBugById,
+	getProjectById,
+	deleteBug,
+	getRank,
+} from '../../api/index';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -31,6 +36,8 @@ function Bug({
 	setUserBugs,
 	currentError,
 	setCurrentError,
+	currentUser,
+	setCurrentUser,
 	match,
 	location,
 }) {
@@ -105,6 +112,23 @@ function Bug({
 		}
 	};
 
+	const onComplete = async (bugId, projectId) => {
+		//delete bug
+		//update score
+		const reward = getBugReward(bug.priority);
+		currentUser.game.score += reward;
+		const updatedRank = getRank(currentUser.game.score);
+		if (updatedRank !== currentUser.game.rank) {
+			//Update account rank
+			currentUser.game.rank = updatedRank;
+			setCurrentUser({ ...currentUser });
+		}
+
+		//Update account info (both rank and score)
+		//update account squashed bugs
+		//direct to completed bug page
+	};
+
 	//--- JSX ---
 	return (
 		<Container fluid>
@@ -154,7 +178,9 @@ function Bug({
 						</Button>
 					</div>
 					<div className='assignee-privileges'>
-						<Button>Mark Bug Complete</Button>
+						<Button onClick={() => onComplete(bug._id, bug.project._id)}>
+							Mark Bug Complete
+						</Button>
 						<Button>Edit Bug</Button>
 					</div>
 					<Row>
