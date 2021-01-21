@@ -68,3 +68,20 @@ export const deleteBug = async (bugId, projectId) => {
 		throw err.response;
 	}
 };
+
+export const completeBug = async (projectId, bugId, userId, fields) => {
+	try {
+		const { data } = await axios.delete(
+			`${BASE_URL}/bugs/complete/${projectId}/${bugId}`,
+			{
+				fields,
+				userId,
+			},
+			getConfig()
+		);
+
+		return data;
+	} catch (err) {
+		throw err.response;
+	}
+};

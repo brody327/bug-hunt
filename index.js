@@ -56,7 +56,11 @@ server.listen(PORT, async () => {
 		//Connect to Mongoose for MongoDB connection.
 		await mongoose.connect(
 			process.env.DB_CONNECTION,
-			{ useNewUrlParser: true, useUnifiedTopology: true },
+			{
+				useNewUrlParser: true,
+				useUnifiedTopology: true,
+				useFindAndModify: false,
+			},
 			() => console.log('Connected to Bug Hunt DB!')
 		);
 		console.log('Database is running!');
