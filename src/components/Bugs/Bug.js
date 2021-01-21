@@ -23,7 +23,9 @@ import {
 	getBugById,
 	getProjectById,
 	deleteBug,
+	completeBug,
 	getRank,
+	getBugReward,
 } from '../../api/index';
 
 //~~~~~~~~~~~~~~~~~
@@ -66,23 +68,6 @@ function Bug({
 		return () => (mounted = false);
 	}, []);
 
-	//Set project using bug.
-	// useEffect(() => {
-	// 	let mounted = true;
-	// 	if (!projectData && bug) {
-	// 		getProjectById(bug.project_id)
-	// 			.then((response) => {
-	// 				if (mounted) setProject(response.project);
-	// 			})
-	// 			.catch((error) => {
-	// 				console.log(error);
-	// 			});
-	// 	} else {
-	// 		setProject(projectData);
-	// 	}
-	// 	return () => (mounted = false);
-	// }, [bug]);
-
 	//--- Functions ---
 	const onDelete = async (bugId, projectId) => {
 		try {
@@ -112,16 +97,51 @@ function Bug({
 		}
 	};
 
-	const onComplete = async (bugId, projectId) => {
-		//delete bug
-		//update score
+	const onComplete = async (bugId, projectId, userId) => {
 		const reward = getBugReward(bug.priority);
-		currentUser.game.score += reward;
 		const updatedRank = getRank(currentUser.game.score);
-		if (updatedRank !== currentUser.game.rank) {
-			//Update account rank
-			currentUser.game.rank = updatedRank;
-			setCurrentUser({ ...currentUser });
+		let rankUp = false;
+
+		try {
+			const newData = await completeBug(projectId, bugId, userId, {
+				game: { score: reward, rank: updatedRank },
+			});
+
+			//Check if user ranked up
+			if (updatedRank !== currentUser.game.rank) {
+				rankUp = true;
+			}
+			//Update user state
+			setCurrentUser({ ...newData.user });
+
+			//Remove bug from userBugs and update.
+			const bugIndex = userBugs.findIndex((userBug) => bugId === userBug._id);
+			userBugs.splice(bugIndex, 1);
+			setUserBugs([...userBugs]);
+
+			//Remove bug from project bugs.
+			const projectIndex = userProjects.findIndex(
+				(userProject) => projectId === userProject._id
+			);
+			userProjects.splice(projectIndex, 1);
+			setUserProjects([...userProjects, newData.project]);
+
+			if (rankUp === true) {
+				//Send to rank up page
+				history.push({
+					pathname: `/user/rankup`,
+				});
+			} else {
+				//Go to project page.
+				history.push({
+					pathname: `/projects/${projectId}`,
+					state: { project: newData.project },
+				});
+			}
+		} catch (err) {
+			console.error(err);
+			setCurrentError(err.data);
+			alert(`Uh Oh! An error occurred: \n ${err.data}`);
 		}
 
 		//Update account info (both rank and score)
@@ -178,7 +198,11 @@ function Bug({
 						</Button>
 					</div>
 					<div className='assignee-privileges'>
-						<Button onClick={() => onComplete(bug._id, bug.project._id)}>
+						<Button
+							onClick={() =>
+								onComplete(bug._id, bug.project._id, currentUser._id)
+							}
+						>
 							Mark Bug Complete
 						</Button>
 						<Button>Edit Bug</Button>

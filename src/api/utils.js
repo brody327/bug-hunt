@@ -13,7 +13,7 @@ export const getConfig = () => {
 };
 
 export const getRank = (score) => {
-	const rank = '';
+	let rank = 'Recruit';
 	if (score >= 20 && score < 60) {
 		//rank Green Squasher
 		rank = 'Green Squasher';
@@ -38,7 +38,7 @@ export const getRank = (score) => {
 };
 
 export const getBugReward = (severity) => {
-	const reward = 0;
+	let reward = 0;
 	if (severity === 'Minimal') {
 		reward = 1;
 	} else if (severity === 'Low') {
@@ -51,5 +51,6 @@ export const getBugReward = (severity) => {
 		reward = 5;
 	}
 
+	console.log(reward);
 	return reward;
 };

@@ -91,11 +91,7 @@ const updateUserStats = async (userId, fields = {}) => {
 			newUser = await User.findOneAndUpdate(
 				{ _id: userId },
 				{ $inc: { [field]: 1 } },
-				{ new: true },
-				function (err) {
-					if (err) console.log(err);
-					console.log('Successful update');
-				}
+				{ new: true }
 			);
 		}
 		return newUser;
@@ -108,18 +104,17 @@ const updateUserStats = async (userId, fields = {}) => {
 const updateUserGameStats = async (userId, fields = {}) => {
 	try {
 		let newUser = null;
+		console.log(fields);
 		for (const property in fields) {
 			const field = `game.${property}`;
+
+			console.log(fields[property]);
 
 			if (field === 'game.score') {
 				newUser = await User.findOneAndUpdate(
 					{ _id: userId },
 					{ $inc: { [field]: fields[property] } },
-					{ new: true },
-					function (err) {
-						if (err) console.log(err);
-						console.log('Successful update');
-					}
+					{ new: true }
 				);
 			} else {
 				newUser = await User.findOneAndUpdate(
@@ -133,6 +128,7 @@ const updateUserGameStats = async (userId, fields = {}) => {
 				);
 			}
 		}
+		console.log(newUser);
 		return newUser;
 	} catch (err) {
 		throw err;
