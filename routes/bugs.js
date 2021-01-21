@@ -154,7 +154,7 @@ bugsRouter.delete(
 
 		try {
 			let newUser = {};
-			newUser = await updateUserStats(userId, { bugsFixedCount: null });
+			newUser = await updateUserStats(userId, { bugsFixedCount: 1 });
 			newUser = await updateUserGameStats(userId, fields.game);
 
 			const bug = await deleteBug(bugId);

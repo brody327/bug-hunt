@@ -16,6 +16,7 @@ const {
 	createProject,
 	getAllProjectsByUserId,
 	updateUserProjectCount,
+	updateUserStats,
 	getProjectByBugId,
 	deleteBug,
 	deleteProject,
@@ -123,6 +124,36 @@ projectsRouter.delete('/:projectId', requireUser, async (req, res) => {
 			message:
 				'Project and its associated bugs have been successfully deleted!',
 			project,
+		});
+	} catch (err) {
+		res.status(400);
+		res.send({ message: err });
+	}
+});
+
+projectsRouter.delete('/complete/:projectId', requireUser, async (req, res) => {
+	const project = req.body;
+
+	try {
+		//Update user account information.
+		let newUser = {};
+		newUser = await updateUserStats(project.creator._id, {
+			projectCount: -1,
+			completedProjectCount: 1,
+		});
+
+		//Delete bugs from project bugs array.
+		if (project.bugs.length > 0) {
+			await Promise.all(project.bugs.map((bug) => deleteBug(bug._id)));
+		}
+
+		//Delete project.
+		const deletedProject = await deleteProject(project._id);
+
+		res.send({
+			message: 'Project completed succeeded!',
+			project,
+			user: newUser,
 		});
 	} catch (err) {
 		res.status(400);

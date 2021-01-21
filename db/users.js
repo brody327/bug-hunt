@@ -88,9 +88,10 @@ const updateUserStats = async (userId, fields = {}) => {
 		let newUser = null;
 		for (const property in fields) {
 			const field = `stats.${property}`;
+
 			newUser = await User.findOneAndUpdate(
 				{ _id: userId },
-				{ $inc: { [field]: 1 } },
+				{ $inc: { [field]: fields[property] } },
 				{ new: true }
 			);
 		}

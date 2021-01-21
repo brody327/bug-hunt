@@ -77,3 +77,19 @@ export async function deleteProject(project) {
 		throw err.response;
 	}
 }
+
+export async function completeProject(project) {
+	try {
+		const { data } = await axios.delete(
+			`${BASE_URL}/projects/complete/${project._id}`,
+			{
+				...getConfig(),
+				data: project,
+			}
+		);
+
+		return data;
+	} catch (err) {
+		throw err.response;
+	}
+}
