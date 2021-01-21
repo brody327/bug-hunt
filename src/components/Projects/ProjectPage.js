@@ -18,7 +18,7 @@ import Button from 'react-bootstrap/Button';
 import '../../styles/components/ProjectPage.css';
 
 //--- API ---
-import { deleteBug, deleteProject } from '../../api/index';
+import { deleteBug, deleteProject, completeProject } from '../../api/index';
 
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
@@ -63,6 +63,7 @@ function ProjectPage({
 			alert(`Uh Oh! An error occurred: \n ${err}`);
 		}
 	};
+
 	const onDeleteProject = async (project) => {
 		try {
 			const deletedProject = await deleteProject(project);
@@ -94,6 +95,41 @@ function ProjectPage({
 		}
 	};
 
+	const onCompleteProject = async (project) => {
+		console.log(project);
+		try {
+			const newData = await completeProject(project);
+
+			//remove bugs from user bugs
+			if (newData.project.bugs.length > 0) {
+				newData.project.bugs.forEach((bug) => {
+					const bugIndex = userBugs.findIndex(
+						(userBug) => userBug.id === bug._id
+					);
+					userBugs.splice(bugIndex, 1);
+				});
+				setUserBugs([...userBugs]);
+			}
+
+			//remove project from user projects
+			const projectIndex = userProjects.findIndex(
+				(userProject) => newData.project._id === userProject._id
+			);
+			userProjects.splice(projectIndex, 1);
+			setUserProjects([...userProjects]);
+
+			//Go to projects page.
+			history.push('/projects');
+
+			//Refresh page
+			window.location.reload();
+		} catch (err) {
+			console.error(err);
+			setCurrentError(err);
+			alert(`Uh Oh! An error occurred: \n ${err}`);
+		}
+	};
+
 	//--- JSX ---
 	return (
 		<Container fluid>
@@ -117,7 +153,9 @@ function ProjectPage({
 						<Button onClick={() => onDeleteProject(project)}>
 							Delete Project
 						</Button>
-						<Button>Complete Project</Button>
+						<Button onClick={() => onCompleteProject(project)}>
+							Complete Project
+						</Button>
 					</div>
 				</Col>
 			</Row>
