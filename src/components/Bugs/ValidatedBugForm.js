@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 //--- Components ---
-import { ErrorMessage } from '../Error';
+import { ErrorMessage } from '../Messages';
 
 //--- API ---
 import { createBug } from '../../api/index';
@@ -29,6 +29,8 @@ function ValidatedBugForm({
 	currentUser,
 	currentError,
 	setCurrentError,
+	setLoading,
+	loadingWait,
 	match,
 	location,
 }) {
@@ -48,6 +50,7 @@ function ValidatedBugForm({
 				}}
 				onSubmit={async (values, { setSubmitting }) => {
 					try {
+						setLoading(true);
 						//Create new bug.
 						const bug = await createBug({
 							title: values.title,
@@ -78,8 +81,8 @@ function ValidatedBugForm({
 					} catch (err) {
 						console.error(err);
 						setCurrentError(err);
-						alert(`Uh Oh! An error occurred: \n ${err}`);
 					}
+					setTimeout(() => setLoading(false), 1000);
 				}}
 				validationSchema={Yup.object().shape({
 					title: Yup.string().required('This field is required.'),

@@ -13,6 +13,7 @@ import Button from 'react-bootstrap/Button';
 
 //--- Components ---
 import { ProjectCard } from './index';
+import { Loading } from '../Loading/index';
 
 //--- CSS ---
 import '../../styles/components/AllProjectsPage.css';
@@ -39,11 +40,13 @@ function AllProjectsPage({ userProjects, currentUser }) {
 								</Card>
 							</Link>
 						</Col>
-						{userProjects !== undefined
-							? userProjects.map((project) => (
-									<ProjectCard key={project._id} project={project} />
-							  ))
-							: ''}
+						{userProjects !== undefined ? (
+							userProjects.map((project) => (
+								<ProjectCard key={project._id} project={project} />
+							))
+						) : (
+							<Loading />
+						)}
 					</Row>
 				</>
 			) : (

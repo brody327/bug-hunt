@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 //--- Components ---
-import { ErrorMessage } from '../Error';
+import { ErrorMessage } from '../Messages';
 
 //--- CSS ---
 import '../../styles/components/Authentication.css';
@@ -24,7 +24,13 @@ import { loginUser } from '../../api/index';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function LoginValidated({ setCurrentUser, setCurrentError, currentError }) {
+function LoginValidated({
+	setCurrentUser,
+	setCurrentError,
+	currentError,
+	setLoading,
+	loadingWait,
+}) {
 	let history = useHistory();
 
 	//--- JSX ---
@@ -38,6 +44,7 @@ function LoginValidated({ setCurrentUser, setCurrentError, currentError }) {
 				}}
 				onSubmit={async (values, { setSubmitting }) => {
 					try {
+						setLoading(true);
 						const user = await loginUser({
 							email: values.email.toLowerCase(),
 							password: values.password,
@@ -57,8 +64,9 @@ function LoginValidated({ setCurrentUser, setCurrentError, currentError }) {
 						history.push('/');
 					} catch (err) {
 						setCurrentError(err.data);
-						alert(`Uh Oh! An error occurred: \n${err.data}`);
+						// alert(`Uh Oh! An error occurred: \n${err.data}`);
 					}
+					setTimeout(() => setLoading(false), 1000);
 				}}
 				validationSchema={Yup.object().shape({
 					email: Yup.string()
