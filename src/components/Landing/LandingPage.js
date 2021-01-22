@@ -8,13 +8,17 @@ import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
+//--- Components ---
+import { ErrorMessage } from '../Messages';
+
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function LandingPage() {
+function LandingPage({ currentError }) {
 	//--- JSX ---
 	return (
 		<Container id='landing' fluid>
+			{currentError ? <ErrorMessage currentError={currentError} /> : null}
 			<div>
 				<h1>Welcome to BUG HUNT</h1>
 				<p>

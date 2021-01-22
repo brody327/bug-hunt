@@ -6,9 +6,6 @@ import React from 'react';
 //--- Bootstrap ---
 import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
 
 //--- Components ---
 
@@ -17,15 +14,15 @@ import '../../styles/components/ErrorMessage.css';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function ErrorMessage({ currentError }) {
+function VerificationMessage({ currentVerification }) {
 	//--- Effects ---
 
 	//--- JSX ---
 	return (
-		<Container fluid className='error-message sticky'>
-			<Alert variant='danger'>{currentError}</Alert>
+		<Container fluid className='success-message sticky'>
+			<Alert variant='success'>{currentVerification}</Alert>
 		</Container>
 	);
 }
 
-export default ErrorMessage;
+export default VerificationMessage;

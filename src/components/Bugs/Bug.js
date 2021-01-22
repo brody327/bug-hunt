@@ -14,7 +14,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 //--- Components ---
-import { ErrorMessage } from '../Error';
+import { ErrorMessage } from '../Messages';
 
 //--- CSS ---
 
@@ -40,6 +40,8 @@ function Bug({
 	setCurrentError,
 	currentUser,
 	setCurrentUser,
+	setLoading,
+	loadingWait,
 	match,
 	location,
 }) {
@@ -57,6 +59,7 @@ function Bug({
 	useEffect(() => {
 		let mounted = true;
 		if (!bug) {
+			setLoading(true);
 			getBugById(bugData._id)
 				.then((response) => {
 					if (mounted) setBug(response.bug);
@@ -65,12 +68,16 @@ function Bug({
 					console.log(error);
 				});
 		}
-		return () => (mounted = false);
+		setLoading(false);
+		return () => {
+			mounted = false;
+		};
 	}, []);
 
 	//--- Functions ---
 	const onDelete = async (bugId, projectId) => {
 		try {
+			setLoading(true);
 			const deletedBug = await deleteBug(bugId, projectId);
 
 			//Remove bug from userBugs and update.
@@ -93,8 +100,8 @@ function Bug({
 		} catch (err) {
 			console.error(err);
 			setCurrentError(err);
-			alert(`Uh Oh! An error occurred: \n ${err}`);
 		}
+		setTimeout(() => setLoading(false), 1000);
 	};
 
 	const onComplete = async (bugId, projectId, userId) => {
@@ -103,6 +110,7 @@ function Bug({
 		let rankUp = false;
 
 		try {
+			setLoading(true);
 			const newData = await completeBug(projectId, bugId, userId, {
 				game: { score: reward, rank: updatedRank },
 			});
@@ -141,12 +149,8 @@ function Bug({
 		} catch (err) {
 			console.error(err);
 			setCurrentError(err.data);
-			alert(`Uh Oh! An error occurred: \n ${err.data}`);
 		}
-
-		//Update account info (both rank and score)
-		//update account squashed bugs
-		//direct to completed bug page
+		setTimeout(() => setLoading(false), 1000);
 	};
 
 	//--- JSX ---
@@ -154,7 +158,7 @@ function Bug({
 		<Container fluid>
 			{currentError ? <ErrorMessage currentError={currentError} /> : null}
 			{bug === null ? (
-				<Alert variant='danger'>Sorry we could not find your bug!</Alert>
+				''
 			) : (
 				<>
 					<h1 className='text-center'>{bug.title}</h1>

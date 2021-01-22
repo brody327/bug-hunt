@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 //--- Components ---
-import { ErrorMessage } from '../Error';
+import { ErrorMessage } from '../Messages';
 
 //--- CSS ---
 import '../../styles/components/Authentication.css';
@@ -25,7 +25,12 @@ import { createUser } from '../../api/index';
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
 //Create history object.
-const RegisterValidated = ({ setCurrentError, currentError }) => {
+const RegisterValidated = ({
+	setCurrentError,
+	currentError,
+	setLoading,
+	loadingWait,
+}) => {
 	const history = useHistory();
 	return (
 		<Container id='register-container' className='authentication-container'>
@@ -39,6 +44,7 @@ const RegisterValidated = ({ setCurrentError, currentError }) => {
 				}}
 				onSubmit={async (values, { setSubmitting }) => {
 					try {
+						setLoading(true);
 						const user = await createUser({
 							username: values.username,
 							email: values.email.toLowerCase(),
@@ -51,8 +57,9 @@ const RegisterValidated = ({ setCurrentError, currentError }) => {
 						history.push('/login');
 					} catch (err) {
 						setCurrentError(err.data);
-						alert(`Uh Oh! An error occurred: \n${err.data}`);
+						// alert(`Uh Oh! An error occurred: \n${err.data}`);
 					}
+					setTimeout(() => setLoading(false), 1000);
 				}}
 				//With Yup library
 				validationSchema={Yup.object().shape({

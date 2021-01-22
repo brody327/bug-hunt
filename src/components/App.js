@@ -26,6 +26,8 @@ import {
 import { AllBugs, Bug, ValidatedBugForm, RankUp } from './Bugs/index';
 import { Account } from './Account/index';
 import { LandingPage } from './Landing';
+import { Loading } from './Loading';
+import { ErrorMessage } from './Messages';
 
 //--- CSS ---
 import '../styles/body.css';
@@ -44,11 +46,11 @@ import { getUserById, getAllUserProjects, getAllUserBugs } from '../api/index';
 //~~~~~~~~~~~~~~~~~
 const App = () => {
 	//--- State ---
-	const [appStatus, setAppStatus] = useState('testing');
 	const [userProjects, setUserProjects] = useState([]);
 	const [userBugs, setUserBugs] = useState([]);
 	const [currentUser, setCurrentUser] = useState(null);
 	const [currentError, setCurrentError] = useState(null);
+	const [loading, setLoading] = useState(true);
 
 	//--- Effects ---
 	//Check for persistent logged-in user.
@@ -61,12 +63,15 @@ const App = () => {
 				})
 				.catch((error) => {
 					console.log(error);
+					setCurrentError(error.data);
 				});
 		}
+		setTimeout(() => setLoading(false), 1000);
 	}, []);
 
 	//Get logged-in users projects and bugs.
 	useEffect(() => {
+		setLoading(true);
 		if (currentUser != null) {
 			getAllUserProjects(currentUser._id || localStorage.getItem('userId'))
 				.then((response) => {
@@ -74,6 +79,7 @@ const App = () => {
 				})
 				.catch((error) => {
 					console.log(error);
+					setCurrentError(error.data);
 				});
 			getAllUserBugs(currentUser._id || localStorage.getItem('userId'))
 				.then((response) => {
@@ -81,131 +87,139 @@ const App = () => {
 				})
 				.catch((error) => {
 					console.log(error);
+					setCurrentError(error.data);
 				});
 		} else {
 			setUserProjects([]);
 			setUserBugs([]);
 		}
+		setTimeout(() => setLoading(false), 1000);
 	}, [currentUser]);
 
 	//--- Functions ---
-	//Sorts bugs in array by most recently updated.
-	//TODO: Should be done on back end call!
-	userBugs.sort((a, b) => {
-		return new Date(b.lastUpdated) - new Date(a.lastUpdated);
-	});
 	//--- JSX ---
 	return (
-		<Router>
-			<Container fluid id='app'>
-				<Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
-				<Container id='content' fluid>
-					<Switch>
-						<Route exact path='/'>
-							{currentUser !== null ? (
-								<Home
-									userProjects={userProjects}
-									userBugs={userBugs}
-									currentUser={currentUser}
-									appStatus={appStatus}
-								/>
-							) : (
-								<LandingPage />
-							)}
-						</Route>
-						<Route exact path='/login'>
-							<LoginValidated
-								setCurrentUser={setCurrentUser}
-								setCurrentError={setCurrentError}
-								currentError={currentError}
-							/>
-						</Route>
-						<Route exact path='/register'>
-							<RegisterValidated
-								setCurrentError={setCurrentError}
-								currentError={currentError}
-							/>
-						</Route>
-						<Route exact path='/projects'>
-							<AllProjectsPage
-								userProjects={userProjects}
-								currentUser={currentUser}
-							/>
-						</Route>
-						<Route exact path='/bugs'>
-							<AllBugs userBugs={userBugs} currentUser={currentUser} />
-						</Route>
-						<Route exact path='/account'>
-							<Account currentUser={currentUser} />
-						</Route>
-						<Route
-							exact
-							path='/bugs/new'
-							render={(props) => (
-								<ValidatedBugForm
-									{...props}
-									setUserProjects={setUserProjects}
-									userProjects={userProjects}
-									userBugs={userBugs}
-									setUserBugs={setUserBugs}
-									currentUser={currentUser}
-									currentError={currentError}
-									setCurrentError={setCurrentError}
-								/>
-							)}
-						></Route>
-						<Route
-							exact
-							path='/bugs/:bug'
-							render={(props) => (
-								<Bug
-									{...props}
-									setUserProjects={setUserProjects}
-									userProjects={userProjects}
-									userBugs={userBugs}
-									setUserBugs={setUserBugs}
-									currentError={currentError}
-									setCurrentError={setCurrentError}
-									currentUser={currentUser}
-									setCurrentUser={setCurrentUser}
-								/>
-							)}
-						></Route>
-						<Route exact path='/user/rankup'>
-							<RankUp />
-						</Route>
-						<Route exact path='/projects/new'>
-							<ValidatedProjectForm
-								userProjects={userProjects}
-								setUserProjects={setUserProjects}
-								currentUser={currentUser}
-								currentError={currentError}
-								setCurrentError={setCurrentError}
-							/>
-						</Route>
-						<Route
-							exact
-							path='/projects/:project'
-							render={(props) => (
-								<ProjectPage
-									{...props}
-									setUserProjects={setUserProjects}
-									userProjects={userProjects}
-									userBugs={userBugs}
-									setUserBugs={setUserBugs}
-									currentError={currentError}
-									setCurrentError={setCurrentError}
-								/>
-							)}
-						></Route>
-						<Route path='*'>
-							<ErrorPage />
-						</Route>
-					</Switch>
-				</Container>
-				<Footer />
-			</Container>
-		</Router>
+		<>
+			{loading === false ? (
+				<Router>
+					<Container fluid id='app'>
+						<Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
+						<Container id='content' fluid>
+							<Switch>
+								<Route exact path='/'>
+									{currentUser !== null ? (
+										<Home
+											userProjects={userProjects}
+											userBugs={userBugs}
+											currentUser={currentUser}
+										/>
+									) : (
+										<LandingPage currentError={currentError} />
+									)}
+								</Route>
+								<Route exact path='/login'>
+									<LoginValidated
+										setCurrentUser={setCurrentUser}
+										setCurrentError={setCurrentError}
+										currentError={currentError}
+										setLoading={setLoading}
+									/>
+								</Route>
+								<Route exact path='/register'>
+									<RegisterValidated
+										setCurrentError={setCurrentError}
+										currentError={currentError}
+										setLoading={setLoading}
+									/>
+								</Route>
+								<Route exact path='/projects'>
+									<AllProjectsPage
+										userProjects={userProjects}
+										currentUser={currentUser}
+									/>
+								</Route>
+								<Route exact path='/bugs'>
+									<AllBugs userBugs={userBugs} currentUser={currentUser} />
+								</Route>
+								<Route exact path='/account'>
+									<Account currentUser={currentUser} />
+								</Route>
+								<Route
+									exact
+									path='/bugs/new'
+									render={(props) => (
+										<ValidatedBugForm
+											{...props}
+											setUserProjects={setUserProjects}
+											userProjects={userProjects}
+											userBugs={userBugs}
+											setUserBugs={setUserBugs}
+											currentUser={currentUser}
+											currentError={currentError}
+											setCurrentError={setCurrentError}
+											setLoading={setLoading}
+										/>
+									)}
+								></Route>
+								<Route
+									exact
+									path='/bugs/:bug'
+									render={(props) => (
+										<Bug
+											{...props}
+											setUserProjects={setUserProjects}
+											userProjects={userProjects}
+											userBugs={userBugs}
+											setUserBugs={setUserBugs}
+											currentError={currentError}
+											setCurrentError={setCurrentError}
+											currentUser={currentUser}
+											setCurrentUser={setCurrentUser}
+											setLoading={setLoading}
+										/>
+									)}
+								></Route>
+								<Route exact path='/user/rankup'>
+									<RankUp />
+								</Route>
+								<Route exact path='/projects/new'>
+									<ValidatedProjectForm
+										userProjects={userProjects}
+										setUserProjects={setUserProjects}
+										currentUser={currentUser}
+										currentError={currentError}
+										setCurrentError={setCurrentError}
+										setLoading={setLoading}
+									/>
+								</Route>
+								<Route
+									exact
+									path='/projects/:project'
+									render={(props) => (
+										<ProjectPage
+											{...props}
+											setUserProjects={setUserProjects}
+											userProjects={userProjects}
+											userBugs={userBugs}
+											setUserBugs={setUserBugs}
+											currentError={currentError}
+											setCurrentError={setCurrentError}
+											setLoading={setLoading}
+										/>
+									)}
+								></Route>
+								<Route path='*'>
+									<ErrorPage />
+								</Route>
+							</Switch>
+						</Container>
+						<Footer />
+					</Container>
+				</Router>
+			) : (
+				<Loading />
+			)}
+		</>
 	);
 };
 

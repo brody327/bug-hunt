@@ -30,6 +30,8 @@ function ProjectPage({
 	setUserBugs,
 	currentError,
 	setCurrentError,
+	setLoading,
+	loadingWait,
 	match,
 	location,
 }) {
@@ -38,6 +40,7 @@ function ProjectPage({
 	//--- Functions ---
 	const onDeleteBug = async (bugId, projectId) => {
 		try {
+			setLoading(true);
 			const deletedBug = await deleteBug(bugId, projectId);
 
 			//Remove bug from userBugs and update.
@@ -62,10 +65,12 @@ function ProjectPage({
 			setCurrentError(err);
 			alert(`Uh Oh! An error occurred: \n ${err}`);
 		}
+		setTimeout(() => setLoading(false), 1000);
 	};
 
 	const onDeleteProject = async (project) => {
 		try {
+			setLoading(true);
 			const deletedProject = await deleteProject(project);
 
 			//remove bugs from user bugs
@@ -93,11 +98,13 @@ function ProjectPage({
 			setCurrentError(err);
 			alert(`Uh Oh! An error occurred: \n ${err}`);
 		}
+		setTimeout(() => setLoading(false), 1000);
 	};
 
 	const onCompleteProject = async (project) => {
 		console.log(project);
 		try {
+			setLoading(true);
 			const newData = await completeProject(project);
 
 			//remove bugs from user bugs
@@ -128,6 +135,7 @@ function ProjectPage({
 			setCurrentError(err);
 			alert(`Uh Oh! An error occurred: \n ${err}`);
 		}
+		setTimeout(() => setLoading(false), 1000);
 	};
 
 	//--- JSX ---

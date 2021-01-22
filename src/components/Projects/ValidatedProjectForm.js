@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 //--- Components ---
-import { ErrorMessage } from '../Error';
+import { ErrorMessage } from '../Messages';
 
 //--- API ---
 import { createProject } from '../../api/index';
@@ -27,6 +27,8 @@ function NewProjectForm({
 	setUserProjects,
 	currentError,
 	setCurrentError,
+	setLoading,
+	loadingWait,
 }) {
 	//--- State ---
 	const history = useHistory();
@@ -42,6 +44,7 @@ function NewProjectForm({
 				}}
 				onSubmit={async (values, { setSubmitting }) => {
 					try {
+						setLoading(true);
 						const project = await createProject({
 							title: values.title,
 							creator: { _id: currentUser._id, username: currentUser.username },
@@ -62,6 +65,7 @@ function NewProjectForm({
 						setCurrentError(err.data);
 						alert(`Uh Oh! An error occurred: \n ${err.data}`);
 					}
+					setTimeout(() => setLoading(false), 1000);
 				}}
 				validationSchema={Yup.object().shape({
 					title: Yup.string().required('This field is required.'),
