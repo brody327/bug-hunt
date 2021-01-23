@@ -14,6 +14,7 @@ import Button from 'react-bootstrap/Button';
 //--- Components ---
 import { ProjectCard } from './index';
 import { Loading } from '../Loading/index';
+import { ErrorMessage, VerificationMessage } from '../Messages';
 
 //--- CSS ---
 import '../../styles/components/AllProjectsPage.css';
@@ -23,13 +24,24 @@ import '../../styles/hover-card.css';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function AllProjectsPage({ userProjects, currentUser }) {
+function AllProjectsPage({
+	userProjects,
+	currentUser,
+	currentVerification,
+	setCurrentVerification,
+}) {
 	//--- JSX ---
 	return (
 		<Container fluid>
 			{currentUser !== null ? (
 				<>
 					<h1 className='text-center'>My Projects</h1>
+					{currentVerification ? (
+						<VerificationMessage
+							currentVerification={currentVerification}
+							setCurrentVerification={setCurrentVerification}
+						/>
+					) : null}
 					<Row id='project-cards-container'>
 						<Col className='col' lg={4} md={6} sm={12} xs={12}>
 							<Link to={`/projects/new`}>

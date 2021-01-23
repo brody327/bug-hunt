@@ -13,6 +13,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 //--- Components ---
+import { ErrorMessage, VerificationMessage } from '../Messages';
 
 //--- CSS ---
 import '../../styles/components/ProjectPage.css';
@@ -30,8 +31,9 @@ function ProjectPage({
 	setUserBugs,
 	currentError,
 	setCurrentError,
+	currentVerification,
+	setCurrentVerification,
 	setLoading,
-	loadingWait,
 	match,
 	location,
 }) {
@@ -53,17 +55,19 @@ function ProjectPage({
 				(userProject) => project._id === userProject._id
 			);
 			userProjects.splice(projectIndex, 1);
-			setUserProjects([...userProjects, deletedBug.project]);
+			setUserProjects([deletedBug.project, ...userProjects]);
 
 			//Go to project page.
 			history.push({
 				pathname: `/projects/${projectId}`,
 				state: { project: deletedBug.project },
 			});
+
+			//Show verification message
+			setCurrentVerification(deletedBug.message);
 		} catch (err) {
 			console.error(err);
 			setCurrentError(err);
-			alert(`Uh Oh! An error occurred: \n ${err}`);
 		}
 		setTimeout(() => setLoading(false), 1000);
 	};
@@ -93,16 +97,17 @@ function ProjectPage({
 
 			//Go to projects page.
 			history.push('/projects');
+
+			//Show verification message
+			setCurrentVerification(deletedProject.message);
 		} catch (err) {
 			console.error(err);
 			setCurrentError(err);
-			alert(`Uh Oh! An error occurred: \n ${err}`);
 		}
 		setTimeout(() => setLoading(false), 1000);
 	};
 
 	const onCompleteProject = async (project) => {
-		console.log(project);
 		try {
 			setLoading(true);
 			const newData = await completeProject(project);
@@ -129,7 +134,10 @@ function ProjectPage({
 			history.push('/projects');
 
 			//Refresh page
-			window.location.reload();
+			// window.location.reload();
+
+			//Show verification message
+			setCurrentVerification(newData.message);
 		} catch (err) {
 			console.error(err);
 			setCurrentError(err);
@@ -141,6 +149,12 @@ function ProjectPage({
 	//--- JSX ---
 	return (
 		<Container fluid>
+			{currentVerification ? (
+				<VerificationMessage
+					currentVerification={currentVerification}
+					setCurrentVerification={setCurrentVerification}
+				/>
+			) : null}
 			<h1>{project.title}</h1>
 			<Row>
 				<Col>
@@ -198,7 +212,7 @@ function ProjectPage({
 						</div>
 						<div className='bugs-list'>
 							{project.bugs.map((bug) => (
-								<Container>
+								<Container key={bug._id}>
 									<Row>
 										<Link
 											to={{

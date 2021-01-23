@@ -27,6 +27,7 @@ function NewProjectForm({
 	setUserProjects,
 	currentError,
 	setCurrentError,
+	setCurrentVerification,
 	setLoading,
 	loadingWait,
 }) {
@@ -51,19 +52,19 @@ function NewProjectForm({
 							description: values.description,
 						});
 						//Add new project object to user projects
-						setUserProjects([...userProjects, project]);
-
-						//TODO: Send Confirmation message
+						setUserProjects([project.project, ...userProjects]);
 
 						//Go to projects
 						history.push('/projects');
 
 						//Refresh page
-						window.location.reload();
+						// window.location.reload();
+
+						//Show verification message
+						setCurrentVerification(project.message);
 					} catch (err) {
 						console.error(err);
 						setCurrentError(err.data);
-						alert(`Uh Oh! An error occurred: \n ${err.data}`);
 					}
 					setTimeout(() => setLoading(false), 1000);
 				}}
@@ -120,16 +121,6 @@ function NewProjectForm({
 									</Alert>
 								) : null}
 							</Form.Group>
-							{/* <Form.Group controlId='basicContributors'>
-					<Form.Label>Project Description</Form.Label>
-					<Form.Control
-						type='text'
-						placeholder='Enter project description'
-						value='none'
-						onChange='none'
-						required
-					></Form.Control>
-				</Form.Group> */}
 							<Button type='submit' disabled={isSubmitting}>
 								Create Project
 							</Button>

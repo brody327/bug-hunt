@@ -132,7 +132,7 @@ bugsRouter.delete('/:projectId/:bugId', requireUser, async (req, res) => {
 		const project = await deleteProjectBug(projectId, bugId);
 
 		res.send({
-			message: 'Bug deleted succeeded',
+			message: 'Bug deleted successfully!',
 			bug,
 			project,
 		});
@@ -161,7 +161,7 @@ bugsRouter.delete(
 			const project = await deleteProjectBug(projectId, bugId);
 
 			res.send({
-				message: 'Bug completed succeeded!',
+				message: 'Bug completed successfully!',
 				bug,
 				project,
 				user: newUser,

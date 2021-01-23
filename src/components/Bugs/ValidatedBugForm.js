@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 //--- Components ---
-import { ErrorMessage } from '../Messages';
+import { ErrorMessage, VerificationMessage } from '../Messages';
 
 //--- API ---
 import { createBug } from '../../api/index';
@@ -29,6 +29,8 @@ function ValidatedBugForm({
 	currentUser,
 	currentError,
 	setCurrentError,
+	currentVerification,
+	setCurrentVerification,
 	setLoading,
 	loadingWait,
 	match,
@@ -41,6 +43,9 @@ function ValidatedBugForm({
 	//--- JSX ---
 	return (
 		<Container fluid id='new-bug-form'>
+			{currentVerification ? (
+				<VerificationMessage currentVerification={currentVerification} />
+			) : null}
 			{currentError ? <ErrorMessage currentError={currentError} /> : null}
 			<Formik
 				initialValues={{
@@ -78,6 +83,9 @@ function ValidatedBugForm({
 							pathname: `/projects/${userProjects[projectIndex]._id}`,
 							state: { project: userProjects[projectIndex] },
 						});
+
+						//Send verification message.
+						setCurrentVerification(bug.message);
 					} catch (err) {
 						console.error(err);
 						setCurrentError(err);

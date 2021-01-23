@@ -57,7 +57,7 @@ export async function createProject(project) {
 			getConfig()
 		);
 
-		return data.project;
+		return data;
 	} catch (err) {
 		throw err.response;
 	}

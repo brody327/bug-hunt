@@ -17,6 +17,7 @@ import {
 	AllBugsCard,
 	ViewAccountCard,
 } from './index';
+import { ErrorMessage, VerificationMessage } from '../Messages';
 
 //--- CSS ---
 import '../../styles/components/Home.css';
@@ -26,13 +27,25 @@ import '../../styles/hover-card.css';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function Home({ userProjects, userBugs, currentUser, appStatus }) {
+function Home({
+	userProjects,
+	userBugs,
+	currentUser,
+	currentVerification,
+	setCurrentVerification,
+}) {
 	//--- State ---
 	//--- Effects ---
 	//--- Functions ---
 	//--- JSX ---
 	return (
 		<Container id='home' fluid>
+			{currentVerification ? (
+				<VerificationMessage
+					currentVerification={currentVerification}
+					setCurrentVerification={setCurrentVerification}
+				/>
+			) : null}
 			<h1 className='text-center'>
 				Welcome back, {currentUser.game.rank} {currentUser.username}!
 			</h1>
