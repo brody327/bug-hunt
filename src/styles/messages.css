@@ -1,0 +1,15 @@
+.message-show {
+	opacity: 1;
+	transition: all 250ms linear;
+}
+
+.message-hidden {
+	opacity: 0;
+	transition: all 250ms linear;
+}
+
+.close {
+	position: absolute;
+	top: 0;
+	right: 20px;
+}

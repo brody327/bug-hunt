@@ -151,7 +151,7 @@ projectsRouter.delete('/complete/:projectId', requireUser, async (req, res) => {
 		const deletedProject = await deleteProject(project._id);
 
 		res.send({
-			message: 'Project completed succeeded!',
+			message: 'Project completed successfully!',
 			project,
 			user: newUser,
 		});

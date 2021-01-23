@@ -11,20 +11,15 @@ import Container from 'react-bootstrap/Container';
 import { Header } from './Header/index';
 import { Footer } from './Footer/index';
 import { Home } from './Home/index';
-import {
-	Login,
-	Register,
-	LoginValidated,
-	RegisterValidated,
-} from './Authentication/index';
+import { LoginValidated, RegisterValidated } from './Authentication/index';
 import { ErrorPage } from './ErrorPage/index';
 import {
 	AllProjectsPage,
 	ProjectPage,
 	ValidatedProjectForm,
 } from './Projects/index';
-import { AllBugs, Bug, ValidatedBugForm, RankUp } from './Bugs/index';
-import { Account } from './Account/index';
+import { AllBugs, Bug, ValidatedBugForm } from './Bugs/index';
+import { Account, RankUp } from './Account/index';
 import { LandingPage } from './Landing';
 import { Loading } from './Loading';
 import { ErrorMessage } from './Messages';
@@ -37,6 +32,7 @@ import '../styles/typography.css';
 import '../styles/cards.css';
 import '../styles/animations.css';
 import '../styles/forms.css';
+import '../styles/messages.css';
 
 //--- API ---
 import { getUserById, getAllUserProjects, getAllUserBugs } from '../api/index';
@@ -50,6 +46,7 @@ const App = () => {
 	const [userBugs, setUserBugs] = useState([]);
 	const [currentUser, setCurrentUser] = useState(null);
 	const [currentError, setCurrentError] = useState(null);
+	const [currentVerification, setCurrentVerification] = useState(null);
 	const [loading, setLoading] = useState(true);
 
 	//--- Effects ---
@@ -96,6 +93,11 @@ const App = () => {
 		setTimeout(() => setLoading(false), 1000);
 	}, [currentUser]);
 
+	useEffect(() => {
+		const timer = setTimeout(() => setCurrentVerification(false), 10000);
+		return () => clearTimeout(timer);
+	}, [currentVerification]);
+
 	//--- Functions ---
 	//--- JSX ---
 	return (
@@ -112,9 +114,16 @@ const App = () => {
 											userProjects={userProjects}
 											userBugs={userBugs}
 											currentUser={currentUser}
+											currentVerification={currentVerification}
+											setCurrentVerification={setCurrentVerification}
 										/>
 									) : (
-										<LandingPage currentError={currentError} />
+										<LandingPage
+											currentError={currentError}
+											setCurrentError={setCurrentError}
+											currentVerification={currentVerification}
+											setCurrentVerification={setCurrentVerification}
+										/>
 									)}
 								</Route>
 								<Route exact path='/login'>
@@ -136,6 +145,8 @@ const App = () => {
 									<AllProjectsPage
 										userProjects={userProjects}
 										currentUser={currentUser}
+										currentVerification={currentVerification}
+										setCurrentVerification={setCurrentVerification}
 									/>
 								</Route>
 								<Route exact path='/bugs'>
@@ -144,6 +155,13 @@ const App = () => {
 								<Route exact path='/account'>
 									<Account currentUser={currentUser} />
 								</Route>
+								<Route
+									exact
+									path='/account/rankup'
+									render={(props) => (
+										<RankUp {...props} currentUser={currentUser} />
+									)}
+								></Route>
 								<Route
 									exact
 									path='/bugs/new'
@@ -157,6 +175,8 @@ const App = () => {
 											currentUser={currentUser}
 											currentError={currentError}
 											setCurrentError={setCurrentError}
+											currentVerification={currentVerification}
+											setCurrentVerification={setCurrentVerification}
 											setLoading={setLoading}
 										/>
 									)}
@@ -173,15 +193,14 @@ const App = () => {
 											setUserBugs={setUserBugs}
 											currentError={currentError}
 											setCurrentError={setCurrentError}
+											currentVerification={currentVerification}
+											setCurrentVerification={setCurrentVerification}
 											currentUser={currentUser}
 											setCurrentUser={setCurrentUser}
 											setLoading={setLoading}
 										/>
 									)}
 								></Route>
-								<Route exact path='/user/rankup'>
-									<RankUp />
-								</Route>
 								<Route exact path='/projects/new'>
 									<ValidatedProjectForm
 										userProjects={userProjects}
@@ -189,6 +208,7 @@ const App = () => {
 										currentUser={currentUser}
 										currentError={currentError}
 										setCurrentError={setCurrentError}
+										setCurrentVerification={setCurrentVerification}
 										setLoading={setLoading}
 									/>
 								</Route>
@@ -204,6 +224,8 @@ const App = () => {
 											setUserBugs={setUserBugs}
 											currentError={currentError}
 											setCurrentError={setCurrentError}
+											currentVerification={currentVerification}
+											setCurrentVerification={setCurrentVerification}
 											setLoading={setLoading}
 										/>
 									)}

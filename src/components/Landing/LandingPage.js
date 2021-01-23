@@ -14,11 +14,16 @@ import { ErrorMessage } from '../Messages';
 //~~~~~~~~~~~~~~~~~
 //~~~ COMPONENT ~~~
 //~~~~~~~~~~~~~~~~~
-function LandingPage({ currentError }) {
+function LandingPage({ currentError, setCurrentError }) {
 	//--- JSX ---
 	return (
 		<Container id='landing' fluid>
-			{currentError ? <ErrorMessage currentError={currentError} /> : null}
+			{currentError ? (
+				<ErrorMessage
+					currentError={currentError}
+					setCurrentError={setCurrentError}
+				/>
+			) : null}
 			<div>
 				<h1>Welcome to BUG HUNT</h1>
 				<p>

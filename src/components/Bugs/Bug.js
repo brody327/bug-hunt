@@ -14,7 +14,7 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 //--- Components ---
-import { ErrorMessage } from '../Messages';
+import { ErrorMessage, VerificationMessage } from '../Messages';
 
 //--- CSS ---
 
@@ -38,6 +38,8 @@ function Bug({
 	setUserBugs,
 	currentError,
 	setCurrentError,
+	currentVerification,
+	setCurrentVerification,
 	currentUser,
 	setCurrentUser,
 	setLoading,
@@ -59,7 +61,6 @@ function Bug({
 	useEffect(() => {
 		let mounted = true;
 		if (!bug) {
-			setLoading(true);
 			getBugById(bugData._id)
 				.then((response) => {
 					if (mounted) setBug(response.bug);
@@ -97,6 +98,9 @@ function Bug({
 				pathname: `/projects/${projectId}`,
 				state: { project: deletedBug.project },
 			});
+
+			//Show verification message
+			setCurrentVerification(deletedBug.message);
 		} catch (err) {
 			console.error(err);
 			setCurrentError(err);
@@ -134,18 +138,27 @@ function Bug({
 			userProjects.splice(projectIndex, 1);
 			setUserProjects([...userProjects, newData.project]);
 
-			if (rankUp === true) {
-				//Send to rank up page
-				history.push({
-					pathname: `/user/rankup`,
-				});
-			} else {
-				//Go to project page.
-				history.push({
-					pathname: `/projects/${projectId}`,
-					state: { project: newData.project },
-				});
-			}
+			// if (rankUp === true) {
+			// 	//Send to rank up page
+			// 	history.push({
+			// 		pathname: `/account/rankup`,
+			// 		state: { project: newData.project },
+			// 	});
+			// } else {
+			// 	//Go to project page.
+			// 	history.push({
+			// 		pathname: `/projects/${projectId}`,
+			// 		state: { project: newData.project },
+			// 	});
+			// }
+
+			history.push({
+				pathname: `/account/rankup`,
+				state: { project: newData.project },
+			});
+
+			//Show verification message
+			setCurrentVerification(newData.message);
 		} catch (err) {
 			console.error(err);
 			setCurrentError(err.data);
@@ -157,6 +170,9 @@ function Bug({
 	return (
 		<Container fluid>
 			{currentError ? <ErrorMessage currentError={currentError} /> : null}
+			{currentVerification ? (
+				<VerificationMessage currentVerification={currentVerification} />
+			) : null}
 			{bug === null ? (
 				''
 			) : (
