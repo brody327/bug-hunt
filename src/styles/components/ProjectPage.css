@@ -1,3 +1,19 @@
+.project-page .project-card {
+	height: 100%;
+}
+
 .bugs-list {
+	max-height: 300px;
 	overflow: auto;
+}
+
+.bugs-list.row {
+	padding-top: 0;
+}
+table {
+	position: relative;
+}
+
+th {
+	background: #f27127;
 }

@@ -62,7 +62,16 @@ function RecentBugsCard({ userBugs, userProjects, currentUser }) {
 						<tbody>
 							{userBugs.map((bug) => (
 								<tr key={bug._id}>
-									<td>{moment(bug.updatedAt).format('HH:mm MM-DD-YYYY')}</td>
+									<td>
+										<div className='date-time-container'>
+											<p className='time'>
+												{moment(bug.updatedAt).format('HH:mm')}
+											</p>
+											<p className='date'>
+												{moment(bug.updatedAt).format('MM-DD-YYYY')}
+											</p>
+										</div>
+									</td>
 									<td>
 										<Link
 											to={{

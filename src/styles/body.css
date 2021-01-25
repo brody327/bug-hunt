@@ -25,3 +25,15 @@ body {
 	top: 0px;
 	z-index: 2;
 }
+
+.date-time-container {
+	margin-bottom: 1em;
+}
+.date-time-container p {
+	margin: 0;
+}
+
+th {
+	position: sticky;
+	top: 0;
+}
