@@ -34,7 +34,7 @@ function ProjectCard({ project }) {
 						<Card.Title as='h1'>{project.title}</Card.Title>
 						<Card.Subtitle as='h4'>
 							Last Updated:{' '}
-							{moment(project.updatedAt).format('HH:mm MM-DD-YYYY')}
+							{moment(project.updatedAt).format('HH:mm, MM-DD-YYYY')}
 						</Card.Subtitle>
 						<Card.Text className='hover-child fade-in-full'>
 							Created By: {project.creator.username}

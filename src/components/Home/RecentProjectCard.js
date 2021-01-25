@@ -32,7 +32,7 @@ function RecentProjectCard({ recentProject }) {
 					{recentProject === undefined
 						? ''
 						: `Last Updated: ${moment(recentProject.updatedAt).format(
-								' HH:mm MM-DD-YYYY'
+								' HH:mm, MM-DD-YYYY'
 						  )}`}
 				</Card.Text>
 			</Card.Body>

@@ -181,6 +181,30 @@ function Bug({
 					<Row>
 						<Col>
 							<Card>
+								<Card.Title as='h2' className='text-center'>
+									Project Details
+								</Card.Title>
+								<Card.Body className='text-center'>
+									<div className='divider'></div>
+									<Row>
+										<Col>
+											<h3>ID:</h3>
+											<p>{project._id}</p>
+											<h3>Creator:</h3>
+											<p>{project.creator.username}</p>
+										</Col>
+										<Col>
+											<h3>Created At:</h3>
+											<p>
+												{moment(project.createdAt).format(' HH:mm, MM-DD-YYYY')}
+											</p>
+											<h3>Last Updated At:</h3>
+											<p>
+												{moment(project.updatedAt).format(' HH:mm, MM-DD-YYYY')}
+											</p>
+										</Col>
+									</Row>
+								</Card.Body>
 								<Row>
 									<Col>
 										<Card.Body>
@@ -200,11 +224,11 @@ function Bug({
 											<p>Creator: {bug.creator.username}</p>
 											<p>
 												Created:{' '}
-												{moment(bug.createdAt).format(' HH:mm MM-DD-YYYY')}
+												{moment(bug.createdAt).format(' HH:mm, MM-DD-YYYY')}
 											</p>
 											<p>
 												Last Updated:{' '}
-												{moment(bug.updatedAt).format(' HH:mm MM-DD-YYYY')}
+												{moment(bug.updatedAt).format(' HH:mm, MM-DD-YYYY')}
 											</p>
 										</Card.Body>
 									</Col>
