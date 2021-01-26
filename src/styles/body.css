@@ -26,6 +26,10 @@ body {
 	z-index: 2;
 }
 
+/*~~~~~~~~~~~~~~~
+//~~~ Tables ~~~
+//~~~~~~~~~~~~~~~*/
+
 .date-time-container {
 	margin-bottom: 1em;
 }
@@ -36,4 +40,18 @@ body {
 th {
 	position: sticky;
 	top: 0;
+	background: white;
+}
+
+/*~~~~~~~~~~~~~~~
+//~~~ Buttons ~~~
+//~~~~~~~~~~~~~~~*/
+.button-container {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+}
+
+.button-container button {
+	margin: 0.5rem;
 }
