@@ -40,6 +40,7 @@ function ProjectPage({
 }) {
 	const project = location.state.project;
 	const history = useHistory();
+
 	//--- Functions ---
 	const onDeleteBug = async (bugId, projectId) => {
 		try {
@@ -208,7 +209,7 @@ function ProjectPage({
 			</Row>
 			<Row>
 				<Col>
-					<div className='creator-privileges text-center'>
+					<div className='creator-privileges text-center button-container'>
 						<Button onClick={() => onDeleteProject(project)}>
 							Delete Project
 						</Button>
@@ -236,7 +237,7 @@ function ProjectPage({
 			) : (
 				''
 			)}
-			<Row>
+			{/* <Row>
 				<Col>
 					<Card>
 						<Card.Title as='h2' className='text-center'>
@@ -263,7 +264,7 @@ function ProjectPage({
 						</Card.Body>
 					</Card>
 				</Col>
-			</Row>
+			</Row> */}
 			<Row>
 				<Col>
 					<Card className='project-card project-bugs'>
@@ -306,9 +307,10 @@ function ProjectPage({
 													<td>
 														<Link
 															to={{
-																pathname: `/bugs/${bug.title}`,
+																pathname: `/bugs/${bug.name}`,
 																state: {
 																	bug: bug,
+																	project: project,
 																},
 															}}
 														>

@@ -2,7 +2,7 @@
 //~~~ IMPORTS ~~~
 //~~~~~~~~~~~~~~~
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import moment from 'moment';
 
 //--- Bootstrap ---
@@ -17,6 +17,7 @@ import Alert from 'react-bootstrap/Alert';
 import { ErrorMessage, VerificationMessage } from '../Messages';
 
 //--- CSS ---
+import '../../styles/components/Bug.css';
 
 //--- API ---
 import {
@@ -43,7 +44,6 @@ function Bug({
 	currentUser,
 	setCurrentUser,
 	setLoading,
-	loadingWait,
 	match,
 	location,
 }) {
@@ -52,7 +52,6 @@ function Bug({
 	const [project, setProject] = useState(null);
 
 	const bugData = location.state.bug;
-	const projectData = location.state.project;
 
 	const history = useHistory();
 
@@ -63,7 +62,10 @@ function Bug({
 		if (!bug) {
 			getBugById(bugData._id)
 				.then((response) => {
-					if (mounted) setBug(response.bug);
+					if (mounted) {
+						setBug(response.bug);
+						setProject(response.bug.project);
+					}
 				})
 				.catch((error) => {
 					console.log(error);
@@ -168,7 +170,7 @@ function Bug({
 
 	//--- JSX ---
 	return (
-		<Container fluid>
+		<Container className='bug-page' fluid>
 			{currentError ? <ErrorMessage currentError={currentError} /> : null}
 			{currentVerification ? (
 				<VerificationMessage currentVerification={currentVerification} />
@@ -180,8 +182,8 @@ function Bug({
 					<h1 className='text-center'>{bug.title}</h1>
 					<Row>
 						<Col>
-							<Card>
-								<Card.Title as='h2' className='text-center'>
+							<Card className='bug-details bug-card'>
+								{/* <Card.Title as='h2' className='text-center'>
 									Project Details
 								</Card.Title>
 								<Card.Body className='text-center'>
@@ -204,74 +206,93 @@ function Bug({
 											</p>
 										</Col>
 									</Row>
+								</Card.Body> */}
+								<Card.Title as='h2' className='text-center'>
+									Bug Details
+								</Card.Title>
+								<Card.Body className='text-center'>
+									<div className='divider'></div>
+									<h3>ID: </h3>
+									<p>{bug._id}</p>
+									<h3>Project: </h3>
+									<Link
+										to={{
+											pathname: `/projects/${bug.project.title}`,
+											state: {
+												project: bug.project,
+											},
+										}}
+									>
+										{bug.project.title}
+									</Link>
 								</Card.Body>
-								<Row>
-									<Col>
-										<Card.Body>
-											<p>ID: {bug._id}</p>
-											<p>Name: {bug.title}</p>
-											<p>Project: {bug.project.title}</p>
-										</Card.Body>
-									</Col>
-								</Row>
 							</Card>
 						</Col>
 						<Col>
-							<Card>
-								<Row>
-									<Col>
-										<Card.Body>
-											<p>Creator: {bug.creator.username}</p>
-											<p>
-												Created:{' '}
-												{moment(bug.createdAt).format(' HH:mm, MM-DD-YYYY')}
-											</p>
-											<p>
-												Last Updated:{' '}
-												{moment(bug.updatedAt).format(' HH:mm, MM-DD-YYYY')}
-											</p>
-										</Card.Body>
-									</Col>
-								</Row>
+							<Card className='bug-creation bug-card'>
+								<Card.Title as='h2' className='text-center'>
+									Creation Details
+								</Card.Title>
+								<Card.Body className='text-center'>
+									<div className='divider'></div>
+									<h3>Creator: </h3>
+									<p>{bug.creator.username}</p>
+									<h3>Created: </h3>
+									<p>{moment(bug.createdAt).format(' HH:mm, MM-DD-YYYY')}</p>
+									<h3>Last Updated: </h3>
+									<p>{moment(bug.updatedAt).format(' HH:mm, MM-DD-YYYY')}</p>
+								</Card.Body>
 							</Card>
 						</Col>
 					</Row>
-					<div className='creator-privileges'>
-						<Button onClick={() => onDelete(bug._id, bug.project._id)}>
-							Delete Bug
-						</Button>
-					</div>
-					<div className='assignee-privileges'>
-						<Button
-							onClick={() =>
-								onComplete(bug._id, bug.project._id, currentUser._id)
-							}
-						>
-							Mark Bug Complete
-						</Button>
-						<Button>Edit Bug</Button>
-					</div>
+					<Row>
+						<Col className='text-center button-container'>
+							<Button
+								className='creator-privileges'
+								onClick={() => onDelete(bug._id, bug.project._id)}
+							>
+								Delete Bug
+							</Button>
+							<Button
+								className='assignee-privileges'
+								onClick={() =>
+									onComplete(bug._id, bug.project._id, currentUser._id)
+								}
+							>
+								Mark Bug Complete
+							</Button>
+							{/* <Button className='assignee-privileges'>Edit Bug</Button> */}
+						</Col>
+					</Row>
 					<Row>
 						<Col>
-							<Card>
-								<Row>
-									<Col>
-										<Card.Body>
+							<Card className='bug-description-priority bug-card'>
+								<Card.Title as='h2' className='text-center'>
+									Creation Details
+								</Card.Title>
+								<Card.Body className='text-center'>
+									<div className='divider'></div>
+									{bug.description ? (
+										<>
+											<h3>Description: </h3>
 											<p>{bug.description}</p>
-											<p>{bug.priority}</p>
-										</Card.Body>
-									</Col>
-								</Row>
+										</>
+									) : (
+										''
+									)}
+									<h3>Priority: </h3>
+									<p>{bug.priority}</p>
+								</Card.Body>
 							</Card>
 						</Col>
 					</Row>
-					<Row>
+					{/* <Row>
 						<Col>
-							<Card>
+							<Card className='bug-comments'>
 								<p>Comments Component</p>
 							</Card>
 						</Col>
-					</Row>
+					</Row> */}
 				</>
 			)}
 		</Container>
