@@ -25,21 +25,29 @@ function RankUp({ currentUser, match, location }) {
 	const history = useHistory();
 	const project = location.state.project;
 	return (
-		<Container fluid>
+		<Container fluid className='text-center'>
 			<h1>Rank Up!</h1>
-			<h2>You have been promoted to the rank {currentUser.game.rank}!</h2>
-			<h3>Congratulations, {currentUser.username}.</h3>
-			<Button
-				onClick={() =>
-					history.push({
-						pathname: `/projects/${project._id}`,
-						state: { project: project },
-					})
-				}
-			>
-				Go to project
-			</Button>
-			<Button onClick={() => history.push('/account')}>Go to Account</Button>
+			<Row>
+				<Col className='text-center'>
+					<h2>You have been promoted to the rank {currentUser.game.rank}!</h2>
+					<h3>Congratulations, {currentUser.username}.</h3>
+					<div className='button-container'>
+						<Button
+							onClick={() =>
+								history.push({
+									pathname: `/projects/${project._id}`,
+									state: { project: project },
+								})
+							}
+						>
+							Go to project
+						</Button>
+						<Button onClick={() => history.push('/account')}>
+							Go to Account
+						</Button>
+					</div>
+				</Col>
+			</Row>
 		</Container>
 	);
 }

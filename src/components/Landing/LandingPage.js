@@ -13,6 +13,9 @@ import Image from 'react-bootstrap/Image';
 
 //--- Media ---
 import image from '../../images/placeholder-card-img.jpg';
+import account from '../../images/account.png';
+import mainpage from '../../images/mainpage.png';
+import rankup from '../../images/rankup.png';
 
 //--- Components ---
 import { ErrorMessage } from '../Messages';
@@ -66,7 +69,7 @@ function LandingPage({ currentError, setCurrentError }) {
 				</Row>
 				<Row>
 					<Col className='text-center'>
-						<Image className='landing-image' src={image} fluid />
+						<Image className='landing-image' src={mainpage} fluid />
 					</Col>
 					<Col>
 						<p>
@@ -94,7 +97,7 @@ function LandingPage({ currentError, setCurrentError }) {
 						</p>
 					</Col>
 					<Col className='text-center'>
-						<Image className='landing-image' src={image} fluid />
+						<Image className='landing-image' src={account} fluid />
 					</Col>
 				</Row>
 				<Row>
@@ -105,7 +108,7 @@ function LandingPage({ currentError, setCurrentError }) {
 				</Row>
 				<Row>
 					<Col className='text-center'>
-						<Image className='landing-image' src={image} fluid />
+						<Image className='landing-image' src={rankup} fluid />
 					</Col>
 					<Col>
 						<p>

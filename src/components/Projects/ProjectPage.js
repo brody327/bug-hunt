@@ -282,7 +282,7 @@ function ProjectPage({
 							</Row>
 							<Row className='bugs-list'>
 								{project.bugs.length === 0 ? (
-									<div>
+									<div className='text-center'>
 										<Card.Text as='h5'>
 											No bugs were found for this project. Click on "Create Bug"
 											to begin tracking this project's issues.
