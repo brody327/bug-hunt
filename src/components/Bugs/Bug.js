@@ -112,7 +112,7 @@ function Bug({
 
 	const onComplete = async (bugId, projectId, userId) => {
 		const reward = getBugReward(bug.priority);
-		const updatedRank = getRank(currentUser.game.score);
+		const updatedRank = getRank(currentUser.game.score + reward);
 		let rankUp = false;
 
 		try {
@@ -140,24 +140,19 @@ function Bug({
 			userProjects.splice(projectIndex, 1);
 			setUserProjects([...userProjects, newData.project]);
 
-			// if (rankUp === true) {
-			// 	//Send to rank up page
-			// 	history.push({
-			// 		pathname: `/account/rankup`,
-			// 		state: { project: newData.project },
-			// 	});
-			// } else {
-			// 	//Go to project page.
-			// 	history.push({
-			// 		pathname: `/projects/${projectId}`,
-			// 		state: { project: newData.project },
-			// 	});
-			// }
-
-			history.push({
-				pathname: `/account/rankup`,
-				state: { project: newData.project },
-			});
+			if (rankUp === true) {
+				//Send to rank up page
+				history.push({
+					pathname: `/account/rankup`,
+					state: { project: newData.project },
+				});
+			} else {
+				//Go to project page.
+				history.push({
+					pathname: `/projects/${projectId}`,
+					state: { project: newData.project },
+				});
+			}
 
 			//Show verification message
 			setCurrentVerification(newData.message);

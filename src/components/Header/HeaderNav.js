@@ -71,10 +71,6 @@ const HeaderNav = ({ currentUser, setCurrentUser }) => {
 							</NavLink>
 						</>
 					)}
-					<NavLink onClick={() => history.push('/register/error')}>404</NavLink>
-					<NavLink onClick={() => history.push('/account/rankup')}>
-						Rank Up
-					</NavLink>
 				</Nav>
 			</NavbarCollapse>
 		</Navbar>
