@@ -62,16 +62,18 @@ function AllProjectsPage({
 					</Row>
 				</>
 			) : (
-				<div>
+				<div className='text-center'>
 					<p>
 						Login or register to start tracking your projects and their bugs!
 					</p>
-					<Link to='/login'>
-						<Button>Login</Button>
-					</Link>
-					<Link to='/register'>
-						<Button>Register</Button>
-					</Link>
+					<div className='button-container'>
+						<Link to='/login'>
+							<Button>Login</Button>
+						</Link>
+						<Link to='/register'>
+							<Button>Register</Button>
+						</Link>
+					</div>
 				</div>
 			)}
 		</Container>
