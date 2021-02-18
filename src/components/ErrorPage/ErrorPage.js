@@ -17,7 +17,7 @@ import Button from 'react-bootstrap/Button';
 function ErrorPage() {
 	//--- JSX ---
 	return (
-		<div>
+		<div className='text-center'>
 			<h1>Uh oh!</h1>
 			<h2>Looks like there are some bugs in the system...</h2>
 			<Link to='/'>
